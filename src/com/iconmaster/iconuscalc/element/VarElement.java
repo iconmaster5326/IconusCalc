@@ -2,21 +2,17 @@
 package com.iconmaster.iconuscalc.element;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
-import com.iconmaster.iconuscalc.function.Function;
-import com.iconmaster.iconuscalc.function.FunctionAdd;
-import com.iconmaster.iconuscalc.function.FunctionDivide;
-import com.iconmaster.iconuscalc.function.FunctionMultiply;
-import com.iconmaster.iconuscalc.function.FunctionSubtract;
+import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.function.IOperable;
 import com.iconmaster.iconuscalc.function.OperationType;
-import java.util.ArrayList;
+import com.iconmaster.iconuscalc.util.EntryStack;
 
 /**
  *
  * @author iconmaster
  */
 public class VarElement extends Element implements IOperable {
-    private final String content;
+    public final String content;
     
     public VarElement(String n) {
         content = n;
@@ -40,5 +36,14 @@ public class VarElement extends Element implements IOperable {
     @Override
     public boolean canOperate(OperationType type, Element operand, boolean reversed) {
         return true;
+    }
+    
+    @Override
+    public void execute(EntryStack stack, Namespace ns) throws IconusCalcException {
+        if (ns.getVar(content)!=null) {
+            stack.push(ns.getVar(content).value);
+        } else {
+            super.execute(stack, ns);
+        }
     }
 }
