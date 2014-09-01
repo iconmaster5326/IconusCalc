@@ -41,6 +41,7 @@ public class Parser {
         addHandler(new OperatorParser(1));
         addHandler(new OperatorParser(2));
         addHandler(new OperatorParser(3));
+        addHandler(new OperatorParser(4));
         addHandler(new FunctionParser());
     }
     
