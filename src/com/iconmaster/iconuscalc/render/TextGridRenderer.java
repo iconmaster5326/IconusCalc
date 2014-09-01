@@ -1,9 +1,8 @@
 
 package com.iconmaster.iconuscalc.render;
 
-import com.iconmaster.iconuscalc.gui.MainGui;
+import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.RenderUtils;
-import java.awt.Font;
 import java.awt.Graphics;
 
 /**
@@ -11,7 +10,7 @@ import java.awt.Graphics;
  * @author iconmaster
  */
 public class TextGridRenderer implements IScreenRenderer {
-    private MainGui parent;
+    private Window parent;
     
     public final int rows;
     public final int cols;
@@ -79,12 +78,12 @@ public class TextGridRenderer implements IScreenRenderer {
     }
 
     @Override
-    public void setParent(MainGui gui) {
+    public void setParent(Window gui) {
         parent = gui;
     }
 
     @Override
-    public MainGui getParent() {
+    public Window getParent() {
         return parent;
     }
 
