@@ -41,7 +41,7 @@ public class Parser {
         addHandler(new OperatorParser(1));
         addHandler(new OperatorParser(2));
         addHandler(new OperatorParser(3));
-        addHandler(new OperatorParser(4));
+        addHandler(new EquateParser());
         addHandler(new FunctionParser());
     }
     
@@ -58,7 +58,9 @@ public class Parser {
                         for (int i=0;i<amt;i++) {
                             list.remove(ptr);
                         }
-                        list.add(ptr, a);
+                        if (a.size()!=0) {
+                            list.add(ptr, a);
+                        }
                         ptr = -1;
                     }
                 }

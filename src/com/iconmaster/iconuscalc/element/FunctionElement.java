@@ -33,14 +33,6 @@ public class FunctionElement extends Element {
         this.args = args;
     }
     
-    public FunctionElement(Namespace ns,String n) {
-        this(ns.getFunction(n));
-    }
-    
-    public FunctionElement(Namespace ns,String n, int args) {
-        this(ns.getFunction(n),args);
-    }
-    
     public Function getContent() {
         return content;
     }

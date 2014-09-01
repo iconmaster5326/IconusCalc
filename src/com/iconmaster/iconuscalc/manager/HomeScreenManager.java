@@ -108,7 +108,7 @@ public class HomeScreenManager implements IControlManager {
     }
 
     private boolean checkCommandKeys(KeyInput e) {
-        for (Function fn : dir.functions.values()) {
+        for (Function fn : IconusCalc.getGlobalNamespace().functions.values()) {
             if (fn instanceof IQuickCommand && ((IQuickCommand)fn).isCommandKey(e)) {
                 try {
                     CodeExecutor.executeFunction(fn, stack, dir);

@@ -36,7 +36,7 @@ public class FunctionCallElement extends Element implements IOperable {
     @Override
     public void execute(EntryStack stack, Namespace ns) throws IconusCalcException {
         for (int i=content.length-1;i>=0;i--) {
-            stack.push(content[i]);
+            content[i].execute(stack, ns);
         }
         CodeExecutor.executeFunction(fn, stack, ns, content.length);
     }
