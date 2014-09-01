@@ -85,6 +85,22 @@ public class MainGui extends javax.swing.JFrame {
     }
     
     public void handleKeyPress(KeyEvent e, InputType type) {
-        window.onKey(new KeyInput(type,e.getKeyChar()));
+        char c = e.getKeyChar();
+        if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+            c = KeyInput.LEFT;
+        }
+        if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+            c = KeyInput.RIGHT;
+        }
+        
+        if (e.getKeyCode()==KeyEvent.VK_UP) {
+            c = KeyInput.UP;
+        }
+        
+        if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+            c = KeyInput.DOWN;
+        }
+        
+        window.onKey(new KeyInput(type,c));
     }
 }
