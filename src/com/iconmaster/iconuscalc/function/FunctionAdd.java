@@ -1,7 +1,7 @@
 
 package com.iconmaster.iconuscalc.function;
 
-import java.awt.event.KeyEvent;
+import com.iconmaster.iconuscalc.gui.KeyInput;
 
 /**
  *
@@ -19,8 +19,8 @@ public class FunctionAdd extends FunctionOperator {
     }
 
     @Override
-    public boolean isCommandKey(KeyEvent e) {
-        return e.getKeyChar()=='+';
+    public boolean isCommandKey(KeyInput e) {
+        return e.key=='+';
     }
 
     @Override

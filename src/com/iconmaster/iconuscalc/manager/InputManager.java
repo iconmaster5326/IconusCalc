@@ -3,8 +3,8 @@ package com.iconmaster.iconuscalc.manager;
 
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.TextGridRenderer;
-import com.iconmaster.iconuscalc.manager.IControlManager;
-import com.iconmaster.iconuscalc.manager.InputType;
+import com.iconmaster.iconuscalc.gui.InputType;
+import com.iconmaster.iconuscalc.gui.KeyInput;
 import java.awt.event.KeyEvent;
 
 /**
@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
  * @author iconmaster
  */
 public class InputManager implements IControlManager {
+
     public interface InputResult {
         public void getResult(String input);
     }
@@ -46,38 +47,38 @@ public class InputManager implements IControlManager {
     }
     
     @Override
-    public void onKey(KeyEvent e, InputType type) {
-        if (type==InputType.PRESS) {
-            if (e.getKeyChar()==KeyEvent.VK_BACK_SPACE) {
+    public void onKey(KeyInput e) {
+        if (e.type==InputType.PRESS) {
+            if (e.key==KeyInput.BACK_SPACE) {
                 if (cursor >= 0) {
                     input = input.substring(0, cursor) + input.substring(cursor+1);
                     if (cursor>=0) {
                         cursor--;
                     }
                 }
-            } else if (e.getKeyChar()==KeyEvent.VK_DELETE) {
+            } else if (e.key==KeyInput.DELETE) {
                 if (cursor < input.length()-1) {
                     input = input.substring(0, cursor+1) + input.substring(cursor+2);
                     if (cursor>input.length()) {
                         cursor--;
                     }
                 }
-            } else if (e.getKeyChar()==KeyEvent.VK_ENTER) {
+            } else if (e.key==KeyInput.ENTER) {
                 endInput();
-            } else if (e.getKeyChar()==KeyEvent.VK_ESCAPE) {
+            } else if (e.key==KeyInput.ESCAPE) {
                 input = null;
                 endInput();
-            } else if (e.getKeyChar()!=KeyEvent.CHAR_UNDEFINED) {
-                input = input.substring(0, cursor+1) + e.getKeyChar() + input.substring(cursor+1);
+            } else if (e.key!=KeyInput.UNDEFINED) {
+                input = input.substring(0, cursor+1) + e.key + input.substring(cursor+1);
                 //input+=e.getKeyChar();
                 cursor++;
             }
-        } else if (type==InputType.DOWN) {
-            if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+        } else if (e.type==InputType.DOWN) {
+            if (e.key==KeyInput.LEFT) {
                 if (cursor>=0) {
                     cursor--;
                 }
-            } else if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+            } else if (e.key==KeyInput.RIGHT) {
                 if (cursor<input.length()-1) {
                     cursor++;
                 }

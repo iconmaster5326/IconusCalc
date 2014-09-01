@@ -1,9 +1,10 @@
 
 package com.iconmaster.iconuscalc.manager;
 
+import com.iconmaster.iconuscalc.gui.InputType;
+import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.render.ErrorRenderer;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -18,8 +19,8 @@ public class ErrorManager implements IControlManager {
     }
 
     @Override
-    public void onKey(KeyEvent e, InputType type) {
-        if (type != InputType.UP)
+    public void onKey(KeyInput e) {
+        if (e.type != InputType.UP)
             renderer.getParent().closeManager();
     }
     

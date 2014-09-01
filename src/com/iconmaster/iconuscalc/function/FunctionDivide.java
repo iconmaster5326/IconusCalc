@@ -1,6 +1,7 @@
 
 package com.iconmaster.iconuscalc.function;
 
+import com.iconmaster.iconuscalc.gui.KeyInput;
 import java.awt.event.KeyEvent;
 
 /**
@@ -19,8 +20,8 @@ public class FunctionDivide extends FunctionOperator {
     }
 
     @Override
-    public boolean isCommandKey(KeyEvent e) {
-        return e.getKeyChar()=='/';
+    public boolean isCommandKey(KeyInput e) {
+        return e.key=='/';
     }
 
     @Override

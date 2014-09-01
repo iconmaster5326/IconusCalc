@@ -1,18 +1,19 @@
 
 package com.iconmaster.iconuscalc.manager;
 
+import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.element.Entry;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.function.IQuickCommand;
+import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
 import com.iconmaster.iconuscalc.util.EntryStack;
 import com.iconmaster.iconuscalc.util.StringUtils;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 /**
@@ -37,21 +38,21 @@ public class HomeScreenManager implements IControlManager {
     }
 
     @Override
-    public void onKey(KeyEvent e,InputType type) {
-        if (type==InputType.PRESS) {
+       public void onKey(KeyInput e) {
+        if (e.type==InputType.PRESS) {
             if (checkCommandKeys(e)) {
                 return;
             }
             
-            if (e.getKeyChar()==KeyEvent.VK_BACK_SPACE) {
+            if (e.key==KeyInput.BACK_SPACE) {
                 stack.pop();
-            } else if (e.getKeyChar()==KeyEvent.VK_ENTER) {
+            } else if (e.key==KeyInput.ENTER) {
                 Entry peek = stack.peekEntry();
                 stack.push(new Entry("",peek.getAnswer()));
-            } else if (e.getKeyChar()==KeyEvent.VK_ESCAPE) {
+            } else if (e.key==KeyInput.ESCAPE) {
                 
-            } else if (e.getKeyChar()!=KeyEvent.CHAR_UNDEFINED) {
-                input = new InputManager(renderer,0,renderer.cols-1,Character.toString(e.getKeyChar()),new InputManager.InputResult() {
+            } else if (e.key!=KeyInput.UNDEFINED) {
+                input = new InputManager(renderer,0,renderer.cols-1,Character.toString(e.key),new InputManager.InputResult() {
                     @Override
                     public void getResult(String got) {
                         if (got!= null && !got.isEmpty()) {
@@ -106,7 +107,7 @@ public class HomeScreenManager implements IControlManager {
         }
     }
 
-    private boolean checkCommandKeys(KeyEvent e) {
+    private boolean checkCommandKeys(KeyInput e) {
         for (Function fn : dir.functions.values()) {
             if (fn instanceof IQuickCommand && ((IQuickCommand)fn).isCommandKey(e)) {
                 try {

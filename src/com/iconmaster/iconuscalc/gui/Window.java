@@ -13,7 +13,7 @@ import java.util.Stack;
 public class Window {
     private final Stack<IControlManager> managers = new Stack<>();
     private IconusCalcException error;
-    private MainGui gui;
+    private final MainGui gui;
     
     public Window(IControlManager manager) {
         gui = new MainGui();
@@ -55,4 +55,14 @@ public class Window {
     public void clearError() {
         error = null;
     }
+    
+    public void onKey(KeyInput e) {
+        if (getError()!= null && e.type == InputType.PRESS) {
+                clearError();
+                return;
+            }
+            if (currentManager()!=null) {
+                currentManager().onKey(e);
+            }
+        }
 }

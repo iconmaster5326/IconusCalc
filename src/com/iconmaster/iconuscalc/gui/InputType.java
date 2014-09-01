@@ -1,5 +1,5 @@
 
-package com.iconmaster.iconuscalc.manager;
+package com.iconmaster.iconuscalc.gui;
 
 /**
  *

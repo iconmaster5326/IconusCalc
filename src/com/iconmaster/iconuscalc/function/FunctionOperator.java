@@ -6,12 +6,14 @@ import com.iconmaster.iconuscalc.element.Entry;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
+import com.iconmaster.iconuscalc.gui.KeyInput;
 
 /**
  *
  * @author iconmaster
  */
 public abstract class FunctionOperator extends Function implements IQuickCommand,IOperator {
+    public KeyInput weNeverUseThisMemberButINeedTheAutoImport;
 
     @Override
     public Element[] execute(Element[] args) throws IconusCalcException {

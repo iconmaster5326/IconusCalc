@@ -1,7 +1,6 @@
 
 package com.iconmaster.iconuscalc.gui;
 
-import com.iconmaster.iconuscalc.manager.InputType;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -86,12 +85,6 @@ public class MainGui extends javax.swing.JFrame {
     }
     
     public void handleKeyPress(KeyEvent e, InputType type) {
-        if (window.getError()!= null && type == InputType.PRESS) {
-            window.clearError();
-            return;
-        }
-        if (window.currentManager()!=null) {
-            window.currentManager().onKey(e,type);
-        }
+        window.onKey(new KeyInput(type,e.getKeyChar()));
     }
 }

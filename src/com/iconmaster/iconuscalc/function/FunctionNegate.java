@@ -5,6 +5,7 @@ import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.Entry;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
+import com.iconmaster.iconuscalc.gui.KeyInput;
 import java.awt.event.KeyEvent;
 
 /**
@@ -43,8 +44,8 @@ public class FunctionNegate extends Function implements IQuickCommand {
     }
 
     @Override
-    public boolean isCommandKey(KeyEvent e) {
-        return e.getKeyChar()=='_';
+    public boolean isCommandKey(KeyInput e) {
+        return e.key=='_';
     }
     
     @Override

@@ -1,12 +1,12 @@
 
 package com.iconmaster.iconuscalc.function;
 
-import java.awt.event.KeyEvent;
+import com.iconmaster.iconuscalc.gui.KeyInput;
 
 /**
  *
  * @author iconmaster
  */
 public interface IQuickCommand {
-    public boolean isCommandKey(KeyEvent e);
+    public boolean isCommandKey(KeyInput e);
 }

@@ -1,8 +1,8 @@
 
 package com.iconmaster.iconuscalc.manager;
 
+import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -11,5 +11,5 @@ import java.awt.event.KeyEvent;
 public interface IControlManager {
     public IScreenRenderer getRenderer();
 
-    public void onKey(KeyEvent e, InputType type);
+    public void onKey(KeyInput e);
 }
