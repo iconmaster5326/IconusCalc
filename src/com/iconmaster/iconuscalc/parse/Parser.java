@@ -29,6 +29,7 @@ public class Parser {
     }
     
     public static void addDefaultHandlers() {
+        addHandler(new ExtendedFunctionCallParser());
         addHandler(new FunctionIndexParser());
         addHandler(new FunctionCallParser());
         addHandler(new ExprParser());
