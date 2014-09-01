@@ -3,6 +3,8 @@ package com.iconmaster.iconuscalc;
 
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.gui.MainGui;
+import com.iconmaster.iconuscalc.gui.Window;
+import com.iconmaster.iconuscalc.manager.HomeScreenManager;
 import com.iconmaster.iconuscalc.parse.Parser;
 import com.iconmaster.iconuscalc.tokenize.Tokenizer;
 
@@ -48,7 +50,7 @@ public class IconusCalc {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainGui().setVisible(true);
+                new Window(new HomeScreenManager());
             }
         });
     }

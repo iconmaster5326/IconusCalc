@@ -2,6 +2,7 @@
 package com.iconmaster.iconuscalc.render;
 
 import com.iconmaster.iconuscalc.gui.MainGui;
+import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.RenderUtils;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,7 +12,7 @@ import java.awt.Graphics;
  * @author iconmaster
  */
 public class ErrorRenderer implements IScreenRenderer {
-    MainGui gui;
+    Window gui;
 
     @Override
     public void paint(Graphics g, int w, int h) {
@@ -26,12 +27,12 @@ public class ErrorRenderer implements IScreenRenderer {
     }
 
     @Override
-    public void setParent(MainGui gui) {
+    public void setParent(Window gui) {
         this.gui = gui;
     }
 
     @Override
-    public MainGui getParent() {
+    public Window getParent() {
         return gui;
     }
     

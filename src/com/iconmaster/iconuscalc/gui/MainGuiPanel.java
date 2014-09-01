@@ -1,10 +1,10 @@
 
 package com.iconmaster.iconuscalc.gui;
 
+import com.iconmaster.iconuscalc.manager.IControlManager;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import java.util.Stack;
 import java.awt.Graphics;
-import java.util.List;
 
 /**
  *
@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class MainGuiPanel extends javax.swing.JPanel {
     //private IScreenRenderer renderer;
-    private Stack<IScreenRenderer> renderers = new Stack<>();
-    
     private MainGui gui;
 
     /**
@@ -30,8 +28,9 @@ public class MainGuiPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        for (int i=renderers.size()-1;i>=0;i--) {
-            IScreenRenderer r = renderers.get(i);
+        Stack<IControlManager> managers = gui.window.getManagers();
+        for (int i=managers.size()-1;i>=0;i--) {
+            IScreenRenderer r = managers.get(i).getRenderer();
             r.paint(g, w, h);
         }
     }
@@ -60,12 +59,4 @@ public class MainGuiPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
-    public void addRenderer(IScreenRenderer renderer) {
-        renderers.push(renderer);
-    }
-    
-    public void closeRenderer() {
-        renderers.pop();
-    }
 }

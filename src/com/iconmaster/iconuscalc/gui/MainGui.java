@@ -1,13 +1,7 @@
 
 package com.iconmaster.iconuscalc.gui;
 
-import com.iconmaster.iconuscalc.exception.IconusCalcException;
-import com.iconmaster.iconuscalc.file.Namespace;
-import com.iconmaster.iconuscalc.manager.ErrorManager;
-import com.iconmaster.iconuscalc.manager.HomeScreenManager;
-import com.iconmaster.iconuscalc.manager.IControlManager;
 import com.iconmaster.iconuscalc.manager.InputType;
-import java.util.Stack;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -16,17 +10,13 @@ import java.awt.event.KeyListener;
  * @author iconmaster
  */
 public class MainGui extends javax.swing.JFrame {
-    
-    private final Stack<IControlManager> managers = new Stack<>();
-    private IconusCalcException error;
-
+    public Window window = null;
     /**
      * Creates new form MainGui
      */
     public MainGui() {
         initComponents();
         registerKeyHooks();
-        this.addManager(new HomeScreenManager());
     }
 
     /**
@@ -73,7 +63,7 @@ public class MainGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel mainPanel;
+    public javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 
     public void registerKeyHooks() {
@@ -96,36 +86,12 @@ public class MainGui extends javax.swing.JFrame {
     }
     
     public void handleKeyPress(KeyEvent e, InputType type) {
-        if (error!= null && type == InputType.PRESS) {
-            error = null;
+        if (window.getError()!= null && type == InputType.PRESS) {
+            window.clearError();
             return;
         }
-        if (currentManager()!=null) {
-            currentManager().onKey(e,type);
+        if (window.currentManager()!=null) {
+            window.currentManager().onKey(e,type);
         }
-    }
-
-    public IControlManager currentManager() {
-        return managers.peek();
-    }
-
-    public void addManager(IControlManager manager) {
-        managers.push(manager);
-        ((MainGuiPanel)this.mainPanel).addRenderer(manager.getRenderer());
-        manager.getRenderer().setParent(this);
-    }
-    
-    public void closeManager() {
-        managers.pop();
-        ((MainGuiPanel)this.mainPanel).closeRenderer();
-    }
-
-    public void displayError(IconusCalcException ex) {
-        this.error = ex;
-        this.addManager(new ErrorManager());
-    }
-
-    public IconusCalcException getError() {
-        return error;
     }
 }

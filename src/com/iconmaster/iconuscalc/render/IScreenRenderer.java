@@ -1,8 +1,7 @@
 
 package com.iconmaster.iconuscalc.render;
 
-import com.iconmaster.iconuscalc.gui.MainGui;
-import java.awt.Font;
+import com.iconmaster.iconuscalc.gui.Window;
 import java.awt.Graphics;
 
 /**
@@ -12,6 +11,6 @@ import java.awt.Graphics;
 public interface IScreenRenderer {
     public void paint(Graphics g, int w, int h);
     
-    public void setParent(MainGui gui);
-    public MainGui getParent();
+    public void setParent(Window gui);
+    public Window getParent();
 }
