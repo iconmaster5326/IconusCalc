@@ -4,6 +4,8 @@ package com.iconmaster.iconuscalc.function;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.Entry;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
+import com.iconmaster.iconuscalc.file.Namespace;
+import com.iconmaster.iconuscalc.util.EntryStack;
 
 /**
  *
@@ -13,6 +15,10 @@ public abstract class Function {
     public abstract Element[] execute(Element[] args) throws IconusCalcException;
     public abstract String getName();
     public abstract int getDefaultArgs();
+    
+    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, int need) throws IconusCalcException {
+        return this.execute(args);
+    }
     
     public int getMinArgs() {
         return getDefaultArgs();

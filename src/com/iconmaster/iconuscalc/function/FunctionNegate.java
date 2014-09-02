@@ -6,7 +6,6 @@ import com.iconmaster.iconuscalc.element.Entry;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
 import com.iconmaster.iconuscalc.gui.KeyInput;
-import java.awt.event.KeyEvent;
 
 /**
  *

@@ -9,17 +9,24 @@ import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.element.VarElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
+import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.file.Variable;
 import com.iconmaster.iconuscalc.gui.KeyInput;
+import com.iconmaster.iconuscalc.util.EntryStack;
 
 /**
  *
  * @author iconmaster
  */
 public class FunctionEquate extends Function implements IQuickCommand {
-
+    
     @Override
     public Element[] execute(Element[] args) throws IconusCalcException {
+        return this.execute(args, new EntryStack(), IconusCalc.getGlobalNamespace(), 2);
+    }
+
+    @Override
+    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, int need) throws IconusCalcException {
         String name;
         if (args[1] instanceof VarElement) {
             name = ((VarElement)args[1]).content;
@@ -34,10 +41,10 @@ public class FunctionEquate extends Function implements IQuickCommand {
             throw new IllegalArgumentTypeException();
         }
         
-        Variable var = IconusCalc.getGlobalNamespace().getVar(name);
+        Variable var = ns.getVar(name);
          if (var==null) {
              var = new Variable(name,args[0]);
-             IconusCalc.getGlobalNamespace().addVar(var);
+             ns.addVar(var);
          } else {
              var.value = args[0];
          }

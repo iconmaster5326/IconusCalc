@@ -72,4 +72,9 @@ public class EntryStack {
     public void setEntry(int index, String entry) {
         entries.set(index, entry);
     }
+
+    public void clear() {
+        answers.clear();
+        entries.clear();
+    }
 }

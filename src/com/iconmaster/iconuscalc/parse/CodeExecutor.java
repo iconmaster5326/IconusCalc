@@ -69,7 +69,7 @@ public class CodeExecutor {
                     ents[i] = ent;
                 }
             }
-            Element[] ret = fn.execute(args);
+            Element[] ret = fn.execute(args, stack, ns, need);
             for (Element item : ret) {
                 stack.push(new Entry(fn.getEntryString(ents),item));
             }

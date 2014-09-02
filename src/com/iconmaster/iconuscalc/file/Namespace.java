@@ -26,20 +26,6 @@ public class Namespace {
         this();
         this.parent = parent;
     }
-    
-    public static GlobalNamespace createGlobalNamespace() {
-        GlobalNamespace ns = new GlobalNamespace();
-        ns.addFunction(new FunctionAdd());
-        ns.addFunction(new FunctionSubtract());
-        ns.addFunction(new FunctionMultiply());
-        ns.addFunction(new FunctionDivide());
-        
-        ns.addFunction(new FunctionEquate());
-        
-        ns.addFunction(new FunctionNegate());
-        ns.addFunction(new FunctionEval());
-        return ns;
-    }
 
     public Namespace getParent() {
         return parent;

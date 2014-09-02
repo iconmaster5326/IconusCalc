@@ -2,7 +2,6 @@
 package com.iconmaster.iconuscalc;
 
 import com.iconmaster.iconuscalc.file.GlobalNamespace;
-import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.gui.MainGui;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.manager.HomeScreenManager;
@@ -14,7 +13,7 @@ import com.iconmaster.iconuscalc.tokenize.Tokenizer;
  * @author iconmaster
  */
 public class IconusCalc {
-    private static final GlobalNamespace homeDir = Namespace.createGlobalNamespace();
+    private static final GlobalNamespace homeDir = GlobalNamespace.createGlobalNamespace();
 
     /**
      * @param args the command line arguments
