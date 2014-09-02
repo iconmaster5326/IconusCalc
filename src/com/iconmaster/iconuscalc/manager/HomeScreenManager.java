@@ -24,7 +24,6 @@ public class HomeScreenManager implements IControlManager {
     public final TextGridRenderer renderer = new TextGridRenderer();
     
     public InputManager input;
-    public Namespace dir = IconusCalc.getGlobalNamespace();
     
     public EntryStack stack = new EntryStack();
     
@@ -58,7 +57,7 @@ public class HomeScreenManager implements IControlManager {
                         if (got!= null && !got.isEmpty()) {
                             //Element[] elements = new Element[0];
                             try {
-                                CodeExecutor.execute(got,stack,dir);
+                                CodeExecutor.execute(got,stack,renderer.getParent().getNamspace());
                             } catch (IconusCalcException ex) {
                                 renderer.getParent().displayError(ex);
                             }
@@ -111,7 +110,7 @@ public class HomeScreenManager implements IControlManager {
         for (Function fn : IconusCalc.getGlobalNamespace().functions.values()) {
             if (fn instanceof IQuickCommand && ((IQuickCommand)fn).isCommandKey(e)) {
                 try {
-                    CodeExecutor.executeFunction(fn, stack, dir);
+                    CodeExecutor.executeFunction(fn, stack, renderer.getParent().getNamspace());
                 } catch (IconusCalcException ex) {
                     renderer.getParent().displayError(ex);
                 }

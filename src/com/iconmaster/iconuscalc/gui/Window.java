@@ -1,7 +1,9 @@
 
 package com.iconmaster.iconuscalc.gui;
 
+import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
+import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.manager.ErrorManager;
 import com.iconmaster.iconuscalc.manager.IControlManager;
 import java.util.Stack;
@@ -14,6 +16,7 @@ public class Window {
     private final Stack<IControlManager> managers = new Stack<>();
     private IconusCalcException error;
     private final MainGui gui;
+    private Namespace dir = IconusCalc.getGlobalNamespace();
     
     public Window(IControlManager manager) {
         gui = new MainGui();
@@ -58,11 +61,20 @@ public class Window {
     
     public void onKey(KeyInput e) {
         if (getError()!= null && e.type == InputType.PRESS) {
-                clearError();
-                return;
-            }
-            if (currentManager()!=null) {
-                currentManager().onKey(e);
-            }
+            clearError();
+            return;
         }
+        
+        if (currentManager()!=null) {
+            currentManager().onKey(e);
+        }
+    }
+    
+    public Namespace getNamspace() {
+        return dir;
+    }
+    
+    public void setNamespace(Namespace ns) {
+        dir = ns;
+    }
 }
