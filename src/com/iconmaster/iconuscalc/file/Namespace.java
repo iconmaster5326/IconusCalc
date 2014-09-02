@@ -50,10 +50,10 @@ public class Namespace {
     }
     
     public void addVar(Variable fn) {
-        vars.put(fn.name, fn);
+        vars.put(fn.name.toUpperCase(), fn);
     }
     
     public Variable getVar(String name) {
-        return vars.get(name);
+        return vars.get(name.toUpperCase());
     }
 }

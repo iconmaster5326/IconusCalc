@@ -12,10 +12,10 @@ public class GlobalNamespace extends Namespace {
     public final HashMap<String,Function> functions = new HashMap<>();
         
     public void addFunction(Function fn) {
-        functions.put(fn.getName(), fn);
+        functions.put(fn.getName().toUpperCase(), fn);
     }
     
     public Function getFunction(String name) {
-        return functions.get(name);
+        return functions.get(name.toUpperCase());
     }
 }
