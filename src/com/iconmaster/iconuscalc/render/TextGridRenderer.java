@@ -3,6 +3,7 @@ package com.iconmaster.iconuscalc.render;
 
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.RenderUtils;
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -57,7 +58,9 @@ public class TextGridRenderer implements IScreenRenderer {
             }
         }
         
-        g.drawRect((cx+1)*(w/rows), (cy)*(h/cols), w/rows/4, h/cols);
+        g.setColor(new Color(0,0,0,128));
+        g.fillRect((cx+1)*(w/rows), (cy)*(h/cols), w/rows/4, h/cols);
+        g.setColor(Color.BLACK);
     }
     
     public void drawString(String str, int x, int y) {
