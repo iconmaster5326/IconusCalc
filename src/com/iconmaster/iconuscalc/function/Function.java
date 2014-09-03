@@ -28,10 +28,6 @@ public abstract class Function {
         return getDefaultArgs();
     }
     
-    public boolean isVarargs() {
-        return false;
-    }
-    
     public String getDisplayName() {
         return getName();
     }
