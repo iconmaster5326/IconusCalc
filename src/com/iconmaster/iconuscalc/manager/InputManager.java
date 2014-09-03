@@ -23,7 +23,7 @@ public class InputManager implements IControlManager {
     private int cursor = 0;
     private int offset = 0;
     private InputResult callback;
-    
+
     public InputManager(TextGridRenderer renderer,int x, int y, String initial, InputResult callback) {
         this.renderer = new TextGridRenderer(renderer.rows,renderer.cols);
         this.x = x;

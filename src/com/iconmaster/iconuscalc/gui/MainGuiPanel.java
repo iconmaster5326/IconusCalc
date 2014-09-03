@@ -29,8 +29,8 @@ public class MainGuiPanel extends javax.swing.JPanel {
         int h = getHeight();
         
         Stack<IControlManager> managers = gui.window.getManagers();
-        for (int i=managers.size()-1;i>=0;i--) {
-            IScreenRenderer r = managers.get(i).getRenderer();
+        for (IControlManager manager : managers) {
+            IScreenRenderer r = manager.getRenderer();
             r.paint(g, w, h);
         }
     }

@@ -15,6 +15,10 @@ public class TextGridRenderer implements IScreenRenderer {
     public final int rows;
     public final int cols;
     
+    public static int ROWS = 35;
+    public static int COLS = 16;
+    
+    
     public char[][] grid;
     
     public int cx = -100;
@@ -22,7 +26,7 @@ public class TextGridRenderer implements IScreenRenderer {
     
     public TextGridRenderer() {
         //this(25,16);
-        this(35,16);
+        this(ROWS,COLS);
     }
     
     public TextGridRenderer(int rows,int cols) {

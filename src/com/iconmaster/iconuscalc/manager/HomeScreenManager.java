@@ -5,7 +5,6 @@ import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.element.Entry;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
-import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.function.IQuickCommand;
 import com.iconmaster.iconuscalc.gui.KeyInput;
@@ -20,7 +19,7 @@ import java.util.List;
  *
  * @author iconmaster
  */
-public class HomeScreenManager implements IControlManager {
+public class HomeScreenManager implements IControlManager,IApplication {
     public final TextGridRenderer renderer = new TextGridRenderer();
     
     public InputManager input;
@@ -47,9 +46,18 @@ public class HomeScreenManager implements IControlManager {
                 stack.pop();
             } else if (e.key==KeyInput.ENTER) {
                 Entry peek = stack.peekEntry();
-                stack.push(new Entry("",peek.getAnswer()));
+                if (peek!=null) {
+                    stack.push(new Entry("",peek.getAnswer()));
+                }
             } else if (e.key==KeyInput.ESCAPE) {
-                
+                MenuManager.openAppMenu(renderer.getParent(),new String[] {"Clear Stack"},new MenuManager.MenuResult() {
+                    @Override
+                    public void getResult(MenuManager.Menu menu, int id, Object object) {
+                        if (id==0) {
+                            stack.clear();
+                        }
+                    }
+                });
             } else if (e.key!=KeyInput.UNDEFINED) {
                 input = new InputManager(renderer,0,renderer.cols-1,Character.toString(e.key),new InputManager.InputResult() {
                     @Override
@@ -120,5 +128,14 @@ public class HomeScreenManager implements IControlManager {
         }
         return false;
     }
+
+    @Override
+    public IControlManager getNewWindow() {
+        return new HomeScreenManager();
+    }
     
+    @Override
+    public String getAppName() {
+        return "Scratchpad";
+    }
 }

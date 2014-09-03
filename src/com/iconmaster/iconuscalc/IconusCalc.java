@@ -5,8 +5,10 @@ import com.iconmaster.iconuscalc.file.GlobalNamespace;
 import com.iconmaster.iconuscalc.gui.MainGui;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.manager.HomeScreenManager;
+import com.iconmaster.iconuscalc.manager.IApplication;
 import com.iconmaster.iconuscalc.parse.Parser;
 import com.iconmaster.iconuscalc.tokenize.Tokenizer;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,6 +16,9 @@ import com.iconmaster.iconuscalc.tokenize.Tokenizer;
  */
 public class IconusCalc {
     private static final GlobalNamespace homeDir = GlobalNamespace.createGlobalNamespace();
+    private static final ArrayList<IApplication> apps = new ArrayList<>();
+    
+    public static int windowsOpen = 0;
 
     /**
      * @param args the command line arguments
@@ -45,6 +50,8 @@ public class IconusCalc {
         //setup
         Tokenizer.addDefaultHandlers();
         Parser.addDefaultHandlers();
+        
+        registerApp(new HomeScreenManager());
                 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -59,4 +66,11 @@ public class IconusCalc {
         return homeDir;
     }
     
+    public static void registerApp(IApplication app) {
+        apps.add(app);
+    }
+    
+    public static ArrayList<IApplication> getApps() {
+        return (ArrayList<IApplication>) apps.clone();
+    }
 }

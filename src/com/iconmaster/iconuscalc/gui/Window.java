@@ -19,6 +19,7 @@ public class Window {
     private Namespace dir = IconusCalc.getGlobalNamespace();
     
     public Window(IControlManager manager) {
+        IconusCalc.windowsOpen += 1;
         gui = new MainGui();
         gui.window = this;
         addManager(manager);
@@ -76,5 +77,10 @@ public class Window {
     
     public void setNamespace(Namespace ns) {
         dir = ns;
+    }
+
+    public void close() {
+        IconusCalc.windowsOpen -= 1;
+        gui.dispose();
     }
 }
