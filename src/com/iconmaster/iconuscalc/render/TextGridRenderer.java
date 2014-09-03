@@ -17,8 +17,8 @@ public class TextGridRenderer implements IScreenRenderer {
     
     public char[][] grid;
     
-    public int cx = -2;
-    public int cy = -2;
+    public int cx = -100;
+    public int cy = -100;
     
     public TextGridRenderer() {
         //this(25,16);
@@ -104,7 +104,7 @@ public class TextGridRenderer implements IScreenRenderer {
     }
     
     public void removeCursor() {
-        cx = -2;
-        cy = -2;
+        cx = -100;
+        cy = -100;
     }
 }

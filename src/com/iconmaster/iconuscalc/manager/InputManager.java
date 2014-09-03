@@ -5,7 +5,6 @@ import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -22,6 +21,7 @@ public class InputManager implements IControlManager {
     private final int y;
     private String input;
     private int cursor = 0;
+    private int offset = 0;
     private InputResult callback;
     
     public InputManager(TextGridRenderer renderer,int x, int y, String initial, InputResult callback) {
@@ -38,12 +38,12 @@ public class InputManager implements IControlManager {
     
     public void renderInput() {
         clearInput();
-        renderer.drawString(input, x, y);
-        renderer.moveCursor(x+cursor , y);
+        renderer.drawString(input, x+offset, y);
+        renderer.moveCursor(x+cursor+offset , y);
     }
     
     public void clearInput() {
-        renderer.drawString("                         ", x, y);
+        renderer.drawString("                                                                                ", x, y);
     }
     
     @Override
@@ -53,14 +53,14 @@ public class InputManager implements IControlManager {
                 if (cursor >= 0) {
                     input = input.substring(0, cursor) + input.substring(cursor+1);
                     if (cursor>=0) {
-                        cursor--;
+                        backupCursor();
                     }
                 }
             } else if (e.key==KeyInput.DELETE) {
                 if (cursor < input.length()-1) {
                     input = input.substring(0, cursor+1) + input.substring(cursor+2);
                     if (cursor>input.length()) {
-                        cursor--;
+                        backupCursor();
                     }
                 }
             } else if (e.key==KeyInput.ENTER) {
@@ -71,16 +71,16 @@ public class InputManager implements IControlManager {
             } else if (e.key!=KeyInput.UNDEFINED) {
                 input = input.substring(0, cursor+1) + e.key + input.substring(cursor+1);
                 //input+=e.getKeyChar();
-                cursor++;
+                advanceCursor();
             }
         } else if (e.type==InputType.DOWN) {
             if (e.key==KeyInput.LEFT) {
                 if (cursor>=0) {
-                    cursor--;
+                    backupCursor();
                 }
             } else if (e.key==KeyInput.RIGHT) {
                 if (cursor<input.length()-1) {
-                    cursor++;
+                    advanceCursor();
                 }
             }
         }
@@ -95,5 +95,21 @@ public class InputManager implements IControlManager {
     @Override
     public IScreenRenderer getRenderer() {
         return renderer;
+    }
+    
+    public void advanceCursor() {
+        cursor++;
+        if (cursor - offset >= renderer.rows) {
+            offset--;
+            System.out.println(offset);
+        }
+    }
+    
+    public void backupCursor() {
+        cursor--;
+        if (cursor + offset < -1) {
+            offset++;
+            System.out.println(offset);
+        }
     }
 }
