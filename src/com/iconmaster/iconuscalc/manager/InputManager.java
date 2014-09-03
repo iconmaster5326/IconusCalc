@@ -108,7 +108,9 @@ public class InputManager implements IControlManager {
     public void backupCursor() {
         cursor--;
         if (cursor + offset < -1) {
-            offset++;
+            offset+=6;
+            if (offset>1)
+                offset = 0;
             System.out.println(offset);
         }
     }
