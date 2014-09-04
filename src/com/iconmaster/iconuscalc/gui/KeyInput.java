@@ -20,11 +20,12 @@ public class KeyInput {
     
     public InputType type;
     public char key;
-    public char rawKey;
+    public InputModifier mod;
 
-    KeyInput(InputType type, char key) {
+    KeyInput(InputType type, char key, InputModifier mods) {
         this.type = type;
         this.key = key;
-        this.rawKey = key;
+        this.mod = mods;
+        
     }
 }

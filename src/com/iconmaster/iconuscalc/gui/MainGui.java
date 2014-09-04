@@ -98,23 +98,32 @@ public class MainGui extends javax.swing.JFrame {
         });
     }
     
+    public char lastKey;
     public void handleKeyPress(KeyEvent e, InputType type) {
         char c = e.getKeyChar();
+        
         if (e.getKeyCode()==KeyEvent.VK_LEFT) {
             c = KeyInput.LEFT;
         }
         if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
             c = KeyInput.RIGHT;
         }
-        
         if (e.getKeyCode()==KeyEvent.VK_UP) {
             c = KeyInput.UP;
         }
-        
         if (e.getKeyCode()==KeyEvent.VK_DOWN) {
             c = KeyInput.DOWN;
         }
+
+        if (type==InputType.PRESS && e.isControlDown()) {
+            System.out.println((int) lastKey);
+            window.onKey(new KeyInput(type, (char) (lastKey+64),InputModifier.CTRL));
+        } else {
+            window.onKey(new KeyInput(type,c, InputModifier.NONE));
+        }
         
-        window.onKey(new KeyInput(type,c));
+        if (type==InputType.DOWN) {
+            lastKey = e.getKeyChar();
+        }
     }
 }

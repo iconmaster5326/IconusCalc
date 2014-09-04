@@ -25,7 +25,7 @@ public class ExprParser implements ParseHandler {
         Parser p2 = new Parser(t.content);
         
         a.add(new ExpressionElement(p2.parse()));
-                        
+
         return a;
     }
 
