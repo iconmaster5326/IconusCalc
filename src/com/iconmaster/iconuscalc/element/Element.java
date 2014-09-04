@@ -32,11 +32,23 @@ public abstract class Element {
         ArrayList<Element> a = new ArrayList<>();
         
         if (reversed) {
-            a.add(operand);
+            if (operand instanceof ExpressionElement) {
+                for (Element e : ((ExpressionElement)operand).content) {
+                    a.add(e);
+                }
+            } else {
+                a.add(operand);
+            }
             a.add(this);
         } else {
             a.add(this);
-            a.add(operand);
+            if (operand instanceof ExpressionElement) {
+                for (Element e : ((ExpressionElement)operand).content) {
+                    a.add(e);
+                }
+            } else {
+                a.add(operand);
+            }
         }
         a.add(new FunctionElement(Function.getOperationFunction(type)));
         
