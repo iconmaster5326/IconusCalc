@@ -10,7 +10,7 @@ import com.iconmaster.iconuscalc.function.OperationType;
  * @author iconmaster
  */
 public class StringElement extends Element implements IOperable {
-    private final String content;
+    public final String content;
     
     public StringElement(String n) {
         content = n;

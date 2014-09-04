@@ -7,6 +7,7 @@ import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.function.IOperable;
 import com.iconmaster.iconuscalc.function.OperationType;
+import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
 import com.iconmaster.iconuscalc.util.EntryStack;
 
@@ -34,11 +35,11 @@ public class FunctionCallElement extends Element implements IOperable {
     }
     
     @Override
-    public void execute(EntryStack stack, Namespace ns) throws IconusCalcException {
+    public void execute(EntryStack stack, Namespace ns, Window window) throws IconusCalcException {
         for (int i=content.length-1;i>=0;i--) {
-            content[i].execute(stack, ns);
+            content[i].execute(stack, ns, window);
         }
-        CodeExecutor.executeFunction(fn, stack, ns, content.length);
+        CodeExecutor.executeFunction(fn, stack, ns, window, content.length);
     }
 
     @Override

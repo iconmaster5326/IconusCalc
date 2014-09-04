@@ -5,6 +5,7 @@ import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.function.Function;
+import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
 import com.iconmaster.iconuscalc.util.EntryStack;
 
@@ -43,8 +44,8 @@ public class FunctionElement extends Element {
     }
     
     @Override
-    public void execute(EntryStack stack, Namespace ns) throws IconusCalcException {
-        CodeExecutor.executeFunction(content, stack, ns, args);
+    public void execute(EntryStack stack, Namespace ns, Window window) throws IconusCalcException {
+        CodeExecutor.executeFunction(content, stack, ns, window, args);
     }
     
     @Override

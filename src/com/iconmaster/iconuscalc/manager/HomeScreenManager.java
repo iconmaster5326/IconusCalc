@@ -65,7 +65,7 @@ public class HomeScreenManager implements IControlManager,IApplication {
                         if (got!= null && !got.isEmpty()) {
                             //Element[] elements = new Element[0];
                             try {
-                                CodeExecutor.execute(got,stack,renderer.getParent().getNamspace());
+                                CodeExecutor.execute(got,stack,renderer.getParent().getNamspace(),renderer.getParent());
                             } catch (IconusCalcException ex) {
                                 renderer.getParent().displayError(ex);
                             }
@@ -118,7 +118,7 @@ public class HomeScreenManager implements IControlManager,IApplication {
         for (Function fn : IconusCalc.getGlobalNamespace().functions.values()) {
             if (fn instanceof IQuickCommand && ((IQuickCommand)fn).isCommandKey(e)) {
                 try {
-                    CodeExecutor.executeFunction(fn, stack, renderer.getParent().getNamspace());
+                    CodeExecutor.executeFunction(fn, stack, renderer.getParent().getNamspace(), renderer.getParent());
                 } catch (IconusCalcException ex) {
                     renderer.getParent().displayError(ex);
                 }

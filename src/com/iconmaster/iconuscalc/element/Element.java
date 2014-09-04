@@ -5,6 +5,7 @@ import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.function.OperationType;
+import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.EntryStack;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public abstract class Element {
     public abstract String getDisplayString();
     
-    public void execute(EntryStack stack, Namespace ns) throws IconusCalcException {
+    public void execute(EntryStack stack, Namespace ns, Window window) throws IconusCalcException {
         stack.push(new Entry(this.getDisplayString(),this));
     }
     

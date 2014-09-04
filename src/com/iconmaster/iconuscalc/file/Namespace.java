@@ -10,13 +10,11 @@ import java.util.HashMap;
 public class Namespace {
     private Namespace parent;
     public HashMap<String,Variable> vars = new HashMap<>();
+    public HashMap<String,Namespace> folders = new HashMap<>();
+    private String name;
     
-    public Namespace() {
-        
-    }
-    
-    public Namespace(Namespace parent) {
-        this();
+    public Namespace(String name, Namespace parent) {
+        this.name = name;
         this.parent = parent;
     }
 
@@ -36,7 +34,19 @@ public class Namespace {
         return vars.get(name.toUpperCase());
     }
     
-    public String getDirName() {
-        return "?";
+    public String getPathName() {
+        return parent==null?"":parent.getPathName()+"/"+name;
+    }
+    
+    public void addFolder(Namespace ns) {
+        folders.put(ns.getName().toUpperCase(), ns);
+    }
+    
+    public Namespace getFolder(String name) {
+        return folders.get(name.toUpperCase());
+    }
+
+    private String getName() {
+        return name;
     }
 }

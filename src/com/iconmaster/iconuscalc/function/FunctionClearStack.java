@@ -4,6 +4,7 @@ package com.iconmaster.iconuscalc.function;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.file.Namespace;
+import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.EntryStack;
 
 /**
@@ -17,7 +18,7 @@ public class FunctionClearStack extends Function {
     }
 
     @Override
-    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, int need) throws IconusCalcException {
+    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
         stack.clear();
         return new Element[0];
     }

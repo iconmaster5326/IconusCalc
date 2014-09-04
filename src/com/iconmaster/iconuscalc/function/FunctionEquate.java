@@ -12,6 +12,7 @@ import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.file.Variable;
 import com.iconmaster.iconuscalc.gui.KeyInput;
+import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.EntryStack;
 
 /**
@@ -22,11 +23,11 @@ public class FunctionEquate extends Function implements IQuickCommand {
     
     @Override
     public Element[] execute(Element[] args) throws IconusCalcException {
-        return this.execute(args, new EntryStack(), IconusCalc.getGlobalNamespace(), 2);
+        return this.execute(args, new EntryStack(), IconusCalc.getGlobalNamespace(),null, 2);
     }
 
     @Override
-    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, int need) throws IconusCalcException {
+    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
         String name;
         if (args[1] instanceof VarElement) {
             name = ((VarElement)args[1]).content;

@@ -64,7 +64,7 @@ public class MainGuiPanel extends javax.swing.JPanel {
     
     public void drawStatusBar(Graphics g, int w, int h) {
         g.setFont(RenderUtils.getFont(h, h));
-        g.drawString(gui.window.getNamspace().getDirName(), 0, h);
+        g.drawString(gui.window.getNamspace().getPathName(), 0, h);
         g.drawString(new SimpleDateFormat("hh:mm a").format(new Date(System.currentTimeMillis())) , w-h*7-6, h);
     }
 

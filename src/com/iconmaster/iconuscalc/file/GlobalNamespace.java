@@ -11,6 +11,10 @@ import java.util.HashMap;
  */
 public class GlobalNamespace extends Namespace {
     public final HashMap<String,Function> functions = new HashMap<>();
+
+    public GlobalNamespace() {
+        super("HOME",null);
+    }
         
     public void addFunction(Function fn) {
         functions.put(fn.getName().toUpperCase(), fn);
@@ -34,11 +38,16 @@ public class GlobalNamespace extends Namespace {
         
         ns.addFunction(new FunctionEval());
         ns.addFunction(new FunctionClearStack());
+        
+        ns.addFunction(new FunctionMakeDir());
+        ns.addFunction(new FunctionChangeDir());
+        ns.addFunction(new FunctionUpDir());
+        
         return ns;
     }
     
     @Override
-    public String getDirName() {
+    public String getPathName() {
         return "HOME";
     }
 }
