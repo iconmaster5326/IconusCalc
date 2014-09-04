@@ -3,6 +3,7 @@ package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.Entry;
+import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
 import com.iconmaster.iconuscalc.gui.KeyInput;
@@ -49,6 +50,13 @@ public class FunctionNegate extends Function implements IQuickCommand {
     
     @Override
     public String getEntryString(Entry[] args) {
-        return "-"+args[0].getAnswer().getDisplayString();
+        String str = args[0].getAnswer().getDisplayString();
+        if (args[0].getAnswer() instanceof FunctionCallElement) {
+            Function fn = ((FunctionCallElement)args[0].getAnswer()).fn;
+             if (fn instanceof IOperator) {
+                  str="("+str+")";
+             }
+        }
+        return "−"+str;
     }
 }

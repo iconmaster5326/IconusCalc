@@ -60,6 +60,8 @@ public abstract class Function {
                 return new FunctionMultiply();
             case DIV:
                 return new FunctionDivide();
+            case NEGATE:
+                return new FunctionNegate();
         }
         return null;
     }

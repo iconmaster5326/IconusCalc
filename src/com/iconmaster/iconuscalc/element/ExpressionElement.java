@@ -3,10 +3,6 @@ package com.iconmaster.iconuscalc.element;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.function.Function;
-import com.iconmaster.iconuscalc.function.FunctionAdd;
-import com.iconmaster.iconuscalc.function.FunctionDivide;
-import com.iconmaster.iconuscalc.function.FunctionMultiply;
-import com.iconmaster.iconuscalc.function.FunctionSubtract;
 import com.iconmaster.iconuscalc.function.IOperable;
 import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
@@ -51,7 +47,7 @@ public class ExpressionElement extends Element implements IOperable {
         }
         if (operand instanceof ExpressionElement) {
             a.addAll(Arrays.asList(((ExpressionElement)operand).content));
-        } else {
+        } else if (operand != null) {
             a.add(operand);
         }
         if (reversed) {

@@ -4,6 +4,7 @@ package com.iconmaster.iconuscalc.element;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.function.Function;
+import com.iconmaster.iconuscalc.function.FunctionNegate;
 import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.EntryStack;
@@ -29,6 +30,13 @@ public abstract class Element {
     }
     
     public Element[] expressionCreationOperation(OperationType type, Element operand, boolean reversed) throws IconusCalcException {
+        if (type==OperationType.NEGATE) {
+            ArrayList<Element> a = new ArrayList<>();
+            a.add(this);
+            a.add(new FunctionElement(new FunctionNegate()));
+            return new Element[] {new ExpressionElement(a)};
+        }
+        
         ArrayList<Element> a = new ArrayList<>();
         
         if (reversed) {
