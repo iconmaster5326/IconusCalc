@@ -23,5 +23,10 @@ public class ErrorManager implements IControlManager {
         if (e.type != InputType.UP)
             renderer.getParent().closeManager();
     }
+
+    @Override
+    public boolean showStatusBar() {
+        return false;
+    }
     
 }

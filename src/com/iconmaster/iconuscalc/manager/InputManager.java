@@ -12,6 +12,11 @@ import com.iconmaster.iconuscalc.gui.KeyInput;
  */
 public class InputManager implements IControlManager {
 
+    @Override
+    public boolean showStatusBar() {
+        return false;
+    }
+
     public interface InputResult {
         public void getResult(String input);
     }

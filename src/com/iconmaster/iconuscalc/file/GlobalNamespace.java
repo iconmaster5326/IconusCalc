@@ -36,4 +36,9 @@ public class GlobalNamespace extends Namespace {
         ns.addFunction(new FunctionClearStack());
         return ns;
     }
+    
+    @Override
+    public String getDirName() {
+        return "HOME";
+    }
 }

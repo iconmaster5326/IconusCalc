@@ -12,4 +12,6 @@ public interface IControlManager {
     public IScreenRenderer getRenderer();
 
     public void onKey(KeyInput e);
+
+    public boolean showStatusBar();
 }

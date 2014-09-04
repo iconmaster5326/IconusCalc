@@ -1,8 +1,11 @@
 
 package com.iconmaster.iconuscalc.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.Timer;
 
 /**
  *
@@ -16,6 +19,17 @@ public class MainGui extends javax.swing.JFrame {
     public MainGui() {
         initComponents();
         registerKeyHooks();
+        
+        Timer timer = new Timer(1000*60, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+            }
+        
+        });
+        timer.setInitialDelay(1000);
+        timer.start(); 
     }
 
     /**

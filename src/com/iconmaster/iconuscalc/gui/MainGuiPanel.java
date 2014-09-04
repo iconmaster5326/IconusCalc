@@ -3,8 +3,12 @@ package com.iconmaster.iconuscalc.gui;
 
 import com.iconmaster.iconuscalc.manager.IControlManager;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
+import com.iconmaster.iconuscalc.render.TextGridRenderer;
+import com.iconmaster.iconuscalc.util.RenderUtils;
 import java.util.Stack;
 import java.awt.Graphics;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -29,10 +33,39 @@ public class MainGuiPanel extends javax.swing.JPanel {
         int h = getHeight();
         
         Stack<IControlManager> managers = gui.window.getManagers();
+        
+        boolean showStatusBar = false;
+        for (IControlManager manager : managers) {
+            if (manager.showStatusBar()) {
+                showStatusBar = true;
+            }
+        }
+        
+        int SBAR_H = h/25;
+        
+        if (showStatusBar) {
+            drawStatusBar(g, w, SBAR_H);
+            g.translate(0, (SBAR_H-2));
+        }
+
         for (IControlManager manager : managers) {
             IScreenRenderer r = manager.getRenderer();
-            r.paint(g, w, h);
+            if (showStatusBar) {
+                r.paint(g, w, h-SBAR_H);
+            } else {
+                r.paint(g, w, h);
+            }
         }
+        
+        if (showStatusBar) {
+            g.translate(0, -(SBAR_H-2));
+        }
+    }
+    
+    public void drawStatusBar(Graphics g, int w, int h) {
+        g.setFont(RenderUtils.getFont(h, h));
+        g.drawString(gui.window.getNamspace().getDirName(), 0, h);
+        g.drawString(new SimpleDateFormat("hh:mm a").format(new Date(System.currentTimeMillis())) , w-h*7-6, h);
     }
 
     /**

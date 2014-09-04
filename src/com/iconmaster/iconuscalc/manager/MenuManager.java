@@ -15,6 +15,12 @@ import java.util.Collection;
  * @author iconmaster
  */
 public class MenuManager implements IControlManager {
+
+    @Override
+    public boolean showStatusBar() {
+        return false;
+    }
+    
     public static interface MenuResult {
         public void getResult(Menu menu, int id, Object object);
     }

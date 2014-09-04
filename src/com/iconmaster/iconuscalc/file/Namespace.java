@@ -1,13 +1,6 @@
 
 package com.iconmaster.iconuscalc.file;
 
-import com.iconmaster.iconuscalc.function.FunctionAdd;
-import com.iconmaster.iconuscalc.function.FunctionDivide;
-import com.iconmaster.iconuscalc.function.FunctionEquate;
-import com.iconmaster.iconuscalc.function.FunctionEval;
-import com.iconmaster.iconuscalc.function.FunctionMultiply;
-import com.iconmaster.iconuscalc.function.FunctionNegate;
-import com.iconmaster.iconuscalc.function.FunctionSubtract;
 import java.util.HashMap;
 
 /**
@@ -41,5 +34,9 @@ public class Namespace {
     
     public Variable getVar(String name) {
         return vars.get(name.toUpperCase());
+    }
+    
+    public String getDirName() {
+        return "?";
     }
 }

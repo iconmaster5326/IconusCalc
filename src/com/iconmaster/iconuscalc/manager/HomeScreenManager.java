@@ -138,4 +138,9 @@ public class HomeScreenManager implements IControlManager,IApplication {
     public String getAppName() {
         return "Scratchpad";
     }
+
+    @Override
+    public boolean showStatusBar() {
+        return true;
+    }
 }
