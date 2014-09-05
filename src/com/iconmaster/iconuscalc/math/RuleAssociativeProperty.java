@@ -26,10 +26,10 @@ public class RuleAssociativeProperty implements IRule {
         
         if (e1 instanceof FunctionCallElement) {
             FunctionCallElement fne = (FunctionCallElement)e1;
-            if (isValidFunction(fne.fn)) {
+            if (isValidFunction(fne.fn) && fne.fn.getClass() == e.fn.getClass()) {
                 //(a+b)+c -> a+(b+c); a,b=fne.content[0,1]; c=e2
-                FunctionCallElement ret2 = new FunctionCallElement(fne.fn,new Element[] {fne.content[1],e2});
-                FunctionCallElement ret = new FunctionCallElement(e.fn,new Element[] {fne.content[0], Simplifier.simplify(ret2).content[0]});
+                FunctionCallElement ret2 = new FunctionCallElement(fne.fn,new Element[] {fne.content[0],e2});
+                FunctionCallElement ret = new FunctionCallElement(e.fn,new Element[] {fne.content[1], Simplifier.simplify(ret2).content[0]});
                 return ret;
             }
         } else {

@@ -47,4 +47,9 @@ public class VarElement extends Element implements IOperable {
             super.execute(stack, ns, window);
         }
     }
+    
+    @Override
+    public String toString() {
+        return content;
+    }
 }

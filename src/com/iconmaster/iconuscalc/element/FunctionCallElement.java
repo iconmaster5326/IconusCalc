@@ -58,4 +58,9 @@ public class FunctionCallElement extends Element implements IOperable {
     public boolean canOperate(OperationType type, Element operand, boolean reversed) {
         return true;
     }
+    
+    @Override
+    public String toString() {
+        return "[FUNC: "+fn+" "+content[0]+" "+content[1]+"]";
+    }
 }

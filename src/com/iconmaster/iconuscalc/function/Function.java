@@ -67,4 +67,9 @@ public abstract class Function {
         }
         return null;
     }
+    
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

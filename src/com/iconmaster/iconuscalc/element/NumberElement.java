@@ -70,4 +70,9 @@ public class NumberElement extends Element implements IOperable {
         }
         return operand instanceof NumberElement || operand instanceof IOperable && ((IOperable)operand).canOperate(type, this, !reversed);
     }
+    
+    @Override
+    public String toString() {
+        return content.toString();
+    }
 }
