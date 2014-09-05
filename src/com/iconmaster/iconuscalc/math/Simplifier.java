@@ -27,16 +27,17 @@ public class Simplifier {
     public static ExpressionElement simplify(FunctionCallElement e) {
         Element ret = e;
         ArrayList<IRule> ruleset = rules.get(e.fn.getClass());
+        boolean restarted = false;
         if (ruleset!=null) {
             for (int i=0;i<ruleset.size();i++) {
                 IRule rule = ruleset.get(i);
                 Element got = rule.simplify((FunctionCallElement)ret);
-                
+
                 if (got!=null) {
                     ret = got;
                 }
-                
-                if (!(got instanceof FunctionCallElement)) {
+
+                if (!(ret instanceof FunctionCallElement)) {
                     break;
                 }
             }
@@ -60,5 +61,11 @@ public class Simplifier {
         addRule(FunctionMultiply.class,new RuleConstantSimplify());
         addRule(FunctionDivide.class,new RuleConstantSimplify());
         addRule(FunctionPower.class,new RuleConstantSimplify());
+        
+        addRule(FunctionAdd.class,new RuleAssociativeProperty());
+        addRule(FunctionMultiply.class,new RuleAssociativeProperty());
+        
+        addRule(FunctionMultiply.class,new RuleOrderCorrectly());
+        addRule(FunctionAdd.class,new RuleOrderCorrectly());
     }
 }

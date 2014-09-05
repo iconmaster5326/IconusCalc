@@ -18,6 +18,7 @@ import com.iconmaster.iconuscalc.util.EntryStack;
 public class FunctionCallElement extends Element implements IOperable {
     public final Function fn;
     public final Element[] content;
+    public boolean altered = false;
     
     public FunctionCallElement(Function fn,Element[] n) {
         this.fn = fn;
