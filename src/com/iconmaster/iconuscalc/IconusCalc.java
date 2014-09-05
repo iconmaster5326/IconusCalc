@@ -6,6 +6,7 @@ import com.iconmaster.iconuscalc.gui.MainGui;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.manager.HomeScreenManager;
 import com.iconmaster.iconuscalc.manager.IApplication;
+import com.iconmaster.iconuscalc.math.Simplifier;
 import com.iconmaster.iconuscalc.parse.Parser;
 import com.iconmaster.iconuscalc.tokenize.Tokenizer;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class IconusCalc {
         //setup
         Tokenizer.addDefaultHandlers();
         Parser.addDefaultHandlers();
+        Simplifier.registerRules();
         
         registerApp(new HomeScreenManager());
                 

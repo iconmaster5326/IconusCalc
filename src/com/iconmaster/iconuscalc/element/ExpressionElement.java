@@ -20,6 +20,12 @@ public class ExpressionElement extends Element implements IOperable {
         content = CodeExecutor.executeQuoting(n);
     }
     
+    public ExpressionElement(Element n) {
+        ArrayList<Element> a = new ArrayList<>();
+        a.add(n);
+        content = CodeExecutor.executeQuoting(a);
+    }
+    
     @Override
     public String getDisplayString() {
         return "'"+getStringCastString()+"'";

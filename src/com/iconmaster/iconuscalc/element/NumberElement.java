@@ -12,7 +12,7 @@ import com.iconmaster.iconuscalc.util.StringUtils;
  * @author iconmaster
  */
 public class NumberElement extends Element implements IOperable {
-    private final Double content;
+    public final Double content;
     
     public NumberElement(double n) {
         content = n;
