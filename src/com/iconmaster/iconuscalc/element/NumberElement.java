@@ -49,6 +49,8 @@ public class NumberElement extends Element implements IOperable {
                     return new NumberElement[] {new NumberElement((reversed?c2:c1)*(reversed?c1:c2))};
                 case DIV:
                     return new NumberElement[] {new NumberElement((reversed?c2:c1)/(reversed?c1:c2))};
+                case POW:
+                    return new NumberElement[] {new NumberElement(Math.pow((reversed?c2:c1),(reversed?c1:c2)))};
             }
             return null;
         } else if (operand instanceof IOperable) {

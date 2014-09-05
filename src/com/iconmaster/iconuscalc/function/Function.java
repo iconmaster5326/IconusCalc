@@ -62,6 +62,8 @@ public abstract class Function {
                 return new FunctionDivide();
             case NEGATE:
                 return new FunctionNegate();
+            case POW:
+                return new FunctionPower();
         }
         return null;
     }

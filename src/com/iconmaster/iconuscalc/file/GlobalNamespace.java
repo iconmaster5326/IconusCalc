@@ -31,6 +31,7 @@ public class GlobalNamespace extends Namespace {
         ns.addFunction(new FunctionSubtract());
         ns.addFunction(new FunctionMultiply());
         ns.addFunction(new FunctionDivide());
+        ns.addFunction(new FunctionPower());
         
         ns.addFunction(new FunctionEquate());
         

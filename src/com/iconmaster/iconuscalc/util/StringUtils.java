@@ -18,7 +18,7 @@ public class StringUtils {
         return df.format(number);
     }
 
-    private static final char[] SYMBOLS = new char[] {'+','-','*','/','=','<','>'};
+    private static final char[] SYMBOLS = new char[] {'+','-','*','/','=','<','>','^'};
     
     public static boolean isSymbol(char c) {
         for (char s : SYMBOLS) {
