@@ -5,6 +5,7 @@ import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.element.NumberElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
+import com.iconmaster.iconuscalc.function.FunctionNegate;
 
 /**
  *
@@ -14,6 +15,13 @@ public class RuleConstantSimplify implements IRule {
 
     @Override
     public Element simplify(FunctionCallElement e) {
+        if (e.fn instanceof FunctionNegate) {
+            if (e.content[0] instanceof NumberElement) {
+                return new NumberElement(-((NumberElement)e.content[0]).content);
+            } else {
+                return null;
+            }
+        }
         Element e1 = e.content[0];
         Element e2 = e.content[1];
         boolean changed = false;

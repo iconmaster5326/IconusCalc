@@ -42,6 +42,8 @@ public class Simplifier {
 
                 if (!(ret instanceof FunctionCallElement)) {
                     break;
+                } else if (((FunctionCallElement)ret).fn.getClass()!=e.fn.getClass() && !(rule instanceof RuleRedoSubtract)) {
+                    return simplify(((FunctionCallElement)ret));
                 }
             }
         }
@@ -60,16 +62,21 @@ public class Simplifier {
     }
     
     public static void registerRules() {
+        addRule(FunctionSubtract.class,new RuleUndoSubtract());
+        
         addRule(FunctionAdd.class,new RuleConstantSimplify());
         addRule(FunctionSubtract.class,new RuleConstantSimplify());
         addRule(FunctionMultiply.class,new RuleConstantSimplify());
         addRule(FunctionDivide.class,new RuleConstantSimplify());
         addRule(FunctionPower.class,new RuleConstantSimplify());
+        addRule(FunctionNegate.class,new RuleConstantSimplify());
         
         addRule(FunctionAdd.class,new RuleCollectTerms());
         addRule(FunctionMultiply.class,new RuleCollectTerms());
         
         addRule(FunctionMultiply.class,new RuleOrderCorrectly(true));
         addRule(FunctionAdd.class,new RuleOrderCorrectly(false));
+        
+        addRule(FunctionAdd.class,new RuleRedoSubtract());
     }
 }
