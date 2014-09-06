@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author iconmaster
  */
 public class RuleCollectTerms implements IRule {
-    public class IntWrap {
+    public static class IntWrap {
 
         @Override
         public int hashCode() {
@@ -46,12 +46,40 @@ public class RuleCollectTerms implements IRule {
     @Override
     public Element simplify(FunctionCallElement e) {
         Function fn = e.fn instanceof FunctionSubtract ? new FunctionAdd() : e.fn;
-        ArrayList<Element> a = new ArrayList<>();
-        
-        iterate(a,e,fn);
         
         FunctionCallElement ret = null;
         Element firste = null;
+        
+        ArrayList<Element> terms = getTerms(fn,e);
+        
+        for (Element ae : terms) {
+            if (ae!=null) {
+                if (ret==null) {
+                    if (firste==null) {
+                        firste=ae;
+                    } else {
+                        ret = new FunctionCallElement(fn,new Element[] {firste,ae});
+                    }
+                } else {
+                    ret = new FunctionCallElement(fn,new Element[] {ret,ae});
+                }
+            }
+        }
+        
+        Element ret2;
+        if (ret==null) {
+            ret2 = firste;
+        } else {
+            ret2 = ret;
+        }
+
+        return ret2;
+    }
+    
+    public static ArrayList<Element> getTerms(Function fn, FunctionCallElement e) {
+        ArrayList<Element> a = new ArrayList<>();
+        
+        iterate(a,e,fn);
         
         NumberElement constant = null;
         ArrayList<Element> terms = new ArrayList<>();
@@ -94,39 +122,12 @@ public class RuleCollectTerms implements IRule {
             terms.set(i.v,null);
         }
         
-        for (Element ae : terms) {
-            if (ae!=null) {
-                if (ret==null) {
-                    if (firste==null) {
-                        firste=ae;
-                    } else {
-                        ret = new FunctionCallElement(fn,new Element[] {firste,ae});
-                    }
-                } else {
-                    ret = new FunctionCallElement(fn,new Element[] {ret,ae});
-                }
-            }
-        }
+        terms.add(constant);
         
-        Element ret2;
-        if (ret==null) {
-            ret2 = firste;
-        } else {
-            ret2 = ret;
-        }
-        
-        if (constant!=null) {
-            if (ret2==null) {
-                ret2 = constant;
-            } else {
-                ret2 = new FunctionCallElement(fn,new Element[] {ret2,constant});
-            }
-        }
-
-        return ret2;
+        return terms;
     }
     
-    public void iterate(ArrayList<Element> a, Element e, Function fn) {
+    public static void iterate(ArrayList<Element> a, Element e, Function fn) {
         if (e==null) {
             return;
         }

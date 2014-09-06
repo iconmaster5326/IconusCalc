@@ -72,6 +72,9 @@ public class Simplifier {
         addRule(FunctionSubtract.class,new RuleCancelTerms());
         addRule(FunctionDivide.class,new RuleCancelTerms());
         
+        addRule(FunctionAdd.class,new RuleCollectFactors(true));
+        addRule(FunctionSubtract.class,new RuleCollectFactors(false));
+        
         addRule(FunctionAdd.class,new RuleCollectTerms());
         addRule(FunctionSubtract.class,new RuleCollectTerms());
         addRule(FunctionMultiply.class,new RuleCollectTerms());
@@ -91,5 +94,7 @@ public class Simplifier {
         
         addRule(FunctionAdd.class,new RuleUndoSubtract(true));
         addRule(FunctionAdd.class,new RuleUndoSubtract(false));
+        
+        //addRule(FunctionMultiply.class,new RuleExpand()); //expansion should be its own function
     }
 }
