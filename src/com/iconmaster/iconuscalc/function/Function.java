@@ -72,4 +72,8 @@ public abstract class Function {
     public String toString() {
         return getName();
     }
+
+    public boolean argPosMatters() {
+        return true;
+    }
 }

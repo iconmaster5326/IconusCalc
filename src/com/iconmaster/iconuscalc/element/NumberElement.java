@@ -6,6 +6,7 @@ import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
 import com.iconmaster.iconuscalc.function.IOperable;
 import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.util.StringUtils;
+import java.util.Objects;
 
 /**
  *
@@ -74,5 +75,10 @@ public class NumberElement extends Element implements IOperable {
     @Override
     public String toString() {
         return content.toString();
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof NumberElement && ((NumberElement)other).content.equals(this.content);
     }
 }

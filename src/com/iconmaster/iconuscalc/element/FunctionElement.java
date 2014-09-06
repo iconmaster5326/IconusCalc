@@ -61,4 +61,9 @@ public class FunctionElement extends Element {
         }
         stack.push(new FunctionCallElement(content,es));
     }
+    
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof FunctionElement && ((FunctionElement)other).content.equals(this.content);
+    }
 }

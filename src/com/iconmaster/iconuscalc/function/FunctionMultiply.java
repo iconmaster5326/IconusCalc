@@ -28,4 +28,9 @@ public class FunctionMultiply extends FunctionOperator {
         return 2;
     }
     
+    @Override
+    public boolean argPosMatters() {
+        return false;
+    }
+    
 }

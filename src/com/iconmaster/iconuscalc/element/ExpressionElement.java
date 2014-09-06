@@ -69,4 +69,17 @@ public class ExpressionElement extends Element implements IOperable {
     public boolean canOperate(OperationType type, Element operand, boolean reversed) {
         return true;
     }
+    
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof FunctionCallElement && this.content.length == ((ExpressionElement)other).content.length)) {
+            return false;
+        }
+        for (int i=0;i<this.content.length;i++) {
+            if (!((ExpressionElement)other).content[i].equals(this.content[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

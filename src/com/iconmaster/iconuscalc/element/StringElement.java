@@ -35,4 +35,9 @@ public class StringElement extends Element implements IOperable {
     public String getStringCastString() {
         return content;
     }
+    
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof StringElement && ((StringElement)other).content.equals(this.content);
+    }
 }

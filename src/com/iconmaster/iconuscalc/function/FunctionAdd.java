@@ -28,4 +28,8 @@ public class FunctionAdd extends FunctionOperator {
         return 3;
     }
     
+    @Override
+    public boolean argPosMatters() {
+        return false;
+    }
 }

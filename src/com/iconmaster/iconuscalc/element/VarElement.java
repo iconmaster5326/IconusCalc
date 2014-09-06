@@ -7,6 +7,7 @@ import com.iconmaster.iconuscalc.function.IOperable;
 import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.EntryStack;
+import java.util.Objects;
 
 /**
  *
@@ -51,5 +52,10 @@ public class VarElement extends Element implements IOperable {
     @Override
     public String toString() {
         return content;
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof VarElement && ((VarElement)other).content.equals(this.content);
     }
 }

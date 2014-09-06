@@ -10,6 +10,8 @@ import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
 import com.iconmaster.iconuscalc.util.EntryStack;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  *
@@ -61,5 +63,39 @@ public class FunctionCallElement extends Element implements IOperable {
     @Override
     public String toString() {
         return "[FUNC: "+fn+"]";
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof FunctionCallElement && this.fn.getClass() == ((FunctionCallElement)other).fn.getClass() && this.content.length == ((FunctionCallElement)other).content.length)) {
+            return false;
+        }
+        
+        if (((FunctionCallElement)other).fn.argPosMatters()) {
+            for (int i=0;i<this.content.length;i++) {
+                if (!((FunctionCallElement)other).content[i].equals(this.content[i])) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            boolean[] es = new boolean[content.length];
+            
+            for (Element e : ((FunctionCallElement)other).content) {
+                for (int i=0;i<this.content.length;i++) {
+                    if (e.equals(this.content[i]) && !es[i]) {
+                        es[i] = true;
+                        break;
+                    }
+                }
+            }
+            
+            for (boolean b : es) {
+                if (!b) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
