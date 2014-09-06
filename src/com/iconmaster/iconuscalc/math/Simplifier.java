@@ -62,8 +62,6 @@ public class Simplifier {
     }
     
     public static void registerRules() {
-        //addRule(FunctionSubtract.class,new RuleUndoSubtract());
-        
         addRule(FunctionAdd.class,new RuleConstantSimplify());
         addRule(FunctionSubtract.class,new RuleConstantSimplify());
         addRule(FunctionMultiply.class,new RuleConstantSimplify());
@@ -77,6 +75,16 @@ public class Simplifier {
         
         addRule(FunctionMultiply.class,new RuleOrderCorrectly(true));
         addRule(FunctionAdd.class,new RuleOrderCorrectly(false));
+        
+        addRule(FunctionAdd.class,new RuleZero());
+        addRule(FunctionSubtract.class,new RuleZero());
+        addRule(FunctionMultiply.class,new RuleZero());
+        addRule(FunctionDivide.class,new RuleZero());
+        addRule(FunctionPower.class,new RuleZero());
+        
+        addRule(FunctionMultiply.class,new RuleOne());
+        addRule(FunctionDivide.class,new RuleOne());
+        addRule(FunctionPower.class,new RuleOne());
         
         addRule(FunctionAdd.class,new RuleUndoSubtract());
     }
