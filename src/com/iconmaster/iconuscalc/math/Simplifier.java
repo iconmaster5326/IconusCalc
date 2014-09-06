@@ -92,6 +92,9 @@ public class Simplifier {
         addRule(FunctionDivide.class,new RuleOne());
         addRule(FunctionPower.class,new RuleOne());
         
+        addRule(FunctionMultiply.class,new RulePowerMath());
+        addRule(FunctionDivide.class,new RulePowerMath());
+        
         addRule(FunctionAdd.class,new RuleUndoSubtract(true));
         addRule(FunctionAdd.class,new RuleUndoSubtract(false));
         
