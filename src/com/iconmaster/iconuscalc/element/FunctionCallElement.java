@@ -62,7 +62,7 @@ public class FunctionCallElement extends Element implements IOperable {
     
     @Override
     public String toString() {
-        return "[FUNC: "+fn+"]";
+        return "[FUNC: "+fn+" "+(content.length<1?"":content[0])+" "+(content.length<2?"":content[1])+"]";
     }
     
     @Override
