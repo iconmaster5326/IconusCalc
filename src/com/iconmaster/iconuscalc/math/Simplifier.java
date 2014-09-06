@@ -42,7 +42,7 @@ public class Simplifier {
 
                 if (!(ret instanceof FunctionCallElement)) {
                     break;
-                } else if (((FunctionCallElement)ret).fn.getClass()!=e.fn.getClass() && !(rule instanceof RuleRedoSubtract)) {
+                } else if (((FunctionCallElement)ret).fn.getClass()!=e.fn.getClass() && !(rule instanceof RuleUndoSubtract)) {
                     return simplify(((FunctionCallElement)ret));
                 }
             }
@@ -62,7 +62,7 @@ public class Simplifier {
     }
     
     public static void registerRules() {
-        addRule(FunctionSubtract.class,new RuleUndoSubtract());
+        //addRule(FunctionSubtract.class,new RuleUndoSubtract());
         
         addRule(FunctionAdd.class,new RuleConstantSimplify());
         addRule(FunctionSubtract.class,new RuleConstantSimplify());
@@ -72,11 +72,12 @@ public class Simplifier {
         addRule(FunctionNegate.class,new RuleConstantSimplify());
         
         addRule(FunctionAdd.class,new RuleCollectTerms());
+        addRule(FunctionSubtract.class,new RuleCollectTerms());
         addRule(FunctionMultiply.class,new RuleCollectTerms());
         
         addRule(FunctionMultiply.class,new RuleOrderCorrectly(true));
         addRule(FunctionAdd.class,new RuleOrderCorrectly(false));
         
-        addRule(FunctionAdd.class,new RuleRedoSubtract());
+        addRule(FunctionAdd.class,new RuleUndoSubtract());
     }
 }
