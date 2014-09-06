@@ -66,8 +66,8 @@ public class Simplifier {
         addRule(FunctionDivide.class,new RuleConstantSimplify());
         addRule(FunctionPower.class,new RuleConstantSimplify());
         
-        addRule(FunctionAdd.class,new RuleAssociativeProperty());
-        addRule(FunctionMultiply.class,new RuleAssociativeProperty());
+        addRule(FunctionAdd.class,new RuleCollectTerms());
+        addRule(FunctionMultiply.class,new RuleCollectTerms());
         
         addRule(FunctionMultiply.class,new RuleOrderCorrectly(true));
         addRule(FunctionAdd.class,new RuleOrderCorrectly(false));
