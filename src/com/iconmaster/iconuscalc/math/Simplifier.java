@@ -69,7 +69,6 @@ public class Simplifier {
         addRule(FunctionPower.class,new RuleConstantSimplify());
         addRule(FunctionNegate.class,new RuleConstantSimplify());
         
-        addRule(FunctionSubtract.class,new RuleCancelTerms());
         addRule(FunctionDivide.class,new RuleCancelTerms());
         
         addRule(FunctionAdd.class,new RuleCollectTerms());
@@ -89,6 +88,7 @@ public class Simplifier {
         addRule(FunctionDivide.class,new RuleOne());
         addRule(FunctionPower.class,new RuleOne());
         
-        addRule(FunctionAdd.class,new RuleUndoSubtract());
+        addRule(FunctionAdd.class,new RuleUndoSubtract(true));
+        addRule(FunctionAdd.class,new RuleUndoSubtract(false));
     }
 }

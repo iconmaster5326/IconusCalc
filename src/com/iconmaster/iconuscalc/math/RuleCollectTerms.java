@@ -16,6 +16,35 @@ import java.util.ArrayList;
  * @author iconmaster
  */
 public class RuleCollectTerms implements IRule {
+    public class IntWrap {
+
+        @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 89 * hash + this.v;
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final IntWrap other = (IntWrap) obj;
+            if (this.v != other.v) {
+                return false;
+            }
+            return true;
+        }
+        public int v;
+
+        private IntWrap(int i) {
+            this.v = i;
+        }
+    }
 
     @Override
     public Element simplify(FunctionCallElement e) {
@@ -47,27 +76,57 @@ public class RuleCollectTerms implements IRule {
             }
         }
         
-        for (Element ae : terms) {
-            if (ret==null) {
-                if (firste==null) {
-                    firste=ae;
-                } else {
-                    ret = new FunctionCallElement(fn,new Element[] {firste,ae});
+        ArrayList<IntWrap> todel = new ArrayList<>();
+        for (int i=0;i<terms.size();i++) {
+            for (int j=0;j<terms.size();j++) {
+                if (terms.get(j) instanceof FunctionCallElement && ((FunctionCallElement)terms.get(j)).fn instanceof FunctionNegate) {
+                    Element ne = ((FunctionCallElement)terms.get(j)).content[0];
+                    if (terms.get(i).equals(ne)) {
+                        if (!todel.contains(new IntWrap(i))) {
+                            todel.add(new IntWrap(i));
+                        }
+                        if (!todel.contains(new IntWrap(j))) {
+                            todel.add(new IntWrap(j));
+                        }
+                    }
                 }
-            } else {
-                ret = new FunctionCallElement(fn,new Element[] {ret,ae});
             }
         }
         
+        for (IntWrap i : todel) {
+            terms.set(i.v,null);
+        }
+        
+        for (Element ae : terms) {
+            if (ae!=null) {
+                if (ret==null) {
+                    if (firste==null) {
+                        firste=ae;
+                    } else {
+                        ret = new FunctionCallElement(fn,new Element[] {firste,ae});
+                    }
+                } else {
+                    ret = new FunctionCallElement(fn,new Element[] {ret,ae});
+                }
+            }
+        }
+        
+        Element ret2;
+        if (ret==null) {
+            ret2 = firste;
+        } else {
+            ret2 = ret;
+        }
+        
         if (constant!=null) {
-            if (ret==null) {
-                ret = new FunctionCallElement(fn,new Element[] {firste,constant});
+            if (ret2==null) {
+                ret2 = constant;
             } else {
-                ret = new FunctionCallElement(fn,new Element[] {ret,constant});
+                ret2 = new FunctionCallElement(fn,new Element[] {ret2,constant});
             }
         }
 
-        return ret;
+        return ret2;
     }
     
     public void iterate(ArrayList<Element> a, Element e, Function fn) {
