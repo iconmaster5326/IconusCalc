@@ -34,10 +34,7 @@ public class RuleCollectTerms implements IRule {
                 return false;
             }
             final IntWrap other = (IntWrap) obj;
-            if (this.v != other.v) {
-                return false;
-            }
-            return true;
+            return this.v == other.v;
         }
         public int v;
 

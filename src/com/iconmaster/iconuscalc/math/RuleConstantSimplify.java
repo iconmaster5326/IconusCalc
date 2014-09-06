@@ -38,7 +38,7 @@ public class RuleConstantSimplify implements IRule {
         
         if (e1 instanceof NumberElement && e2 instanceof NumberElement) {
             try {
-                return e.fn.execute(e.content)[0];
+                return e.fn.execute(new Element[] {e1,e2})[0];
             } catch (IconusCalcException ex) {
                 return null;
             }
