@@ -81,4 +81,9 @@ public class NumberElement extends Element implements IOperable {
     public boolean equals(Object other) {
         return other instanceof NumberElement && ((NumberElement)other).content.equals(this.content);
     }
+    
+    @Override
+    public String getDataTypeName() {
+        return "NUM";
+    }
 }

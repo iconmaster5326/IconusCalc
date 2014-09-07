@@ -4,6 +4,7 @@ package com.iconmaster.iconuscalc;
 import com.iconmaster.iconuscalc.file.GlobalNamespace;
 import com.iconmaster.iconuscalc.gui.MainGui;
 import com.iconmaster.iconuscalc.gui.Window;
+import com.iconmaster.iconuscalc.manager.FileManager;
 import com.iconmaster.iconuscalc.manager.HomeScreenManager;
 import com.iconmaster.iconuscalc.manager.IApplication;
 import com.iconmaster.iconuscalc.math.Simplifier;
@@ -54,6 +55,7 @@ public class IconusCalc {
         Simplifier.registerRules();
         
         registerApp(new HomeScreenManager());
+        registerApp(new FileManager());
                 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

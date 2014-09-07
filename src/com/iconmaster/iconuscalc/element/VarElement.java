@@ -58,4 +58,9 @@ public class VarElement extends Element implements IOperable {
     public boolean equals(Object other) {
         return other instanceof VarElement && ((VarElement)other).content.equals(this.content);
     }
+    
+    @Override
+    public String getDataTypeName() {
+        return "VAR";
+    }
 }

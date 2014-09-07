@@ -62,4 +62,6 @@ public abstract class Element {
         
         return new Element[] {new ExpressionElement(a)};
     }
+
+    public abstract String getDataTypeName();
 }

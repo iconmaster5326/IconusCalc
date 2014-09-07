@@ -66,4 +66,9 @@ public class FunctionElement extends Element {
     public boolean equals(Object other) {
         return other instanceof FunctionElement && ((FunctionElement)other).content.equals(this.content);
     }
+    
+    @Override
+    public String getDataTypeName() {
+        return "FUNC";
+    }
 }

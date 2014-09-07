@@ -28,4 +28,12 @@ public class StringUtils {
         }
         return false;
     }
+    
+    public static String padLeft(String str, int places) {
+        String pad = "";
+        for (int i=0;i<places-str.length();i++) {
+            pad+=" ";
+        }
+        return str+pad;
+    }
 }

@@ -25,6 +25,11 @@ public class TextGridRenderer implements IScreenRenderer {
     public int cx = -100;
     public int cy = -100;
     
+    public int cx2 = -100;
+    public int cy2 = -100;
+    
+    private boolean exmode = false;
+    
     public TextGridRenderer() {
         //this(25,16);
         this(ROWS,COLS);
@@ -58,9 +63,15 @@ public class TextGridRenderer implements IScreenRenderer {
             }
         }
         
-        g.setColor(new Color(0,0,0,128));
-        g.fillRect((cx+1)*(w/rows), (cy)*(h/cols), w/rows/4, h/cols);
-        g.setColor(Color.BLACK);
+        if (exmode) {
+            g.setColor(new Color(0,0,0,128));
+            g.fillRect((cx)*(w/rows), (cy)*(h/cols)+2, (cx2)*(w/rows), (cy2)*(h/cols)+2);
+            g.setColor(Color.BLACK);
+        } else {
+            g.setColor(new Color(0,0,0,128));
+            g.fillRect((cx+1)*(w/rows), (cy)*(h/cols), w/rows/4, h/cols);
+            g.setColor(Color.BLACK);
+        }
     }
     
     public void drawString(String str, int x, int y) {
@@ -108,10 +119,21 @@ public class TextGridRenderer implements IScreenRenderer {
     public void moveCursor(int x, int y) {
         cx = x;
         cy = y;
+        exmode = false;
     }
     
     public void removeCursor() {
         cx = -100;
         cy = -100;
+        exmode = false;
     }
+    
+    public void moveCursorEx(int x, int y, int x2, int y2) {
+        cx = x;
+        cy = y;
+        cx2 = x2;
+        cy2 = y2;
+        exmode = true;
+    }
+    
 }

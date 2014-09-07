@@ -82,4 +82,9 @@ public class ExpressionElement extends Element implements IOperable {
         }
         return true;
     }
+
+    @Override
+    public String getDataTypeName() {
+        return "EXPR";
+    }
 }

@@ -8,6 +8,7 @@ import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.function.IQuickCommand;
 import com.iconmaster.iconuscalc.gui.KeyInput;
+import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
@@ -25,6 +26,7 @@ public class HomeScreenManager implements IControlManager,IApplication {
     public InputManager input;
     
     public EntryStack stack = new EntryStack();
+    private Window gui;
     
     public HomeScreenManager() {
         renderScreen();
@@ -50,7 +52,7 @@ public class HomeScreenManager implements IControlManager,IApplication {
                     stack.push(new Entry("",peek.getAnswer()));
                 }
             } else if (e.key==KeyInput.ESCAPE) {
-                MenuManager.openAppMenu(renderer.getParent(),new String[] {"Clear Stack"},new MenuManager.MenuResult() {
+                MenuManager.openAppMenu(gui,new String[] {"Clear Stack"},new MenuManager.MenuResult() {
                     @Override
                     public void getResult(MenuManager.Menu menu, int id, Object object) {
                         if (id==0) {
@@ -65,9 +67,9 @@ public class HomeScreenManager implements IControlManager,IApplication {
                         if (got!= null && !got.isEmpty()) {
                             //Element[] elements = new Element[0];
                             try {
-                                CodeExecutor.execute(got,stack,renderer.getParent().getNamspace(),renderer.getParent());
+                                CodeExecutor.execute(got,stack,gui.getNamspace(),gui);
                             } catch (IconusCalcException ex) {
-                                renderer.getParent().displayError(ex);
+                                gui.displayError(ex);
                             }
 //                            boolean first = true;
 //                            for (Element e : elements) {
@@ -80,7 +82,7 @@ public class HomeScreenManager implements IControlManager,IApplication {
                     }
                     
                 });
-                renderer.getParent().addManager(input);
+                gui.addManager(input);
             }
         }
         
@@ -118,9 +120,9 @@ public class HomeScreenManager implements IControlManager,IApplication {
         for (Function fn : IconusCalc.getGlobalNamespace().functions.values()) {
             if (fn instanceof IQuickCommand && ((IQuickCommand)fn).isCommandKey(e)) {
                 try {
-                    CodeExecutor.executeFunction(fn, stack, renderer.getParent().getNamspace(), renderer.getParent());
+                    CodeExecutor.executeFunction(fn, stack, gui.getNamspace(), gui);
                 } catch (IconusCalcException ex) {
-                    renderer.getParent().displayError(ex);
+                    gui.displayError(ex);
                 }
                 renderScreen();
                 return true;
@@ -142,5 +144,15 @@ public class HomeScreenManager implements IControlManager,IApplication {
     @Override
     public boolean showStatusBar() {
         return true;
+    }
+    
+    @Override
+    public void setParent(Window gui) {
+        this.gui = gui;
+    }
+
+    @Override
+    public Window getParent() {
+        return gui;
     }
 }

@@ -15,6 +15,7 @@ import java.util.Collection;
  * @author iconmaster
  */
 public class MenuManager implements IControlManager {
+    private Window gui;
 
     @Override
     public boolean showStatusBar() {
@@ -71,7 +72,7 @@ public class MenuManager implements IControlManager {
             } else {
                 renderer.choice++;
             }
-            renderer.getParent().repaint();
+            gui.repaint();
         }
         
         if (e.type==InputType.DOWN && e.key==KeyInput.UP) {
@@ -80,27 +81,27 @@ public class MenuManager implements IControlManager {
             } else {
                 renderer.choice--;
             }
-            renderer.getParent().repaint();
+            gui.repaint();
         }
         
         if (e.type==InputType.PRESS && e.key==KeyInput.ENTER) {
             executeMenuChoice(menu,renderer.choice);
-            renderer.getParent().repaint();
+            gui.repaint();
         }
         
         if (e.type==InputType.DOWN && e.key==KeyInput.RIGHT && menu.content.get(renderer.choice) instanceof Menu) {
             executeMenuChoice(menu,renderer.choice);
-            renderer.getParent().repaint();
+            gui.repaint();
         }
         
         if (e.type==InputType.DOWN && e.key==KeyInput.LEFT) {
-            renderer.getParent().closeManager();
-            renderer.getParent().repaint();
+            gui.closeManager();
+            gui.repaint();
         }
         
         if (e.type==InputType.PRESS && e.key==KeyInput.ESCAPE) {
-            renderer.getParent().closeManager();
-            renderer.getParent().repaint();
+            gui.closeManager();
+            gui.repaint();
         }
     }
     
@@ -113,28 +114,28 @@ public class MenuManager implements IControlManager {
                     public void getResult(Menu menu, int id, Object object) {
                         if (!(object instanceof Menu)) {
                             callback.getResult(menu, id, object);
-                            renderer.getParent().closeManager();
-                            renderer.getParent().repaint();
+                            gui.closeManager();
+                            gui.repaint();
                         }
                     }
 
                 });
-                renderer.getParent().addManager(man);
+                gui.addManager(man);
             } else {
                 callback.getResult(menu, renderer.choice, menu.content.get(renderer.choice));
-                renderer.getParent().closeManager();
-                renderer.getParent().repaint();
+                gui.closeManager();
+                gui.repaint();
             }
     }
     
     public static MenuManager openAppMenu(final Window window, final String[] customs, final MenuResult result) {
-        Menu menu = new Menu("ROOT",new Menu("Open App...",IconusCalc.getApps()),customs,"Close App");
+        Menu menu = new Menu("ROOT",new Menu("Open App…",IconusCalc.getApps()),customs,"Close App");
         MenuManager man = new MenuManager(menu,0,0,new MenuResult() {
 
             @Override
             public void getResult(Menu menu, int id, Object object) {
                 //System.out.println(object);
-                if (menu.name.equals("Open App...")) {
+                if (menu.name.equals("Open App…")) {
                     Window win = new Window(((IApplication)object).getNewWindow());
                 } else if (id > 0 && id < 2+customs.length-1) {
                     result.getResult(null, id-1, object);
@@ -151,4 +152,13 @@ public class MenuManager implements IControlManager {
         return man;
     }
     
+    @Override
+    public void setParent(Window gui) {
+        this.gui = gui;
+    }
+
+    @Override
+    public Window getParent() {
+        return gui;
+    }
 }

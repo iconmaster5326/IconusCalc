@@ -46,7 +46,7 @@ public class Namespace {
         return folders.get(name.toUpperCase());
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 }

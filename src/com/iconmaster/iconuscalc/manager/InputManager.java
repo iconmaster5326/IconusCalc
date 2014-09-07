@@ -5,12 +5,14 @@ import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
+import com.iconmaster.iconuscalc.gui.Window;
 
 /**
  *
  * @author iconmaster
  */
 public class InputManager implements IControlManager {
+    private Window gui;
 
     @Override
     public boolean showStatusBar() {
@@ -93,7 +95,7 @@ public class InputManager implements IControlManager {
     }
     
     public void endInput() {
-        renderer.getParent().closeManager();
+        gui.closeManager();
         callback.getResult(input);
     }
 
@@ -116,5 +118,15 @@ public class InputManager implements IControlManager {
             if (offset>1)
                 offset = 0;
         }
+    }
+    
+    @Override
+    public void setParent(Window gui) {
+        this.gui = gui;
+    }
+
+    @Override
+    public Window getParent() {
+        return gui;
     }
 }

@@ -40,6 +40,7 @@ public class Window {
 
     public void addManager(IControlManager manager) {
         managers.push(manager);
+        manager.setParent(this);
         manager.getRenderer().setParent(this);
     }
     
@@ -77,6 +78,7 @@ public class Window {
     
     public void setNamespace(Namespace ns) {
         dir = ns;
+        repaint();
     }
 
     public void close() {

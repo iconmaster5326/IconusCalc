@@ -98,4 +98,9 @@ public class FunctionCallElement extends Element implements IOperable {
             return true;
         }
     }
+    
+    @Override
+    public String getDataTypeName() {
+        return "FUNC";
+    }
 }
