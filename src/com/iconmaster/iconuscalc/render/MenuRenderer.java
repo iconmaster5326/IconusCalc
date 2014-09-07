@@ -35,7 +35,7 @@ public class MenuRenderer implements IScreenRenderer {
         g.setColor(Color.WHITE);
         g.fillRect((x*(w/TextGridRenderer.ROWS)), (y*(h/TextGridRenderer.COLS))+1, (w/TextGridRenderer.ROWS)*longestString, y+(h/TextGridRenderer.COLS)*menu.content.size()+3);
         g.setColor(new Color(0,0,0,128));
-        g.fillRect((x*(w/TextGridRenderer.ROWS)), (y*(h/TextGridRenderer.COLS))+(h/TextGridRenderer.COLS)*choice+2, (w/TextGridRenderer.ROWS)*longestString, y+(h/TextGridRenderer.COLS)+2);
+        g.fillRect((x*(w/TextGridRenderer.ROWS)), (y*(h/TextGridRenderer.COLS))+(h/TextGridRenderer.COLS)*choice+2, (w/TextGridRenderer.ROWS)*longestString, (h/TextGridRenderer.COLS)+2);
         g.setColor(Color.BLACK);
         g.drawRect((x*(w/TextGridRenderer.ROWS)), (y*(h/TextGridRenderer.COLS))+1, (w/TextGridRenderer.ROWS)*longestString, (h/TextGridRenderer.COLS)*menu.content.size()+3);
         for (int i=0;i<menu.content.size();i++) {

@@ -152,6 +152,12 @@ public class MenuManager implements IControlManager {
         return man;
     }
     
+    public static MenuManager openMenu(Menu menu, int x, int y,  Window window, MenuResult result) {
+        MenuManager man = new MenuManager(menu,x,y,result);
+        window.addManager(man);
+        return man;
+    }
+    
     @Override
     public void setParent(Window gui) {
         this.gui = gui;

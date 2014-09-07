@@ -1,11 +1,14 @@
 
 package com.iconmaster.iconuscalc.manager;
 
+import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.file.Variable;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
+import com.iconmaster.iconuscalc.manager.MenuManager.Menu;
+import com.iconmaster.iconuscalc.manager.MenuManager.MenuResult;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.util.StringUtils;
@@ -35,10 +38,18 @@ public class FileManager implements IControlManager,IApplication {
     public void onKey(KeyInput e) {
         if (e.type==InputType.PRESS) { 
             if (e.key==KeyInput.ESCAPE) {
-                MenuManager.openAppMenu(gui,new String[] {},new MenuManager.MenuResult() {
+                MenuManager.openAppMenu(gui,new String[] {"New file…","New folder…","Go Home"},new MenuManager.MenuResult() {
                     @Override
                     public void getResult(MenuManager.Menu menu, int id, Object object) {
-
+                        switch (id) {
+                            case (0):
+                                break;
+                            case (1):
+                                break;
+                            case (2):
+                                openFolder(IconusCalc.getGlobalNamespace());
+                                break;
+                        }
                     }
                 });
             } else if (e.key==KeyInput.ENTER) {
@@ -53,7 +64,14 @@ public class FileManager implements IControlManager,IApplication {
                     offset = 0;
                     openFolder(gui.getNamspace().getParent());
                 } else if (content.get(pos) instanceof Variable) {
-                    
+                    MenuManager.openMenu(new Menu("ROOT","Show Value","Edit","Rename","Move","Copy","Rename","Delete"),6,Math.min(pos+1,renderer.cols-8), gui, new MenuResult() {
+
+                        @Override
+                        public void getResult(Menu menu, int id, Object object) {
+                            
+                        }
+                        
+                    });
                 }
             }
         } else if (e.type == InputType.DOWN) {
