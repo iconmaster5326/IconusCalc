@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -12,38 +13,35 @@ import com.iconmaster.iconuscalc.util.EntryStack;
  * @author iconmaster
  */
 public abstract class Function {
-
     public Element[] execute(Element[] args) throws IconusCalcException {
-        return new Element[]{};
+        return new Element[] {};
     }
-
     public abstract String getName();
-
     public abstract int getDefaultArgs();
-
+    
     public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
         return this.execute(args);
     }
-
+    
     public int getMinArgs() {
         return getDefaultArgs();
     }
-
+    
     public int getMaxArgs() {
         return getDefaultArgs();
     }
-
+    
     public String getDisplayName() {
         return getName();
     }
-
+    
     public String getEntryString(Entry[] args) {
         StringBuilder sb = new StringBuilder(getDisplayName());
         sb.append("(");
-        for (int i = 0; i < args.length; i++) {
+        for (int i=0;i<args.length;i++) {
             Entry ent = args[i];
             sb.append(ent.getAnswer().getDisplayString());
-            if (i != args.length - 1) {
+            if (i!=args.length-1) {
                 sb.append(",");
             }
         }
@@ -51,7 +49,7 @@ public abstract class Function {
         sb.append(")");
         return sb.toString();
     }
-
+    
     public static Function getOperationFunction(OperationType type) {
         switch (type) {
             case ADD:
@@ -69,7 +67,7 @@ public abstract class Function {
         }
         return null;
     }
-
+    
     @Override
     public String toString() {
         return getName();

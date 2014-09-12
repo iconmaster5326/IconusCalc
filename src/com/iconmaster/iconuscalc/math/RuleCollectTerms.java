@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.math;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
  * @author iconmaster
  */
 public class RuleCollectTerms implements IRule {
-
     public static class IntWrap {
 
         @Override
@@ -46,28 +46,28 @@ public class RuleCollectTerms implements IRule {
     @Override
     public Element simplify(FunctionCallElement e) {
         Function fn = e.fn instanceof FunctionSubtract ? new FunctionAdd() : e.fn;
-
+        
         FunctionCallElement ret = null;
         Element firste = null;
-
-        ArrayList<Element> terms = getTerms(fn, e);
-
+        
+        ArrayList<Element> terms = getTerms(fn,e);
+        
         for (Element ae : terms) {
-            if (ae != null) {
-                if (ret == null) {
-                    if (firste == null) {
-                        firste = ae;
+            if (ae!=null) {
+                if (ret==null) {
+                    if (firste==null) {
+                        firste=ae;
                     } else {
-                        ret = new FunctionCallElement(fn, new Element[]{firste, ae});
+                        ret = new FunctionCallElement(fn,new Element[] {firste,ae});
                     }
                 } else {
-                    ret = new FunctionCallElement(fn, new Element[]{ret, ae});
+                    ret = new FunctionCallElement(fn,new Element[] {ret,ae});
                 }
             }
         }
-
+        
         Element ret2;
-        if (ret == null) {
+        if (ret==null) {
             ret2 = firste;
         } else {
             ret2 = ret;
@@ -75,23 +75,23 @@ public class RuleCollectTerms implements IRule {
 
         return ret2;
     }
-
+    
     public static ArrayList<Element> getTerms(Function fn, FunctionCallElement e) {
         ArrayList<Element> a = new ArrayList<>();
-
-        iterate(a, e, fn);
-
+        
+        iterate(a,e,fn);
+        
         NumberElement constant = null;
         ArrayList<Element> terms = new ArrayList<>();
-
+        
         for (Element ae : a) {
-
+  
             if (ae instanceof NumberElement) {
-                if (constant == null) {
+                if (constant==null) {
                     constant = (NumberElement) ae;
                 } else {
                     try {
-                        constant = (NumberElement) fn.execute(new Element[]{constant, ae})[0];
+                        constant = (NumberElement) fn.execute(new Element[] {constant,ae})[0];
                     } catch (IconusCalcException ex) {
                         return null;
                     }
@@ -100,12 +100,12 @@ public class RuleCollectTerms implements IRule {
                 terms.add(ae);
             }
         }
-
+        
         ArrayList<IntWrap> todel = new ArrayList<>();
-        for (int i = 0; i < terms.size(); i++) {
-            for (int j = 0; j < terms.size(); j++) {
-                if (terms.get(j) instanceof FunctionCallElement && ((FunctionCallElement) terms.get(j)).fn instanceof FunctionNegate) {
-                    Element ne = ((FunctionCallElement) terms.get(j)).content[0];
+        for (int i=0;i<terms.size();i++) {
+            for (int j=0;j<terms.size();j++) {
+                if (terms.get(j) instanceof FunctionCallElement && ((FunctionCallElement)terms.get(j)).fn instanceof FunctionNegate) {
+                    Element ne = ((FunctionCallElement)terms.get(j)).content[0];
                     if (terms.get(i).equals(ne)) {
                         if (!todel.contains(new IntWrap(i))) {
                             todel.add(new IntWrap(i));
@@ -117,29 +117,29 @@ public class RuleCollectTerms implements IRule {
                 }
             }
         }
-
+        
         for (IntWrap i : todel) {
-            terms.set(i.v, null);
+            terms.set(i.v,null);
         }
-
+        
         terms.add(constant);
-
+        
         return terms;
     }
-
+    
     public static void iterate(ArrayList<Element> a, Element e, Function fn) {
-        if (e == null) {
+        if (e==null) {
             return;
         }
-        if (e instanceof FunctionCallElement && ((FunctionCallElement) e).fn instanceof FunctionSubtract && fn instanceof FunctionAdd) {
-            iterate(a, Simplifier.simplify(new FunctionCallElement(new FunctionNegate(), new Element[]{((FunctionCallElement) e).content[0]})).content[0], fn);
-            iterate(a, ((FunctionCallElement) e).content[1], fn);
-        } else if (e instanceof FunctionCallElement && ((FunctionCallElement) e).fn.getClass() == fn.getClass()) {
-            iterate(a, ((FunctionCallElement) e).content[0], fn);
-            iterate(a, ((FunctionCallElement) e).content[1], fn);
+        if (e instanceof FunctionCallElement && ((FunctionCallElement)e).fn instanceof FunctionSubtract && fn instanceof FunctionAdd) {
+            iterate(a,Simplifier.simplify(new FunctionCallElement(new FunctionNegate(), new Element[] {((FunctionCallElement)e).content[0]})).content[0],fn);
+            iterate(a,((FunctionCallElement)e).content[1],fn);
+        } else if (e instanceof FunctionCallElement && ((FunctionCallElement)e).fn.getClass() == fn.getClass()) {
+            iterate(a,((FunctionCallElement)e).content[0],fn);
+            iterate(a,((FunctionCallElement)e).content[1],fn);
         } else {
             a.add(e);
         }
     }
-
+    
 }

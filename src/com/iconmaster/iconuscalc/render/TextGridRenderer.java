@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.render;
 
 import com.iconmaster.iconuscalc.gui.Window;
@@ -10,91 +11,89 @@ import java.awt.Graphics;
  * @author iconmaster
  */
 public class TextGridRenderer implements IScreenRenderer {
-
     private Window parent;
-
+    
     public final int rows;
     public final int cols;
-
+    
     public static int ROWS = 35;
     public static int COLS = 16;
-
+    
+    
     public char[][] grid;
-
+    
     public int cx = -100;
     public int cy = -100;
-
+    
     public int cx2 = -100;
     public int cy2 = -100;
-
+    
     private boolean exmode = false;
-
+    
     public TextGridRenderer() {
         //this(25,16);
-        this(ROWS, COLS);
+        this(ROWS,COLS);
     }
-
-    public TextGridRenderer(int rows, int cols) {
+    
+    public TextGridRenderer(int rows,int cols) {
         grid = new char[rows][cols];
-
-        for (int x = 0; x < rows; x++) {
-            for (int y = 0; y < cols; y++) {
+        
+        for (int x=0;x<rows;x++) {
+            for (int y=0;y<cols;y++) {
                 grid[x][y] = ' ';
                 //grid[x][y] = (char) new Random().nextInt();
             }
         }
-
+        
         this.rows = rows;
         this.cols = cols;
     }
 
     @Override
     public void paint(Graphics g, int w, int h) {
-        g.setFont(RenderUtils.getFont(w / rows, h / cols));
-
-        for (int x = 0; x < rows; x++) {
-            for (int y = 0; y < cols; y++) {
+        g.setFont(RenderUtils.getFont(w/rows,h/cols));
+        
+        for (int x=0;x<rows;x++) {
+            for (int y=0;y<cols;y++) {
                 char c = grid[x][y];
-
+                
                 if (!Character.isWhitespace(c)) {
-                    g.drawString(Character.toString(c), (x) * (w / rows), (y + 1) * (h / cols));
+                    g.drawString(Character.toString(c), (x)*(w/rows), (y+1)*(h/cols));
                 }
             }
         }
-
+        
         if (exmode) {
-            g.setColor(new Color(0, 0, 0, 128));
-            g.fillRect((cx) * (w / rows), (cy) * (h / cols) + 2, (cx2) * (w / rows), (cy2) * (h / cols) + 2);
+            g.setColor(new Color(0,0,0,128));
+            g.fillRect((cx)*(w/rows), (cy)*(h/cols)+2, (cx2)*(w/rows), (cy2)*(h/cols)+2);
             g.setColor(Color.BLACK);
         } else {
-            g.setColor(new Color(0, 0, 0, 128));
-            g.fillRect((cx + 1) * (w / rows), (cy) * (h / cols), w / rows / 4, h / cols);
+            g.setColor(new Color(0,0,0,128));
+            g.fillRect((cx+1)*(w/rows), (cy)*(h/cols), w/rows/4, h/cols);
             g.setColor(Color.BLACK);
         }
     }
-
+    
     public void drawString(String str, int x, int y) {
-        if (str == null) {
-            return;
-        }
+        if (str==null) {return;}
         char[] chars = str.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            if (x + i < rows && y < cols && x + i >= 0 && y >= 0) {
-                grid[x + i][y] = chars[i];
+        for (int i=0;i<chars.length;i++) {
+            if (x+i<rows && y<cols && x+i>=0 && y>=0) {
+                grid[x+i][y] = chars[i];
             }
         }
-
+        
         repaint();
     }
-
+    
     public void drawStringRightJustified(String str, int x, int y) {
-        drawString(str, x - str.length(), y);
+        drawString(str, x-str.length(), y);
     }
 
     public void clearScreen() {
         grid = new char[rows][cols];
-        for (int x = 0; x < grid.length; x++) {
-            for (int y = 0; y < grid[0].length; y++) {
+        for (int x=0;x<grid.length;x++) {
+            for (int y=0;y<grid[0].length;y++) {
                 grid[x][y] = ' ';
             }
         }
@@ -112,7 +111,7 @@ public class TextGridRenderer implements IScreenRenderer {
     }
 
     private void repaint() {
-        if (parent != null) {
+        if (parent!=null) {
             parent.repaint();
         }
     }
@@ -122,13 +121,13 @@ public class TextGridRenderer implements IScreenRenderer {
         cy = y;
         exmode = false;
     }
-
+    
     public void removeCursor() {
         cx = -100;
         cy = -100;
         exmode = false;
     }
-
+    
     public void moveCursorEx(int x, int y, int x2, int y2) {
         cx = x;
         cy = y;
@@ -136,5 +135,5 @@ public class TextGridRenderer implements IScreenRenderer {
         cy2 = y2;
         exmode = true;
     }
-
+    
 }

@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.gui;
 
 import java.awt.event.ActionEvent;
@@ -11,26 +12,24 @@ import javax.swing.Timer;
  * @author iconmaster
  */
 public class MainGui extends javax.swing.JFrame {
-
     public Window window = null;
-
     /**
      * Creates new form MainGui
      */
     public MainGui() {
         initComponents();
         registerKeyHooks();
-
-        Timer timer = new Timer(1000 * 60, new ActionListener() {
+        
+        Timer timer = new Timer(1000*60, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
             }
-
+        
         });
         timer.setInitialDelay(1000);
-        timer.start();
+        timer.start(); 
     }
 
     /**
@@ -84,47 +83,46 @@ public class MainGui extends javax.swing.JFrame {
         this.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                handleKeyPress(e, InputType.PRESS);
+                handleKeyPress(e,InputType.PRESS);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                handleKeyPress(e, InputType.DOWN);
+                handleKeyPress(e,InputType.DOWN);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                handleKeyPress(e, InputType.UP);
+                handleKeyPress(e,InputType.UP);
             }
         });
     }
-
+    
     public char lastKey;
-
     public void handleKeyPress(KeyEvent e, InputType type) {
         char c = e.getKeyChar();
-
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        
+        if (e.getKeyCode()==KeyEvent.VK_LEFT) {
             c = KeyInput.LEFT;
         }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
             c = KeyInput.RIGHT;
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        if (e.getKeyCode()==KeyEvent.VK_UP) {
             c = KeyInput.UP;
         }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        if (e.getKeyCode()==KeyEvent.VK_DOWN) {
             c = KeyInput.DOWN;
         }
 
-        if (type == InputType.PRESS && e.isControlDown()) {
+        if (type==InputType.PRESS && e.isControlDown()) {
             System.out.println((int) lastKey);
-            window.onKey(new KeyInput(type, (char) (lastKey + 64), InputModifier.CTRL));
+            window.onKey(new KeyInput(type, (char) (lastKey+64),InputModifier.CTRL));
         } else {
-            window.onKey(new KeyInput(type, c, InputModifier.NONE));
+            window.onKey(new KeyInput(type,c, InputModifier.NONE));
         }
-
-        if (type == InputType.DOWN) {
+        
+        if (type==InputType.DOWN) {
             lastKey = e.getKeyChar();
         }
     }

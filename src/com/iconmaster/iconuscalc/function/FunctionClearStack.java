@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -11,7 +12,6 @@ import com.iconmaster.iconuscalc.util.EntryStack;
  * @author iconmaster
  */
 public class FunctionClearStack extends Function {
-
     @Override
     public Element[] execute(Element[] args) throws IconusCalcException {
         return new Element[0];
@@ -22,7 +22,7 @@ public class FunctionClearStack extends Function {
         stack.clear();
         return new Element[0];
     }
-
+    
     @Override
     public int getDefaultArgs() {
         return 0;

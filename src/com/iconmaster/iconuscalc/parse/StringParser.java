@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.parse;
 
 import com.iconmaster.iconuscalc.element.StringElement;
@@ -19,10 +20,10 @@ public class StringParser implements ParseHandler {
     @Override
     public ArrayList parse(Parser p) throws IconusCalcException {
         ArrayList a = new ArrayList();
-        TokenString t = ((TokenString) p.getItem());
-
+        TokenString t = ((TokenString)p.getItem());
+        
         a.add(new StringElement(t.content));
-
+                        
         return a;
     }
 
@@ -30,5 +31,5 @@ public class StringParser implements ParseHandler {
     public int getDelLength(Parser p) {
         return 1;
     }
-
+    
 }

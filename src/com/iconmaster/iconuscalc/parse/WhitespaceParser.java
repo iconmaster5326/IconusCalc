@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.parse;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -25,5 +26,5 @@ public class WhitespaceParser implements ParseHandler {
     public int getDelLength(Parser p) {
         return 1;
     }
-
+    
 }

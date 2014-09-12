@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc;
 
 import com.iconmaster.iconuscalc.file.GlobalNamespace;
@@ -16,10 +17,9 @@ import java.util.ArrayList;
  * @author iconmaster
  */
 public class IconusCalc {
-
     private static final GlobalNamespace homeDir = GlobalNamespace.createGlobalNamespace();
     private static final ArrayList<IApplication> apps = new ArrayList<>();
-
+    
     public static final ArrayList<Window> windows = new ArrayList<>();
 
     /**
@@ -53,10 +53,10 @@ public class IconusCalc {
         Tokenizer.addDefaultHandlers();
         Parser.addDefaultHandlers();
         Simplifier.registerRules();
-
+        
         registerApp(new HomeScreenManager());
         registerApp(new FileManager());
-
+                
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -65,19 +65,19 @@ public class IconusCalc {
             }
         });
     }
-
+    
     public static GlobalNamespace getGlobalNamespace() {
         return homeDir;
     }
-
+    
     public static void registerApp(IApplication app) {
         apps.add(app);
     }
-
+    
     public static ArrayList<IApplication> getApps() {
         return (ArrayList<IApplication>) apps.clone();
     }
-
+    
     public static void repaintAll() {
         for (Window w : windows) {
             w.repaint();

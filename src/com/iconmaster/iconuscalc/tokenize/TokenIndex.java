@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.tokenize;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
@@ -8,20 +9,19 @@ import java.util.ArrayList;
  * @author iconmaster
  */
 public class TokenIndex implements IToken {
-
     public ArrayList<IToken> content;
-
+    
     public TokenIndex() {
-
+        
     }
-
+    
     public TokenIndex(ArrayList<IToken> str) {
         this.content = str;
     }
-
+    
     @Override
     public boolean doesMatch(Tokenizer tc, char c) {
-        return c == '[';
+        return c=='[';
     }
 
     @Override
@@ -31,7 +31,7 @@ public class TokenIndex implements IToken {
         while (true) {
             if (!tc.isEOF()) {
                 char c = tc.getChar();
-                if (c != ']') {
+                if (c!=']') {
                     IToken token = tc.nextToken();
                     if (token != null) {
                         a.add(token);

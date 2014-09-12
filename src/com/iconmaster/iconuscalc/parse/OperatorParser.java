@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.parse;
 
 import com.iconmaster.iconuscalc.IconusCalc;
@@ -13,33 +14,30 @@ import java.util.ArrayList;
  * @author iconmaster
  */
 public class OperatorParser implements ParseHandler {
-
     int order;
-
+    
     public OperatorParser(int order) {
         this.order = order;
     }
 
     @Override
     public boolean matchToken(Parser p) {
-        if (p.isEOF(2) || !(p.getItem(1) instanceof TokenWord)) {
-            return false;
-        }
-        Function fn = IconusCalc.getGlobalNamespace().getFunction(((TokenWord) p.getItem(1)).content);
-        return fn != null && fn instanceof IOperator && ((IOperator) fn).getOrder() == order;
+        if (p.isEOF(2) || !(p.getItem(1) instanceof TokenWord)) {return false;}
+        Function fn = IconusCalc.getGlobalNamespace().getFunction(((TokenWord)p.getItem(1)).content);
+        return fn!=null && fn instanceof IOperator && ((IOperator)fn).getOrder()==order;
     }
 
     @Override
     public ArrayList parse(Parser p) throws IconusCalcException {
         ArrayList a = new ArrayList();
-        TokenWord t = ((TokenWord) p.getItem(1));
+        TokenWord t = ((TokenWord)p.getItem(1));
         Object o1 = p.getItem();
         Object o2 = p.getItem(2);
 
         a.add(o1);
         a.add(o2);
         a.add(new FunctionElement(t.content));
-
+                        
         return a;
     }
 
@@ -47,5 +45,5 @@ public class OperatorParser implements ParseHandler {
     public int getDelLength(Parser p) {
         return 3;
     }
-
+    
 }

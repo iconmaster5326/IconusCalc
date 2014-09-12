@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -19,10 +20,10 @@ public class FunctionMakeDir extends Function {
         if (!(args[0] instanceof StringElement)) {
             throw new IllegalArgumentTypeException();
         }
-        ns.addFolder(new Namespace(((StringElement) args[0]).content, ns));
-        return new Element[]{};
+        ns.addFolder(new Namespace(((StringElement)args[0]).content,ns));
+        return new Element[] {};
     }
-
+    
     @Override
     public int getDefaultArgs() {
         return 1;
@@ -35,6 +36,6 @@ public class FunctionMakeDir extends Function {
 
     @Override
     public Element[] execute(Element[] args) throws IconusCalcException {
-        return new Element[]{};
+        return new Element[] {};
     }
 }

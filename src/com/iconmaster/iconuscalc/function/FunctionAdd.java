@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.gui.KeyInput;
@@ -7,7 +8,6 @@ import com.iconmaster.iconuscalc.gui.KeyInput;
  * @author iconmaster
  */
 public class FunctionAdd extends FunctionOperator {
-
     @Override
     public OperationType getOp() {
         return OperationType.ADD;
@@ -20,14 +20,14 @@ public class FunctionAdd extends FunctionOperator {
 
     @Override
     public boolean isCommandKey(KeyInput e) {
-        return e.key == '+';
+        return e.key=='+';
     }
 
     @Override
     public int getOrder() {
         return 3;
     }
-
+    
     @Override
     public boolean argPosMatters() {
         return false;

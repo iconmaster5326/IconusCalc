@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.element;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
@@ -13,18 +14,17 @@ import java.util.Objects;
  * @author iconmaster
  */
 public class VarElement extends Element implements IOperable {
-
     public final String content;
-
+    
     public VarElement(String n) {
         content = n;
     }
-
+    
     @Override
     public String getDisplayString() {
         return content;
     }
-
+    
     @Override
     public String getStringCastString() {
         return content;
@@ -32,33 +32,33 @@ public class VarElement extends Element implements IOperable {
 
     @Override
     public Element[] operate(OperationType type, Element operand, boolean reversed) throws IconusCalcException {
-        return expressionCreationOperation(type, operand, reversed);
+        return expressionCreationOperation(type,operand,reversed);
     }
 
     @Override
     public boolean canOperate(OperationType type, Element operand, boolean reversed) {
         return true;
     }
-
+    
     @Override
     public void execute(EntryStack stack, Namespace ns, Window window) throws IconusCalcException {
-        if (ns.getVar(content) != null) {
+        if (ns.getVar(content)!=null) {
             stack.push(ns.getVar(content).value);
         } else {
             super.execute(stack, ns, window);
         }
     }
-
+    
     @Override
     public String toString() {
         return content;
     }
-
+    
     @Override
     public boolean equals(Object other) {
-        return other instanceof VarElement && ((VarElement) other).content.equals(this.content);
+        return other instanceof VarElement && ((VarElement)other).content.equals(this.content);
     }
-
+    
     @Override
     public String getDataTypeName() {
         return "VAR";

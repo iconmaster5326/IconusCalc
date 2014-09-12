@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -20,12 +21,12 @@ public class FunctionSimplify extends Function {
     public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
 
         if (args[0] instanceof ExpressionElement) {
-            return new Element[]{Simplifier.simplify((ExpressionElement) args[0])};
+            return new Element[] {Simplifier.simplify((ExpressionElement) args[0])};
         } else {
             throw new IllegalArgumentTypeException();
         }
     }
-
+    
     @Override
     public int getDefaultArgs() {
         return 1;

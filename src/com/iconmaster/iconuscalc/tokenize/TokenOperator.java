@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.tokenize;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
@@ -8,15 +9,15 @@ import com.iconmaster.iconuscalc.util.StringUtils;
  * @author iconmaster
  */
 public class TokenOperator extends TokenWord {
-
+    
     public TokenOperator() {
-
+        
     }
 
     public TokenOperator(String content) {
         this.content = content;
     }
-
+    
     @Override
     public boolean doesMatch(Tokenizer tc, char c) {
         return StringUtils.isSymbol(c);

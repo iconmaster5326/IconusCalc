@@ -1,3 +1,4 @@
+
 package com.iconmaster.iconuscalc.element;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
@@ -14,13 +15,12 @@ import java.util.ArrayList;
  * @author iconmaster
  */
 public abstract class Element {
-
     public abstract String getDisplayString();
-
+    
     public void execute(EntryStack stack, Namespace ns, Window window) throws IconusCalcException {
-        stack.push(new Entry(this.getDisplayString(), this));
+        stack.push(new Entry(this.getDisplayString(),this));
     }
-
+    
     public String getStringCastString() {
         return getDisplayString();
     }
@@ -28,20 +28,20 @@ public abstract class Element {
     public void executeQuoting(EntryStack stack) {
         stack.push(this);
     }
-
+    
     public Element[] expressionCreationOperation(OperationType type, Element operand, boolean reversed) throws IconusCalcException {
-        if (type == OperationType.NEGATE) {
+        if (type==OperationType.NEGATE) {
             ArrayList<Element> a = new ArrayList<>();
             a.add(this);
             a.add(new FunctionElement(new FunctionNegate()));
-            return new Element[]{new ExpressionElement(a)};
+            return new Element[] {new ExpressionElement(a)};
         }
-
+        
         ArrayList<Element> a = new ArrayList<>();
-
+        
         if (reversed) {
             if (operand instanceof ExpressionElement) {
-                for (Element e : ((ExpressionElement) operand).content) {
+                for (Element e : ((ExpressionElement)operand).content) {
                     a.add(e);
                 }
             } else {
@@ -51,7 +51,7 @@ public abstract class Element {
         } else {
             a.add(this);
             if (operand instanceof ExpressionElement) {
-                for (Element e : ((ExpressionElement) operand).content) {
+                for (Element e : ((ExpressionElement)operand).content) {
                     a.add(e);
                 }
             } else {
@@ -59,8 +59,8 @@ public abstract class Element {
             }
         }
         a.add(new FunctionElement(Function.getOperationFunction(type)));
-
-        return new Element[]{new ExpressionElement(a)};
+        
+        return new Element[] {new ExpressionElement(a)};
     }
 
     public abstract String getDataTypeName();
