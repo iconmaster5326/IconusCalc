@@ -61,7 +61,6 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
 
                         @Override
                         public void getResult(Menu menu, int id, Object object) {
-                            System.out.println(id);
                             switch (id) {
                                 case (0):
                                     break;
@@ -70,7 +69,6 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
                                 case (2):
                                     break;
                                 case (3):
-                                    System.out.println("Deleting");
                                     gui.getNamspace().delFolder(((Namespace)content.get(pos)).getName());
                                     openFolder(gui.getNamspace());
                                     break;
@@ -99,6 +97,8 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
                                 case (4):
                                     break;
                                 case (5):
+                                    gui.getNamspace().delVar(((Variable)content.get(pos)).name);
+                                    openFolder(gui.getNamspace());
                                     break;
                             }
                         }
@@ -185,6 +185,11 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
         for (Variable n : ns.vars.values()) {
             content.add(n);
         }
+        
+        if (pos>content.size()-1) {
+            pos = content.size()-1;
+        }
+        
         renderScreen();
     }
     
