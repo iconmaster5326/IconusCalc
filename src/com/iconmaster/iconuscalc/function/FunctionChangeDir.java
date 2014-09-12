@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -21,16 +20,16 @@ public class FunctionChangeDir extends Function {
         if (!(args[0] instanceof StringElement)) {
             throw new IllegalArgumentTypeException();
         }
-        
-        String str = ((StringElement)args[0]).content;
-        if (ns.getFolder(str)==null) {
+
+        String str = ((StringElement) args[0]).content;
+        if (ns.getFolder(str) == null) {
             throw new DiretoryNotFoundException();
         } else {
             window.setNamespace(ns.getFolder(str));
-            return new Element[] {};
+            return new Element[]{};
         }
     }
-    
+
     @Override
     public int getDefaultArgs() {
         return 1;
@@ -43,6 +42,6 @@ public class FunctionChangeDir extends Function {
 
     @Override
     public Element[] execute(Element[] args) throws IconusCalcException {
-        return new Element[] {};
+        return new Element[]{};
     }
 }

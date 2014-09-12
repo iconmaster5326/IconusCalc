@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.tokenize;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
@@ -8,19 +7,20 @@ import com.iconmaster.iconuscalc.exception.IconusCalcException;
  * @author iconmaster
  */
 public class TokenNumber implements IToken {
+
     public String content;
-    
+
     public TokenNumber() {
-        
+
     }
-    
+
     public TokenNumber(String str) {
         this.content = str;
     }
-    
+
     @Override
     public boolean doesMatch(Tokenizer tc, char c) {
-        return Character.isDigit(c) || c=='.';
+        return Character.isDigit(c) || c == '.';
     }
 
     @Override
@@ -29,7 +29,7 @@ public class TokenNumber implements IToken {
         while (true) {
             if (!tc.isEOF()) {
                 char c = tc.getChar();
-                if (doesMatch(tc,c)) {
+                if (doesMatch(tc, c)) {
                     word.append(c);
                     tc.advance();
                 } else {
@@ -41,9 +41,9 @@ public class TokenNumber implements IToken {
         }
         return new TokenNumber(word.toString());
     }
-    
+
     @Override
     public String toString() {
-        return "[TOKEN NUM: "+content+"]";
+        return "[TOKEN NUM: " + content + "]";
     }
 }

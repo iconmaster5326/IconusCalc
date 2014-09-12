@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -13,21 +12,22 @@ import com.iconmaster.iconuscalc.gui.KeyInput;
  * @author iconmaster
  */
 public class FunctionNegate extends Function implements IQuickCommand {
+
     public static final OperationType op = OperationType.NEGATE;
 
     @Override
     public Element[] execute(Element[] args) throws IconusCalcException {
         Element[] ret = new Element[0];
-        
-        if (args[0] instanceof IOperable && ((IOperable)args[0]).canOperate(op, null, false)) {
-            ret = ((IOperable)args[0]).operate(op, null, false);
+
+        if (args[0] instanceof IOperable && ((IOperable) args[0]).canOperate(op, null, false)) {
+            ret = ((IOperable) args[0]).operate(op, null, false);
         } else {
             throw new IllegalArgumentTypeException();
         }
-        
+
         return ret;
     }
-    
+
     @Override
     public int getDefaultArgs() {
         return 1;
@@ -37,7 +37,7 @@ public class FunctionNegate extends Function implements IQuickCommand {
     public String getName() {
         return "NEG";
     }
-    
+
     @Override
     public String getDisplayName() {
         return "-";
@@ -45,18 +45,18 @@ public class FunctionNegate extends Function implements IQuickCommand {
 
     @Override
     public boolean isCommandKey(KeyInput e) {
-        return e.key=='_';
+        return e.key == '_';
     }
-    
+
     @Override
     public String getEntryString(Entry[] args) {
         String str = args[0].getAnswer().getDisplayString();
         if (args[0].getAnswer() instanceof FunctionCallElement) {
-            Function fn = ((FunctionCallElement)args[0].getAnswer()).fn;
-             if (fn instanceof IOperator) {
-                  str="("+str+")";
-             }
+            Function fn = ((FunctionCallElement) args[0].getAnswer()).fn;
+            if (fn instanceof IOperator) {
+                str = "(" + str + ")";
+            }
         }
-        return "−"+str;
+        return "−" + str;
     }
 }

@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.tokenize;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
@@ -11,7 +10,7 @@ public class TokenWhitespace implements IToken {
 
     @Override
     public boolean doesMatch(Tokenizer tc, char c) {
-        return Character.isWhitespace(c) || c==',' || c==';';
+        return Character.isWhitespace(c) || c == ',' || c == ';';
     }
 
     @Override
@@ -19,7 +18,7 @@ public class TokenWhitespace implements IToken {
         while (true) {
             if (!tc.isEOF()) {
                 char c = tc.getChar();
-                if (doesMatch(tc,c)) {
+                if (doesMatch(tc, c)) {
                     tc.advance();
                 } else {
                     break;
@@ -30,5 +29,5 @@ public class TokenWhitespace implements IToken {
         }
         return new TokenWhitespace();
     }
-    
+
 }

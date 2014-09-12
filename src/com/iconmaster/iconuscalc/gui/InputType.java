@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.gui;
 
 /**
@@ -6,5 +5,6 @@ package com.iconmaster.iconuscalc.gui;
  * @author iconmaster
  */
 public enum InputType {
-    PRESS,DOWN,UP;
+
+    PRESS, DOWN, UP;
 }

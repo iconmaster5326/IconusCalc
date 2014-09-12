@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.parse;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -22,14 +21,14 @@ public class NumberParser implements ParseHandler {
     @Override
     public ArrayList parse(Parser p) throws IconusCalcException {
         ArrayList a = new ArrayList();
-        TokenNumber t = ((TokenNumber)p.getItem());
-        
+        TokenNumber t = ((TokenNumber) p.getItem());
+
         try {
             a.add(new NumberElement(Double.parseDouble(t.content)));
         } catch (NumberFormatException ex) {
             throw new IllegalNumberException();
         }
-                        
+
         return a;
     }
 
@@ -37,5 +36,5 @@ public class NumberParser implements ParseHandler {
     public int getDelLength(Parser p) {
         return 1;
     }
-    
+
 }

@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.element;
 
 /**
@@ -6,9 +5,10 @@ package com.iconmaster.iconuscalc.element;
  * @author iconmaster
  */
 public class Entry {
+
     private String entry;
     private Element answer;
-    
+
     public Entry(String ent, Element ans) {
         this.entry = ent;
         this.answer = ans;
@@ -17,7 +17,7 @@ public class Entry {
     public String getEntry() {
         return entry;
     }
-    
+
     public Element getAnswer() {
         return answer;
     }

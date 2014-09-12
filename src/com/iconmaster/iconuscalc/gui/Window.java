@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.gui;
 
 import com.iconmaster.iconuscalc.IconusCalc;
@@ -13,11 +12,12 @@ import java.util.Stack;
  * @author iconmaster
  */
 public class Window {
+
     private final Stack<IControlManager> managers = new Stack<>();
     private IconusCalcException error;
     private final MainGui gui;
     private Namespace dir = IconusCalc.getGlobalNamespace();
-    
+
     public Window(IControlManager manager) {
         IconusCalc.windows.add(this);
         gui = new MainGui();
@@ -25,15 +25,15 @@ public class Window {
         addManager(manager);
         gui.setVisible(true);
     }
-    
+
     public void repaint() {
         gui.repaint();
     }
-    
+
     public Stack<IControlManager> getManagers() {
         return (Stack<IControlManager>) managers.clone();
     }
-    
+
     public IControlManager currentManager() {
         return managers.peek();
     }
@@ -43,7 +43,7 @@ public class Window {
         manager.setParent(this);
         manager.getRenderer().setParent(this);
     }
-    
+
     public void closeManager() {
         managers.pop();
     }
@@ -60,22 +60,22 @@ public class Window {
     public void clearError() {
         error = null;
     }
-    
+
     public void onKey(KeyInput e) {
-        if (getError()!= null && e.type == InputType.PRESS) {
+        if (getError() != null && e.type == InputType.PRESS) {
             clearError();
             return;
         }
-        
-        if (currentManager()!=null) {
+
+        if (currentManager() != null) {
             currentManager().onKey(e);
         }
     }
-    
+
     public Namespace getNamspace() {
         return dir;
     }
-    
+
     public void setNamespace(Namespace ns) {
         dir = ns;
         repaint();

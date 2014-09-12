@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.parse;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -22,14 +21,14 @@ public class FunctionCallParser implements ParseHandler {
     @Override
     public ArrayList parse(Parser p) throws IconusCalcException {
         ArrayList a = new ArrayList();
-        TokenWord t = ((TokenWord)p.getItem());
-        TokenChunk c = ((TokenChunk)p.getItem(1));
-        
+        TokenWord t = ((TokenWord) p.getItem());
+        TokenChunk c = ((TokenChunk) p.getItem(1));
+
         Parser p2 = new Parser(c.content);
         ArrayList<Element> args = p2.parse();
         a.add(args);
         a.add(new FunctionElement(t.content));
-                        
+
         return a;
     }
 
@@ -37,5 +36,5 @@ public class FunctionCallParser implements ParseHandler {
     public int getDelLength(Parser p) {
         return 2;
     }
-    
+
 }

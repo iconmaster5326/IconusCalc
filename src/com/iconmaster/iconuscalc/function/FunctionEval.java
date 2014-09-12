@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.function;
 
 import com.iconmaster.iconuscalc.element.Element;
@@ -20,15 +19,15 @@ public class FunctionEval extends Function {
     public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
 
         if (args[0] instanceof ExpressionElement) {
-            
-            CodeExecutor.execute(((ExpressionElement)args[0]).content,stack,ns,window);
+
+            CodeExecutor.execute(((ExpressionElement) args[0]).content, stack, ns, window);
 
             return new Element[0];
         } else {
             throw new IllegalArgumentTypeException();
         }
     }
-    
+
     @Override
     public int getDefaultArgs() {
         return 1;

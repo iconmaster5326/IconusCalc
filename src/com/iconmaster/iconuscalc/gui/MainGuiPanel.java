@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.gui;
 
 import com.iconmaster.iconuscalc.manager.IControlManager;
@@ -15,6 +14,7 @@ import java.util.Date;
  * @author iconmaster
  */
 public class MainGuiPanel extends javax.swing.JPanel {
+
     //private IScreenRenderer renderer;
     private MainGui gui;
 
@@ -26,46 +26,46 @@ public class MainGuiPanel extends javax.swing.JPanel {
         initComponents();
         //this.setRenderer(new TextGridRenderer());
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         int w = getWidth();
         int h = getHeight();
-        
+
         Stack<IControlManager> managers = gui.window.getManagers();
-        
+
         boolean showStatusBar = false;
         for (IControlManager manager : managers) {
             if (manager.showStatusBar()) {
                 showStatusBar = true;
             }
         }
-        
-        int SBAR_H = h/25;
-        
+
+        int SBAR_H = h / 25;
+
         if (showStatusBar) {
             drawStatusBar(g, w, SBAR_H);
-            g.translate(0, (SBAR_H-2));
+            g.translate(0, (SBAR_H - 2));
         }
 
         for (IControlManager manager : managers) {
             IScreenRenderer r = manager.getRenderer();
             if (showStatusBar) {
-                r.paint(g, w, h-SBAR_H);
+                r.paint(g, w, h - SBAR_H);
             } else {
                 r.paint(g, w, h);
             }
         }
-        
+
         if (showStatusBar) {
-            g.translate(0, -(SBAR_H-2));
+            g.translate(0, -(SBAR_H - 2));
         }
     }
-    
+
     public void drawStatusBar(Graphics g, int w, int h) {
         g.setFont(RenderUtils.getFont(h, h));
         g.drawString(gui.window.getNamspace().getPathName(), 0, h);
-        g.drawString(new SimpleDateFormat("hh:mm a").format(new Date(System.currentTimeMillis())) , w-h*7-6, h);
+        g.drawString(new SimpleDateFormat("hh:mm a").format(new Date(System.currentTimeMillis())), w - h * 7 - 6, h);
     }
 
     /**
@@ -88,7 +88,6 @@ public class MainGuiPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

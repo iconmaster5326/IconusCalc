@@ -1,4 +1,3 @@
-
 package com.iconmaster.iconuscalc.tokenize;
 
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
@@ -9,16 +8,17 @@ import com.iconmaster.iconuscalc.util.StringUtils;
  * @author iconmaster
  */
 public class TokenWord implements IToken {
+
     public String content;
-    
+
     public TokenWord() {
-        
+
     }
-    
+
     public TokenWord(String str) {
         this.content = str;
     }
-    
+
     @Override
     public boolean doesMatch(Tokenizer tc, char c) {
         return Character.isLetter(c);
@@ -42,8 +42,9 @@ public class TokenWord implements IToken {
         }
         return new TokenWord(word.toString());
     }
+
     @Override
     public String toString() {
-        return "[TOKEN WORD: "+content+"]";
+        return "[TOKEN WORD: " + content + "]";
     }
 }
