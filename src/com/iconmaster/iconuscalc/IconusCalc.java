@@ -20,7 +20,7 @@ public class IconusCalc {
     private static final GlobalNamespace homeDir = GlobalNamespace.createGlobalNamespace();
     private static final ArrayList<IApplication> apps = new ArrayList<>();
     
-    public static int windowsOpen = 0;
+    public static final ArrayList<Window> windows = new ArrayList<>();
 
     /**
      * @param args the command line arguments
@@ -76,5 +76,11 @@ public class IconusCalc {
     
     public static ArrayList<IApplication> getApps() {
         return (ArrayList<IApplication>) apps.clone();
+    }
+    
+    public static void repaintAll() {
+        for (Window w : windows) {
+            w.repaint();
+        }
     }
 }

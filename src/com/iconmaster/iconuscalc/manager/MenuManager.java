@@ -140,7 +140,7 @@ public class MenuManager implements IControlManager {
                 } else if (id > 0 && id < 2+customs.length-1) {
                     result.getResult(null, id-1, object);
                 } else if (id==1+customs.length) {
-                    if (IconusCalc.windowsOpen==1) {
+                    if (IconusCalc.windows.size()==1) {
                         //make confirm dialog here
                     }
                     window.close();
