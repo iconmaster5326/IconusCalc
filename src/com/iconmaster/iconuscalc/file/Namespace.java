@@ -27,9 +27,9 @@ public class Namespace {
     }
     
     public void addVar(Variable fn) {
-        if (vars.containsKey(fn.name)) {
+        if (vars.containsKey(fn.name.toUpperCase())) {
             vars.get(fn.name).value = fn.value;
-            IFileListener.fireEvent(IFileListener.ChangeType.CHANGE, this, vars.get(fn.name));
+            IFileListener.fireEvent(IFileListener.ChangeType.CHANGE, this, vars.get(fn.name.toUpperCase()));
         } else {
             vars.put(fn.name.toUpperCase(), fn);
             IFileListener.fireEvent(IFileListener.ChangeType.CREATE, this, fn);
@@ -41,8 +41,8 @@ public class Namespace {
     }
     
     public void delVar(String name) {
-        if (vars.containsKey(name)) {
-            Variable deleted = vars.remove(name);
+        if (vars.containsKey(name.toUpperCase())) {
+            Variable deleted = vars.remove(name.toUpperCase());
             IFileListener.fireEvent(IFileListener.ChangeType.DELETE, this, deleted);
         }
     }
@@ -52,7 +52,7 @@ public class Namespace {
     }
     
     public void addFolder(Namespace ns) {
-        Namespace old = folders.get(ns.getName());
+        Namespace old = folders.get(ns.getName().toUpperCase());
         folders.put(ns.getName().toUpperCase(), ns);
         if (old==null) {
             IFileListener.fireEvent(IFileListener.ChangeType.CREATE, this, ns);
@@ -61,9 +61,9 @@ public class Namespace {
         }
     }
     
-    public void delFolder(Namespace ns) {
-        if (folders.containsKey(name)) {
-            Namespace deleted = folders.remove(name);
+    public void delFolder(String name) {
+        if (folders.containsKey(name.toUpperCase())) {
+            Namespace deleted = folders.remove(name.toUpperCase());
             IFileListener.fireEvent(IFileListener.ChangeType.DELETE, this, deleted);
         }
     }

@@ -57,21 +57,50 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
                 });
             } else if (e.key==KeyInput.ENTER) {
                 if (content.get(pos) instanceof Namespace) {
-                    openFolder((Namespace) content.get(pos));
-                    pos = 0;
-                    offset = 0;
-                    renderScreen();
-                    return;
+                    MenuManager.openMenu(new Menu("ROOT","Move","Copy","Rename","Delete"),6,Math.min(pos+1,renderer.cols-8), gui, new MenuResult() {
+
+                        @Override
+                        public void getResult(Menu menu, int id, Object object) {
+                            System.out.println(id);
+                            switch (id) {
+                                case (0):
+                                    break;
+                                case (1):
+                                    break;
+                                case (2):
+                                    break;
+                                case (3):
+                                    System.out.println("Deleting");
+                                    gui.getNamspace().delFolder(((Namespace)content.get(pos)).getName());
+                                    openFolder(gui.getNamspace());
+                                    break;
+                            }
+                        }
+                        
+                    });
                 } else if (content.get(pos) instanceof String && gui.getNamspace().getParent()!=null) {
                     pos = 0;
                     offset = 0;
                     openFolder(gui.getNamspace().getParent());
                 } else if (content.get(pos) instanceof Variable) {
-                    MenuManager.openMenu(new Menu("ROOT","Show Value","Edit","Rename","Move","Copy","Rename","Delete"),6,Math.min(pos+1,renderer.cols-8), gui, new MenuResult() {
+                    MenuManager.openMenu(new Menu("ROOT","Show Value","Edit","Move","Copy","Rename","Delete"),6,Math.min(pos+1,renderer.cols-8), gui, new MenuResult() {
 
                         @Override
                         public void getResult(Menu menu, int id, Object object) {
-                            
+                            switch (id) {
+                                case (0):
+                                    break;
+                                case (1):
+                                    break;
+                                case (2):
+                                    break;
+                                case (3):
+                                    break;
+                                case (4):
+                                    break;
+                                case (5):
+                                    break;
+                            }
                         }
                         
                     });
