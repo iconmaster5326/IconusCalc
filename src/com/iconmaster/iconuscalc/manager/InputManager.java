@@ -30,22 +30,20 @@ public class InputManager implements IControlManager {
     private int cursor = 0;
     private int offset = 0;
     private InputResult callback;
+    private int maxsize;
 
-    public InputManager(TextGridRenderer renderer,int x, int y, String initial, InputResult callback) {
+    public InputManager(TextGridRenderer renderer,int x, int y, String initial, int fieldSize, InputResult callback) {
         this.renderer = new TextGridRenderer(renderer.rows,renderer.cols);
         this.x = x;
         this.y = y;
         this.input = initial;
         this.callback = callback;
-    }
-    
-    public InputManager(TextGridRenderer renderer,int x, int y, InputResult callback) {
-        this(renderer,x,y,"",callback);
+        this.maxsize = fieldSize;
     }
     
     public void renderInput() {
         clearInput();
-        renderer.drawString(input, x+offset, y);
+        renderer.drawString(input.substring(Math.max(-offset,0), Math.min(-offset+maxsize,input.length())), x, y);
         renderer.moveCursor(x+cursor+offset , y);
     }
     
@@ -106,7 +104,7 @@ public class InputManager implements IControlManager {
     
     public void advanceCursor() {
         cursor++;
-        if (cursor - offset >= renderer.rows) {
+        if (cursor - offset >= maxsize) {
             offset--;
         }
     }

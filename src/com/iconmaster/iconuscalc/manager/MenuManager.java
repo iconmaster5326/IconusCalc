@@ -5,6 +5,7 @@ import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
+import com.iconmaster.iconuscalc.manager.SimpleDialogManager.DialogResult;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.MenuRenderer;
 import java.util.ArrayList;
@@ -113,8 +114,8 @@ public class MenuManager implements IControlManager {
                     @Override
                     public void getResult(Menu menu, int id, Object object) {
                         if (!(object instanceof Menu)) {
-                            callback.getResult(menu, id, object);
                             gui.closeManager();
+                            callback.getResult(menu, id, object);
                             gui.repaint();
                         }
                     }
@@ -122,31 +123,32 @@ public class MenuManager implements IControlManager {
                 });
                 gui.addManager(man);
             } else {
-                callback.getResult(menu, renderer.choice, menu.content.get(renderer.choice));
                 gui.closeManager();
+                callback.getResult(menu, renderer.choice, menu.content.get(renderer.choice));
                 gui.repaint();
             }
     }
     
     public static MenuManager openAppMenu(final Window window, final String[] customs, final MenuResult result) {
         Menu menu = new Menu("ROOT",new Menu("Open App…",IconusCalc.getApps()),customs,"Close App");
-        MenuManager man = new MenuManager(menu,0,0,new MenuResult() {
-
-            @Override
-            public void getResult(Menu menu, int id, Object object) {
-                //System.out.println(object);
-                if (menu.name.equals("Open App…")) {
-                    Window win = new Window(((IApplication)object).getNewWindow());
-                } else if (id > 0 && id < 2+customs.length-1) {
-                    result.getResult(null, id-1, object);
-                } else if (id==1+customs.length) {
-                    if (IconusCalc.windows.size()==1) {
-                        //make confirm dialog here
-                    }
+        MenuManager man = new MenuManager(menu,0,0, (Menu menu1, int id, Object object) -> {
+            //System.out.println(object);
+            if (menu1.name.equals("Open App…")) {
+                Window win = new Window(((IApplication)object).getNewWindow());
+            } else if (id > 0 && id < 2+customs.length-1) {
+                result.getResult(null, id-1, object);
+            } else if (id==1+customs.length) {
+                if (IconusCalc.windows.size()==1) {
+                    final SimpleDialogManager dlg = new SimpleDialogManager(new String[] {"Are you sure you want to","exit IconusCalc?"},new String[] {"Yes","No"}, (int id1, String str) -> {
+                        if (id1==0) {
+                            window.close();
+                        }
+                    });
+                    window.addManager(dlg);
+                } else {
                     window.close();
                 }
             }
-            
         });
         window.addManager(man);
         return man;
