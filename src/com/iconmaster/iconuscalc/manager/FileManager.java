@@ -2,6 +2,7 @@
 package com.iconmaster.iconuscalc.manager;
 
 import com.iconmaster.iconuscalc.IconusCalc;
+import com.iconmaster.iconuscalc.file.IFileListener;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.file.Variable;
 import com.iconmaster.iconuscalc.gui.InputType;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author iconmaster
  */
-public class FileManager implements IControlManager,IApplication {
+public class FileManager implements IControlManager,IApplication,IFileListener {
     public TextGridRenderer renderer;
     public int pos = 0;
     public int offset = 0;
@@ -27,6 +28,8 @@ public class FileManager implements IControlManager,IApplication {
     
     public FileManager() {
         renderer = new TextGridRenderer();
+        
+        IFileListener.registerListener(this);
     }
 
     @Override
@@ -165,6 +168,12 @@ public class FileManager implements IControlManager,IApplication {
     @Override
     public Window getParent() {
         return gui;
+    }
+
+    @Override
+    public void onFileChange(ChangeType type, Namespace ns, Object actedOn) {
+        if (getParent()!=null)
+            openFolder(getParent().getNamspace());
     }
     
 }
