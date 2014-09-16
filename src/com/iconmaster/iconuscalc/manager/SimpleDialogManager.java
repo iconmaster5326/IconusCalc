@@ -19,12 +19,12 @@ public class SimpleDialogManager implements IControlManager {
     public final DialogResult result;
     public SimpleDialogRenderer renderer;
     public String[] buttons;
-    public String[] desc;
+    public String desc;
     public int pos = 0;
     
     private Window gui;
     
-    public SimpleDialogManager(String[] desc, String[] buttons, DialogResult result) {
+    public SimpleDialogManager(String desc, String[] buttons, DialogResult result) {
         renderer = new SimpleDialogRenderer();
         renderer.manager = this;
         this.desc = desc;

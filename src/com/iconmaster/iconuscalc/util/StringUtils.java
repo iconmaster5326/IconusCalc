@@ -36,4 +36,16 @@ public class StringUtils {
         }
         return str+pad;
     }
+    
+    public static String[] multilineSplit(String input, int size) {
+        int nSubs = input.length()/size+1;
+        if (input.length()%size==0) {
+            nSubs--;
+        }
+        String[] result = new String[nSubs];
+        for (int i=0;i<nSubs;i++) {
+            result[i] = input.substring(i*size, Math.min(i*size+size,input.length()));
+        }
+        return result;
+    }
 }

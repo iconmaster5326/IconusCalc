@@ -10,7 +10,9 @@ import com.iconmaster.iconuscalc.manager.IApplication;
 import com.iconmaster.iconuscalc.math.Simplifier;
 import com.iconmaster.iconuscalc.parse.Parser;
 import com.iconmaster.iconuscalc.tokenize.Tokenizer;
+import com.iconmaster.iconuscalc.util.StringUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -53,16 +55,13 @@ public class IconusCalc {
         Tokenizer.addDefaultHandlers();
         Parser.addDefaultHandlers();
         Simplifier.registerRules();
-        
+
         registerApp(new HomeScreenManager());
         registerApp(new FileManager());
                 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Window(new HomeScreenManager());
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Window(new HomeScreenManager());
         });
     }
     

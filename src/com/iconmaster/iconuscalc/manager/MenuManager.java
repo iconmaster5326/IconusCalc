@@ -139,7 +139,7 @@ public class MenuManager implements IControlManager {
                 result.getResult(null, id-1, object);
             } else if (id==1+customs.length) {
                 if (IconusCalc.windows.size()==1) {
-                    final SimpleDialogManager dlg = new SimpleDialogManager(new String[] {"Are you sure you want to","exit IconusCalc?"},new String[] {"Yes","No"}, (int id1, String str) -> {
+                    final SimpleDialogManager dlg = new SimpleDialogManager("Are you sure you want to exit IconusCalc?",new String[] {"Yes","No"}, (int id1, String str) -> {
                         if (id1==0) {
                             window.close();
                         }
