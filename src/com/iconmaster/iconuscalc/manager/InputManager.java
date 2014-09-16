@@ -43,12 +43,12 @@ public class InputManager implements IControlManager {
     
     public void renderInput() {
         clearInput();
-        renderer.drawString(input.substring(Math.max(-offset,0), Math.min(-offset+maxsize,input.length())), x, y);
+        renderer.putString(input.substring(Math.max(-offset,0), Math.min(-offset+maxsize,input.length())), x, y);
         renderer.moveCursor(x+cursor+offset , y);
     }
     
     public void clearInput() {
-        renderer.drawString("                                                                                ", x, y);
+        renderer.putString("                                                                                ", x, y);
     }
     
     @Override

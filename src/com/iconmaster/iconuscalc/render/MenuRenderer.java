@@ -12,8 +12,7 @@ import java.awt.Graphics;
  *
  * @author iconmaster
  */
-public class MenuRenderer implements IScreenRenderer {
-    Window gui;
+public class MenuRenderer extends GridRenderer {
     public Menu menu;
     public int choice = 0;
     public int x;
@@ -31,26 +30,13 @@ public class MenuRenderer implements IScreenRenderer {
 
     @Override
     public void paint(Graphics g, int w, int h) {
-        g.setFont(RenderUtils.getFont(w/TextGridRenderer.ROWS,h/TextGridRenderer.COLS));
-        g.setColor(Color.WHITE);
-        g.fillRect((x*(w/TextGridRenderer.ROWS)), (y*(h/TextGridRenderer.COLS))+1, (w/TextGridRenderer.ROWS)*longestString, y+(h/TextGridRenderer.COLS)*menu.content.size()+3);
-        g.setColor(new Color(0,0,0,128));
-        g.fillRect((x*(w/TextGridRenderer.ROWS)), (y*(h/TextGridRenderer.COLS))+(h/TextGridRenderer.COLS)*choice+2, (w/TextGridRenderer.ROWS)*longestString, (h/TextGridRenderer.COLS)+2);
-        g.setColor(Color.BLACK);
-        g.drawRect((x*(w/TextGridRenderer.ROWS)), (y*(h/TextGridRenderer.COLS))+1, (w/TextGridRenderer.ROWS)*longestString, (h/TextGridRenderer.COLS)*menu.content.size()+3);
+        setWindowSize(w,h);
+        
+        drawBorderedRect(g,x,y,longestString,menu.content.size(),Color.WHITE,Color.BLACK);
+        highlight(g,x,y+choice,longestString,1);
         for (int i=0;i<menu.content.size();i++) {
-            g.drawString(getMenuItemString(menu.content.get(i)), (x*(w/TextGridRenderer.ROWS))+2, (y*(h/TextGridRenderer.COLS))+(h/TextGridRenderer.COLS)*(i+1)+2);
+            drawString(g,getMenuItemString(menu.content.get(i)),x,y+i);
         }
-    }
-
-    @Override
-    public void setParent(Window gui) {
-        this.gui = gui;
-    }
-
-    @Override
-    public Window getParent() {
-        return gui;
     }
     
     public static String getMenuItemString(Object obj) {

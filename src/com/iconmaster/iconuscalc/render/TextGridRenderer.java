@@ -10,16 +10,7 @@ import java.awt.Graphics;
  *
  * @author iconmaster
  */
-public class TextGridRenderer implements IScreenRenderer {
-    private Window parent;
-    
-    public final int rows;
-    public final int cols;
-    
-    public static int ROWS = 35;
-    public static int COLS = 16;
-    
-    
+public class TextGridRenderer extends GridRenderer {
     public char[][] grid;
     
     public int cx = -100;
@@ -27,15 +18,15 @@ public class TextGridRenderer implements IScreenRenderer {
     
     public int cx2 = -100;
     public int cy2 = -100;
-    
     private boolean exmode = false;
     
     public TextGridRenderer() {
-        //this(25,16);
         this(ROWS,COLS);
     }
     
     public TextGridRenderer(int rows,int cols) {
+        super(rows,cols);
+        
         grid = new char[rows][cols];
         
         for (int x=0;x<rows;x++) {
@@ -44,37 +35,26 @@ public class TextGridRenderer implements IScreenRenderer {
                 //grid[x][y] = (char) new Random().nextInt();
             }
         }
-        
-        this.rows = rows;
-        this.cols = cols;
     }
 
     @Override
     public void paint(Graphics g, int w, int h) {
-        g.setFont(RenderUtils.getFont(w/rows,h/cols));
+        this.setWindowSize(w, h);
         
         for (int x=0;x<rows;x++) {
             for (int y=0;y<cols;y++) {
-                char c = grid[x][y];
-                
-                if (!Character.isWhitespace(c)) {
-                    g.drawString(Character.toString(c), (x)*(w/rows), (y+1)*(h/cols));
-                }
+                drawString(g,new String(new char[] {grid[x][y]}),x,y);
             }
         }
         
         if (exmode) {
-            g.setColor(new Color(0,0,0,128));
-            g.fillRect((cx)*(w/rows), (cy)*(h/cols)+2, (cx2)*(w/rows), (cy2)*(h/cols)+2);
-            g.setColor(Color.BLACK);
+            highlight(g,cx,cy,cx2,cy2);
         } else {
-            g.setColor(new Color(0,0,0,128));
-            g.fillRect((cx+1)*(w/rows), (cy)*(h/cols), w/rows/4, h/cols);
-            g.setColor(Color.BLACK);
+            drawCursor(g,cx,cy);
         }
     }
     
-    public void drawString(String str, int x, int y) {
+    public void putString(String str, int x, int y) {
         if (str==null) {return;}
         char[] chars = str.toCharArray();
         for (int i=0;i<chars.length;i++) {
@@ -86,8 +66,8 @@ public class TextGridRenderer implements IScreenRenderer {
         repaint();
     }
     
-    public void drawStringRightJustified(String str, int x, int y) {
-        drawString(str, x-str.length(), y);
+    public void putStringRightJustified(String str, int x, int y) {
+        putString(str, x-str.length(), y);
     }
 
     public void clearScreen() {
@@ -100,22 +80,6 @@ public class TextGridRenderer implements IScreenRenderer {
         repaint();
     }
 
-    @Override
-    public void setParent(Window gui) {
-        parent = gui;
-    }
-
-    @Override
-    public Window getParent() {
-        return parent;
-    }
-
-    private void repaint() {
-        if (parent!=null) {
-            parent.repaint();
-        }
-    }
-
     public void moveCursor(int x, int y) {
         cx = x;
         cy = y;
@@ -125,15 +89,16 @@ public class TextGridRenderer implements IScreenRenderer {
     public void removeCursor() {
         cx = -100;
         cy = -100;
+        cx2 = -100;
+        cy2 = -100;
         exmode = false;
     }
     
-    public void moveCursorEx(int x, int y, int x2, int y2) {
-        cx = x;
-        cy = y;
+    public void moveCursorEx(int x1, int y1, int x2, int y2) {
+        cx = x1;
+        cy = y1;
         cx2 = x2;
         cy2 = y2;
         exmode = true;
     }
-    
 }

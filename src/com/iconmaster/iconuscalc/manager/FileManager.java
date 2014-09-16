@@ -138,7 +138,8 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
         
         if (content.isEmpty()) {
             renderer.removeCursor();
-            renderer.drawString("No files.", (renderer.rows-8)/2, renderer.cols/2);
+            pos = 0;
+            renderer.putString("No files.", (renderer.rows-8)/2, renderer.cols/2);
         } else {
             renderer.moveCursorEx(5, pos, renderer.rows-6, 1);
 
@@ -152,7 +153,7 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
                 } else {
                     str = "     "+e.toString();
                 }
-                renderer.drawString(str, 0, i+offset);
+                renderer.putString(str, 0, i+offset);
                 i++;
             }
         }

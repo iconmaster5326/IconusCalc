@@ -100,7 +100,7 @@ public class HomeScreenManager implements IControlManager,IApplication {
         
         
         for (int pos=1;pos<=renderer.cols-offset;pos++) {
-            renderer.drawString(pos+":", 0, renderer.cols-pos-offset);
+            renderer.putString(pos+":", 0, renderer.cols-pos-offset);
         }
         
         List<Entry> list = stack.toEntryList();
@@ -109,10 +109,10 @@ public class HomeScreenManager implements IControlManager,IApplication {
             i--;
             
             String entryString = StringUtils.truncateString(item.getEntry()==null?"":item.getEntry(), 14);
-            renderer.drawString(entryString, 4, i);
+            renderer.putString(entryString, 4, i);
             
             String answerString = StringUtils.truncateString(item.getAnswer().getDisplayString(), 14);
-            renderer.drawStringRightJustified(answerString, renderer.rows-1, i);
+            renderer.putStringRightJustified(answerString, renderer.rows-1, i);
         }
     }
 
