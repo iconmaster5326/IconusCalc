@@ -117,4 +117,8 @@ public abstract class GridRenderer implements IScreenRenderer {
             getParent().repaint();
         }
     }
+    
+    public void onResize() {
+        
+    }
 }

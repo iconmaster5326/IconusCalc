@@ -4,6 +4,7 @@ package com.iconmaster.iconuscalc.manager;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArguentCountException;
+import com.iconmaster.iconuscalc.exception.IllegalNumberException;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
@@ -110,6 +111,8 @@ public class DialogManager implements IControlManager {
                         case EXPRESSION:
                             startInput(entry().value==null?null:(((Element)entry().value).getDisplayString()));
                             break;
+                        case INTEGER:
+                            startInput(entry().value==null?null:entry().value.toString());
                     }
                 }
             }
@@ -209,6 +212,13 @@ public class DialogManager implements IControlManager {
                             } else {
                                 entry().value = stack.pop();
                             }
+                        }
+                        break;
+                    case INTEGER:
+                        try {
+                            entry().value = Integer.parseInt(output);
+                        } catch (NumberFormatException ex) {
+                            getParent().displayError(new IllegalNumberException());
                         }
                         break;
                 }

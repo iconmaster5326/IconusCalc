@@ -1,9 +1,6 @@
 
 package com.iconmaster.iconuscalc.render;
 
-import com.iconmaster.iconuscalc.gui.Window;
-import com.iconmaster.iconuscalc.util.RenderUtils;
-import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -100,5 +97,16 @@ public class TextGridRenderer extends GridRenderer {
         cx2 = x2;
         cy2 = y2;
         exmode = true;
+    }
+    
+    @Override
+    public void onResize() {
+        grid = new char[rows][cols];
+        
+        for (int x=0;x<rows;x++) {
+            for (int y=0;y<cols;y++) {
+                grid[x][y] = ' ';
+            }
+        }
     }
 }

@@ -5,6 +5,10 @@ import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
+import com.iconmaster.iconuscalc.manager.dialog.Dialog;
+import com.iconmaster.iconuscalc.manager.dialog.DialogEntry;
+import com.iconmaster.iconuscalc.manager.dialog.EntryType;
+import com.iconmaster.iconuscalc.render.GridRenderer;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.MenuRenderer;
 import java.util.ArrayList;
@@ -137,7 +141,7 @@ public class MenuManager implements IControlManager {
     }
     
     public static MenuManager openAppMenu(final Window window, final String[] customs, final MenuResult result) {
-        Menu menu = new Menu("ROOT",new Menu("Open App…",IconusCalc.getApps()),customs,"Close App");
+        Menu menu = new Menu("ROOT",new Menu("Open App…",IconusCalc.getApps()),customs,"Options…","Close App");
         MenuManager man = new MenuManager(menu,0,0, (Menu menu1, int id, Object object) -> {
             //System.out.println(object);
             if (menu1.name.equals("Open App…")) {
@@ -145,6 +149,21 @@ public class MenuManager implements IControlManager {
             } else if (id > 0 && id < 2+customs.length-1) {
                 result.getResult(null, id-1, object);
             } else if (id==1+customs.length) {
+                            DialogManager dlg = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"System Settings"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.INTEGER,"Screen X:",GridRenderer.ROWS),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.INTEGER,"Screen Y:",GridRenderer.COLS)),(ret)->{
+                                    if (ret!=null) {
+                                    Integer sx = (Integer)ret.get(0);
+                                    Integer sy = (Integer)ret.get(1);
+
+                                    if (sx!=null && sy!=null) {
+                                        GridRenderer.ROWS = sx;
+                                        GridRenderer.COLS = sy;
+
+                                        IconusCalc.resizeAll(GridRenderer.ROWS, GridRenderer.COLS);
+                                    }
+                                }
+                            });
+                            window.addManager(dlg);
+            } else if (id==2+customs.length) {
                 if (IconusCalc.windows.size()==1) {
                     final SimpleDialogManager dlg = new SimpleDialogManager("Are you sure you want to exit IconusCalc?",new String[] {"Yes","No"}, (int id1, String str) -> {
                         if (id1==0) {

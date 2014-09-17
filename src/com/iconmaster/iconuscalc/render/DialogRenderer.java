@@ -70,6 +70,16 @@ public class DialogRenderer extends GridRenderer {
                     highlight(g, 3+entry.label.length(), y, ROWS-entry.label.length()-6, 1);
                 }
                 break;
+            case INTEGER:
+                drawString(g,entry.label,2,y);
+                drawBorderedRect(g, 3+entry.label.length(), y, ROWS-entry.label.length()-6, 1, Color.WHITE, Color.BLACK);
+                if (entry.value!=null && !(manager.entry()==entry && manager.editing)) {
+                    drawString(g, StringUtils.truncateString(StringUtils.renderNumber(((Integer)entry.value).doubleValue()),ROWS-entry.label.length()-6),3+entry.label.length(),y);
+                }
+                if (manager.entry()==entry) {
+                    highlight(g, 3+entry.label.length(), y, ROWS-entry.label.length()-6, 1);
+                }
+                break;
         }
     }
 }

@@ -7,12 +7,12 @@ import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.manager.FileManager;
 import com.iconmaster.iconuscalc.manager.HomeScreenManager;
 import com.iconmaster.iconuscalc.manager.IApplication;
+import com.iconmaster.iconuscalc.manager.IControlManager;
 import com.iconmaster.iconuscalc.math.Simplifier;
 import com.iconmaster.iconuscalc.parse.Parser;
+import com.iconmaster.iconuscalc.render.GridRenderer;
 import com.iconmaster.iconuscalc.tokenize.Tokenizer;
-import com.iconmaster.iconuscalc.util.StringUtils;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -86,6 +86,18 @@ public class IconusCalc {
     public static void renameAll() {
         for (Window w : windows) {
             w.nameWindow(w.getManagers().lastElement());
+        }
+    }
+    
+    public static void resizeAll(int w, int h) {
+        for (Window win : windows) {
+            for (IControlManager man : win.getManagers()) {
+                if (man.getRenderer() instanceof GridRenderer) {
+                    ((GridRenderer)man.getRenderer()).setSize(w, h);
+                    ((GridRenderer)man.getRenderer()).onResize();
+                }
+            }
+            win.repaint();
         }
     }
 }
