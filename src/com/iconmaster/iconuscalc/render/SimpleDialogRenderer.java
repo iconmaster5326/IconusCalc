@@ -32,7 +32,7 @@ public class SimpleDialogRenderer extends GridRenderer {
         }
         
         for (int i=0;i<manager.buttons.length;i++) {
-            drawBorderedRect(g,(i+1)*boxW/manager.buttons.length+1-(manager.buttons[i].length()/2+1),boxY+boxH-2,5,1,Color.WHITE,Color.BLACK);
+            drawBorderedRect(g,(i+1)*boxW/manager.buttons.length+1-(manager.buttons[i].length()/2+1),boxY+boxH-2,5,1);
             drawStringCentered(g,manager.buttons[i],(i+1)*boxW/manager.buttons.length+1,boxY+boxH-2);
         }
         
