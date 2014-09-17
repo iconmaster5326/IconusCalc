@@ -1,10 +1,9 @@
 
 package com.iconmaster.iconuscalc.render;
 
-import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.manager.IApplication;
+import com.iconmaster.iconuscalc.manager.MenuManager;
 import com.iconmaster.iconuscalc.manager.MenuManager.Menu;
-import com.iconmaster.iconuscalc.util.RenderUtils;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -24,7 +23,7 @@ public class MenuRenderer extends GridRenderer {
         
         //calculate the longest element in the list
         for (Object obj : menu.content) {
-            longestString = Math.max(longestString,getMenuItemString(obj).length());
+            longestString = Math.max(longestString,getMenuItemString(obj).length()+2);
         }
     }
 
@@ -35,7 +34,7 @@ public class MenuRenderer extends GridRenderer {
         drawBorderedRect(g,x,y,longestString,menu.content.size(),Color.WHITE,Color.BLACK);
         highlight(g,x,y+choice,longestString,1);
         for (int i=0;i<menu.content.size();i++) {
-            drawString(g,getMenuItemString(menu.content.get(i)),x,y+i);
+            drawString(g,MenuManager.hotkeys.substring(i, i+1)+": "+getMenuItemString(menu.content.get(i)),x,y+i);
         }
     }
     

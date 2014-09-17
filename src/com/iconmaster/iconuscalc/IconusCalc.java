@@ -82,4 +82,10 @@ public class IconusCalc {
             w.repaint();
         }
     }
+    
+    public static void renameAll() {
+        for (Window w : windows) {
+            w.nameWindow(w.getManagers().lastElement());
+        }
+    }
 }

@@ -45,7 +45,7 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
     public void onKey(KeyInput e) {
         if (e.type==InputType.PRESS) { 
             if (e.key==KeyInput.ESCAPE) {
-                MenuManager.openAppMenu(gui,new String[] {"New file…","New folder…","Go Home"}, (menu, id, object) -> {
+                MenuManager.openAppMenu(gui,new String[] {"New file…","New folder… ","Go Home"}, (menu, id, object) -> {
                     switch (id) {
                         case (0):
                             DialogManager man = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"Create New Variable"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.STRING,"Name"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.EXPRESSION,"Value")),(ret)->{

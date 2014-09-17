@@ -5,7 +5,6 @@ import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
-import com.iconmaster.iconuscalc.manager.SimpleDialogManager.DialogResult;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.MenuRenderer;
 import java.util.ArrayList;
@@ -16,6 +15,8 @@ import java.util.Collection;
  * @author iconmaster
  */
 public class MenuManager implements IControlManager {
+    public static final String hotkeys = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
     private Window gui;
 
     @Override
@@ -103,6 +104,12 @@ public class MenuManager implements IControlManager {
         if (e.type==InputType.PRESS && e.key==KeyInput.ESCAPE) {
             gui.closeManager();
             gui.repaint();
+        } else if (e.type==InputType.PRESS && hotkeys.contains(""+e.key)) {
+            int hotkey = hotkeys.indexOf(e.key);
+            if (hotkey<menu.content.size()) {
+                executeMenuChoice(menu, hotkey);
+                gui.repaint();
+            }
         }
     }
     
@@ -124,7 +131,7 @@ public class MenuManager implements IControlManager {
                 gui.addManager(man);
             } else {
                 gui.closeManager();
-                callback.getResult(menu, renderer.choice, menu.content.get(renderer.choice));
+                callback.getResult(menu, choice, menu.content.get(choice));
                 gui.repaint();
             }
     }

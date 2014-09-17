@@ -5,6 +5,7 @@ import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.manager.ErrorManager;
+import com.iconmaster.iconuscalc.manager.IApplication;
 import com.iconmaster.iconuscalc.manager.IControlManager;
 import java.util.Stack;
 
@@ -23,6 +24,7 @@ public class Window {
         gui = new MainGui();
         gui.window = this;
         addManager(manager);
+        nameWindow(manager);
         gui.setVisible(true);
     }
     
@@ -84,6 +86,15 @@ public class Window {
 
     public void close() {
         IconusCalc.windows.remove(this);
+        IconusCalc.renameAll();
         gui.dispose();
+    }
+
+    public void nameWindow(IControlManager manager) {
+        if (manager instanceof IApplication) {
+            gui.setTitle("IconusCalc - "+((IApplication)manager).getAppName()+" ["+(IconusCalc.windows.indexOf(this)+1)+"]");
+        } else {
+            gui.setTitle("IconusCalc ["+(IconusCalc.windows.indexOf(this)+1)+"]");
+        }
     }
 }
