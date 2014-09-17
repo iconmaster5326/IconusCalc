@@ -154,7 +154,7 @@ public class MenuManager implements IControlManager {
                                     Integer sx = (Integer)ret.get(0);
                                     Integer sy = (Integer)ret.get(1);
 
-                                    if (sx!=null && sy!=null) {
+                                    if (sx!=null && sy!=null && sx>=16 && sy>=10) {
                                         GridRenderer.ROWS = sx;
                                         GridRenderer.COLS = sy;
 
