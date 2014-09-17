@@ -12,6 +12,7 @@ import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
+import com.iconmaster.iconuscalc.render.GridRenderer;
 import com.iconmaster.iconuscalc.util.EntryStack;
 import com.iconmaster.iconuscalc.util.StringUtils;
 import java.util.List;
@@ -108,10 +109,10 @@ public class HomeScreenManager implements IControlManager,IApplication {
         for (Entry item : list) {
             i--;
             
-            String entryString = StringUtils.truncateString(item.getEntry()==null?"":item.getEntry(), 14);
+            String entryString = StringUtils.truncateString(item.getEntry()==null?"":item.getEntry(), truncLength());
             renderer.putString(entryString, 4, i);
             
-            String answerString = StringUtils.truncateString(item.getAnswer().getDisplayString(), 14);
+            String answerString = StringUtils.truncateString(item.getAnswer().getDisplayString(), truncLength());
             renderer.putStringRightJustified(answerString, renderer.rows-1, i);
         }
     }
@@ -154,5 +155,9 @@ public class HomeScreenManager implements IControlManager,IApplication {
     @Override
     public Window getParent() {
         return gui;
+    }
+
+    public int truncLength() {
+        return (GridRenderer.ROWS-6)/2;
     }
 }
