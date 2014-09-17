@@ -25,7 +25,6 @@ import java.util.ArrayList;
  * @author iconmaster
  */
 public class DialogManager implements IControlManager {
-
     public interface DialogResult {
         public void onConfirm(ArrayList returned);
     }
@@ -40,6 +39,7 @@ public class DialogManager implements IControlManager {
     public int bpos = 0;
     public boolean onButton = false;
     public boolean editing = false;
+    public boolean bkspc;
     
     private Window gui;
     
@@ -102,9 +102,12 @@ public class DialogManager implements IControlManager {
         } else if (e.type==InputType.PRESS) {
             if (e.key==KeyInput.ESCAPE) {
                 closeDialog(false);
-            } else if (e.key==KeyInput.ENTER) {
+            } else if (e.key==KeyInput.ENTER || e.key == KeyInput.BACK_SPACE) {
+                bkspc = e.key == KeyInput.BACK_SPACE;
                 if (onButton) {
-                    closeDialog(bpos==0);
+                    if (!bkspc) {
+                        closeDialog(bpos==0);
+                    }
                 } else {
                     switch (entry().type) {
                         case STRING:
@@ -209,6 +212,9 @@ public class DialogManager implements IControlManager {
     }
     
     public void startInput(String input) {
+        if (bkspc) {
+            input = null;
+        }
         editing = true;
         InputManager man = new InputManager(entry().label.length()+3,pos+2,input==null?"":input,renderer.rows-entry().label.length()-6,(output)->{
             if (output!=null) {

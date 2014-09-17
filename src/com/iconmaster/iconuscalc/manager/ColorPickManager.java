@@ -1,16 +1,12 @@
 
 package com.iconmaster.iconuscalc.manager;
 
-import com.iconmaster.iconuscalc.exception.IconusCalcException;
-import com.iconmaster.iconuscalc.exception.IllegalArguentCountException;
 import com.iconmaster.iconuscalc.exception.IllegalNumberException;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
-import com.iconmaster.iconuscalc.parse.CodeExecutor;
 import com.iconmaster.iconuscalc.render.ColorPickRenderer;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
-import com.iconmaster.iconuscalc.util.EntryStack;
 import java.awt.Color;
 
 /**
@@ -48,7 +44,7 @@ public class ColorPickManager implements IControlManager {
         if (e.type == InputType.PRESS) {
             if (e.key == KeyInput.ESCAPE) {
                 executeResult(false);
-            } else if (e.key == KeyInput.ENTER) {
+            } else if (e.key == KeyInput.ENTER || e.key==KeyInput.BACK_SPACE) {
                 if (pos==4) {
                     executeResult(bpos==0);
                 } else {
@@ -67,6 +63,9 @@ public class ColorPickManager implements IControlManager {
                         case (3):
                             str = Integer.toString(color.getAlpha());
                             break;
+                    }
+                    if (e.key==KeyInput.BACK_SPACE) {
+                        str = "";
                     }
                     InputManager man = new InputManager(renderer.cols/2+10,pos+5,str,3,(output)->{
                         if (output!=null) {
