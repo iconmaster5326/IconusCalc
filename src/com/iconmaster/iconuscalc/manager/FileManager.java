@@ -61,6 +61,17 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
                             getParent().addManager(man);
                             break;
                         case (1):
+                            DialogManager man2 = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"Create New Folder"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.STRING,"Name")),(ret)->{
+                                if (ret != null) {
+                                    String name = (String) ret.get(0);
+                                    
+                                    if (name!=null) {
+                                        Namespace ns = new Namespace(name,getParent().getNamspace());
+                                        getParent().getNamspace().addFolder(ns);
+                                    }
+                                }
+                            });
+                            getParent().addManager(man2);
                             break;
                         case (2):
                             openFolder(IconusCalc.getGlobalNamespace());
@@ -69,18 +80,22 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
                 });
             } else if (e.key==KeyInput.ENTER) {
                 if (content.get(pos) instanceof Namespace) {
-                    MenuManager.openMenu(new Menu("ROOT","Move","Copy","Rename","Delete"),6,Math.min(pos+1,renderer.cols-8), gui, new MenuResult() {
+                    MenuManager.openMenu(new Menu("ROOT","Go Into","Move","Copy","Rename","Delete"),6,Math.min(pos+1,renderer.cols-8), gui, new MenuResult() {
 
                         @Override
                         public void getResult(Menu menu, int id, Object object) {
                             switch (id) {
                                 case (0):
+                                    openFolder((Namespace)content.get(pos));
+                                    pos = 0;
                                     break;
                                 case (1):
                                     break;
                                 case (2):
                                     break;
                                 case (3):
+                                    break;
+                                case (4):
                                     gui.getNamspace().delFolder(((Namespace)content.get(pos)).getName());
                                     openFolder(gui.getNamspace());
                                     break;
