@@ -32,6 +32,9 @@ public class MainGuiPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
+        g.setColor(ColorScheme.bk);
+        g.fillRect(0, 0, w, h);
+        
         Stack<IControlManager> managers = gui.window.getManagers();
         
         boolean showStatusBar = false;
@@ -63,6 +66,7 @@ public class MainGuiPanel extends javax.swing.JPanel {
     }
     
     public void drawStatusBar(Graphics g, int w, int h) {
+        g.setColor(ColorScheme.bd);
         g.setFont(RenderUtils.getFont(h, h));
         g.drawString(gui.window.getNamspace().getPathName(), 0, h);
         g.drawString(new SimpleDateFormat("hh:mm a").format(new Date(System.currentTimeMillis())) , w-h*7-6, h);

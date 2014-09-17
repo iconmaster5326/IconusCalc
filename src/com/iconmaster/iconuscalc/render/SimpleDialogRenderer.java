@@ -25,7 +25,7 @@ public class SimpleDialogRenderer extends GridRenderer {
         int boxH = cols/3+desc.length-1;
         int boxY = cols/3-desc.length/2;
 
-        drawBorderedRect(g,boxX,boxY,boxW,boxH,Color.WHITE,Color.BLACK);
+        drawBorderedRect(g,boxX,boxY,boxW,boxH);
         
         for (int i=0;i<desc.length;i++) {
             drawStringCentered(g,desc[i],boxX+boxW/2,boxY+i+1);

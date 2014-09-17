@@ -11,11 +11,13 @@ import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.manager.dialog.Dialog;
 import com.iconmaster.iconuscalc.manager.dialog.DialogEntry;
 import com.iconmaster.iconuscalc.manager.dialog.EntryType;
+import com.iconmaster.iconuscalc.manager.dialog.IButtonData;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
 import com.iconmaster.iconuscalc.render.DialogRenderer;
 import com.iconmaster.iconuscalc.render.GridRenderer;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.util.EntryStack;
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -113,6 +115,20 @@ public class DialogManager implements IControlManager {
                             break;
                         case INTEGER:
                             startInput(entry().value==null?null:entry().value.toString());
+                            break;
+                        case BUTTON:
+                            ((IButtonData)entry().value).onPress();
+                            renderer.repaint();
+                            break;
+                        case COLOR:
+                            ColorPickManager cpm = new ColorPickManager(((Color)entry().value),(c)->{
+                                if (c!=null) {
+                                    entry().value = c;
+                                }
+                            });
+                            getParent().addManager(cpm);
+                            renderer.repaint();
+                            break;
                     }
                 }
             }

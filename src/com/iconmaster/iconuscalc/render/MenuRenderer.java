@@ -31,7 +31,7 @@ public class MenuRenderer extends GridRenderer {
     public void paint(Graphics g, int w, int h) {
         setWindowSize(w,h);
         
-        drawBorderedRect(g,x,y,longestString,menu.content.size(),Color.WHITE,Color.BLACK);
+        drawBorderedRect(g,x,y,longestString,menu.content.size());
         highlight(g,x,y+choice,longestString,1);
         for (int i=0;i<menu.content.size();i++) {
             drawString(g,MenuManager.hotkeys.substring(i, i+1)+": "+getMenuItemString(menu.content.get(i)),x,y+i);

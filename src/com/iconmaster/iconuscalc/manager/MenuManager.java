@@ -2,15 +2,18 @@
 package com.iconmaster.iconuscalc.manager;
 
 import com.iconmaster.iconuscalc.IconusCalc;
+import com.iconmaster.iconuscalc.gui.ColorScheme;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.manager.dialog.Dialog;
 import com.iconmaster.iconuscalc.manager.dialog.DialogEntry;
 import com.iconmaster.iconuscalc.manager.dialog.EntryType;
+import com.iconmaster.iconuscalc.manager.dialog.IButtonData;
 import com.iconmaster.iconuscalc.render.GridRenderer;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.MenuRenderer;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -149,20 +152,38 @@ public class MenuManager implements IControlManager {
             } else if (id > 0 && id < 2+customs.length-1) {
                 result.getResult(null, id-1, object);
             } else if (id==1+customs.length) {
-                            DialogManager dlg = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"System Settings"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.TEXT,"Screen Resolution:"),new DialogEntry(EntryType.INTEGER,"X:",GridRenderer.ROWS),new DialogEntry(EntryType.INTEGER,"Y:",GridRenderer.COLS)),(ret)->{
-                                    if (ret!=null) {
-                                    Integer sx = (Integer)ret.get(0);
-                                    Integer sy = (Integer)ret.get(1);
+                DialogEntry csb = new DialogEntry(EntryType.BUTTON,"Color Scheme…",(IButtonData)()->{
+                    DialogManager csman = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"Edit Color Scheme"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.COLOR,"Background",ColorScheme.bk),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.COLOR,"Borders",ColorScheme.bd),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.COLOR,"Highlight",ColorScheme.hl)),(ret)->{
+                        if (ret!=null) {
+                            Color bk = (Color) ret.get(0);
+                            Color bd = (Color) ret.get(1);
+                            Color hl = (Color) ret.get(2);
+                            
+                            if (bk!=null && bd!=null && hl!=null) {
+                                ColorScheme.bd = bd;
+                                ColorScheme.bk = bk;
+                                ColorScheme.hl = hl;
+                                
+                                IconusCalc.repaintAll();
+                            }
+                        }
+                    });
+                    window.addManager(csman);
+                });
+                DialogManager dlg = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"System Settings"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.TEXT,"Screen Resolution:"),new DialogEntry(EntryType.INTEGER,"X:",GridRenderer.ROWS),new DialogEntry(EntryType.INTEGER,"Y:",GridRenderer.COLS),new DialogEntry(EntryType.TEXT,""),csb),(ret)->{
+                        if (ret!=null) {
+                        Integer sx = (Integer)ret.get(0);
+                        Integer sy = (Integer)ret.get(1);
 
-                                    if (sx!=null && sy!=null && sx>=16 && sy>=10) {
-                                        GridRenderer.ROWS = sx;
-                                        GridRenderer.COLS = sy;
+                        if (sx!=null && sy!=null && sx>=16 && sy>=10) {
+                            GridRenderer.ROWS = sx;
+                            GridRenderer.COLS = sy;
 
-                                        IconusCalc.resizeAll(GridRenderer.ROWS, GridRenderer.COLS);
-                                    }
-                                }
-                            });
-                            window.addManager(dlg);
+                            IconusCalc.resizeAll(GridRenderer.ROWS, GridRenderer.COLS);
+                        }
+                    }
+                });
+                window.addManager(dlg);
             } else if (id==2+customs.length) {
                 if (IconusCalc.windows.size()==1) {
                     final SimpleDialogManager dlg = new SimpleDialogManager("Are you sure you want to exit IconusCalc?",new String[] {"Yes","No"}, (int id1, String str) -> {
