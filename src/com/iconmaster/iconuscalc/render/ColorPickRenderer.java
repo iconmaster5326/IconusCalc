@@ -27,16 +27,16 @@ public class ColorPickRenderer extends GridRenderer {
                 this.highlight(g, rows/2+1, 5, 3, 1);
         }
         
-        this.drawString(g,"Blue:",rows/2-6, 6);
+        this.drawString(g,"Green:",rows/2-6, 6);
         if (!(manager.pos==1 && manager.editing)) {
-            this.drawString(g,"Blue:   "+manager.color.getGreen(),rows/2-6, 6);
+            this.drawString(g,"Green:  "+manager.color.getGreen(),rows/2-6, 6);
             if (manager.pos==1)
                 this.highlight(g, rows/2+1, 6, 3, 1);
         }
         
-        this.drawString(g,"Green:",rows/2-6, 7);
+        this.drawString(g,"Blue:",rows/2-6, 7);
         if (!(manager.pos==2 && manager.editing)) {
-            this.drawString(g,"Green:  "+manager.color.getBlue(),rows/2-6, 7);
+            this.drawString(g,"Blue:   "+manager.color.getBlue(),rows/2-6, 7);
             if (manager.pos==2)
                 this.highlight(g, rows/2+1, 7, 3, 1);
         }
