@@ -61,7 +61,7 @@ public class HomeScreenManager implements IControlManager,IApplication {
                     }
                 });
             } else if (e.key!=KeyInput.UNDEFINED) {
-                input = new InputManager(renderer,0,renderer.cols-1,Character.toString(e.key),renderer.rows,new InputManager.InputResult() {
+                input = new InputManager(0,renderer.cols-1,Character.toString(e.key),renderer.rows,new InputManager.InputResult() {
                     @Override
                     public void getResult(String got) {
                         if (got!= null && !got.isEmpty()) {

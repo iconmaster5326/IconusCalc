@@ -2,6 +2,7 @@
 package com.iconmaster.iconuscalc.manager;
 
 import com.iconmaster.iconuscalc.IconusCalc;
+import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.file.IFileListener;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.file.Variable;
@@ -10,6 +11,9 @@ import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.manager.MenuManager.Menu;
 import com.iconmaster.iconuscalc.manager.MenuManager.MenuResult;
+import com.iconmaster.iconuscalc.manager.dialog.Dialog;
+import com.iconmaster.iconuscalc.manager.dialog.DialogEntry;
+import com.iconmaster.iconuscalc.manager.dialog.EntryType;
 import com.iconmaster.iconuscalc.render.IScreenRenderer;
 import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.util.StringUtils;
@@ -41,18 +45,26 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
     public void onKey(KeyInput e) {
         if (e.type==InputType.PRESS) { 
             if (e.key==KeyInput.ESCAPE) {
-                MenuManager.openAppMenu(gui,new String[] {"New file…","New folder…","Go Home"},new MenuManager.MenuResult() {
-                    @Override
-                    public void getResult(MenuManager.Menu menu, int id, Object object) {
-                        switch (id) {
-                            case (0):
-                                break;
-                            case (1):
-                                break;
-                            case (2):
-                                openFolder(IconusCalc.getGlobalNamespace());
-                                break;
-                        }
+                MenuManager.openAppMenu(gui,new String[] {"New file…","New folder…","Go Home"}, (menu, id, object) -> {
+                    switch (id) {
+                        case (0):
+                            DialogManager man = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"Create New Variable"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.STRING,"Name"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.EXPRESSION,"Value")),(ret)->{
+                                if (ret != null) {
+                                    String name = (String) ret.get(0);
+                                    Element value = (Element) ret.get(1);
+                                    
+                                    if (name!=null && value!=null) {
+                                        getParent().getNamspace().addVar(new Variable(name,value));
+                                    }
+                                }
+                            });
+                            getParent().addManager(man);
+                            break;
+                        case (1):
+                            break;
+                        case (2):
+                            openFolder(IconusCalc.getGlobalNamespace());
+                            break;
                     }
                 });
             } else if (e.key==KeyInput.ENTER) {

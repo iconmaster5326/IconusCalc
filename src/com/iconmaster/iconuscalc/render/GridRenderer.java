@@ -67,17 +67,17 @@ public abstract class GridRenderer implements IScreenRenderer {
     }
     
     public void drawRect(Graphics g,int x,int y,int w,int h) {
-        g.drawRect(x*cellW(), y*cellH(), w*cellW(), h*cellH());
+        g.drawRect(x*cellW()+1, y*cellH()+1, w*cellW()-1, h*cellH()-1);
     }
     
     public void drawFillRect(Graphics g,int x,int y,int w,int h) {
-        g.fillRect(x*cellW(), y*cellH(), w*cellW(), h*cellH());
+        g.fillRect(x*cellW()+1, y*cellH()+1, w*cellW()-1, h*cellH()-1);
     }
     
     public void highlight(Graphics g,int x,int y,int w,int h) {
         Color oldc = g.getColor();
         g.setColor(new Color(0,0,0,128));
-        g.fillRect(x*cellW(), y*cellH(), w*cellW(), h*cellH());
+        g.fillRect(x*cellW()+1, y*cellH()+1, w*cellW()-1, h*cellH()-1);
         g.setColor(oldc);
     }
     
@@ -93,7 +93,7 @@ public abstract class GridRenderer implements IScreenRenderer {
     public void drawString(Graphics g, String str, int x, int y) {
         Font oldf = g.getFont();
         g.setFont(RenderUtils.getFont(cellW(), cellH()));
-        g.drawString(str, x*cellW(), (y+1)*cellH());
+        g.drawString(str, x*cellW()+2, (y+1)*cellH()-3);
         g.setFont(oldf);
     }
     
@@ -102,7 +102,7 @@ public abstract class GridRenderer implements IScreenRenderer {
     }
     
     public void drawStringCentered(Graphics g, String str, int x, int y) {
-        RenderUtils.drawCenteredString(g, str, x*cellW()+cellW()/2, (y+1)*cellH());
+        RenderUtils.drawCenteredString(g, str, x*cellW()+cellW()/2, (y+1)*cellH()-3);
     }
     
     public void drawCursor(Graphics g, int cx, int cy) {

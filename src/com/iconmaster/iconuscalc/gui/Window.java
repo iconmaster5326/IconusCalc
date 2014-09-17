@@ -46,6 +46,7 @@ public class Window {
     
     public void closeManager() {
         managers.pop();
+        repaint();
     }
 
     public void displayError(IconusCalcException ex) {

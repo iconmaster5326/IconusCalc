@@ -6,6 +6,7 @@ import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
+import com.iconmaster.iconuscalc.render.GridRenderer;
 
 /**
  *
@@ -32,23 +33,26 @@ public class InputManager implements IControlManager {
     private InputResult callback;
     private int maxsize;
 
-    public InputManager(TextGridRenderer renderer,int x, int y, String initial, int fieldSize, InputResult callback) {
-        this.renderer = new TextGridRenderer(renderer.rows,renderer.cols);
+    public InputManager(int x, int y, String initial, int fieldSize, InputResult callback) {
+        this.renderer = new TextGridRenderer(GridRenderer.ROWS,GridRenderer.COLS);
         this.x = x;
         this.y = y;
         this.input = initial;
         this.callback = callback;
         this.maxsize = fieldSize;
+        this.cursor = initial.length()-1;
     }
     
     public void renderInput() {
         clearInput();
-        renderer.putString(input.substring(Math.max(-offset,0), Math.min(-offset+maxsize,input.length())), x, y);
+        if (!input.isEmpty()) {
+            renderer.putString(input.substring(Math.max(-offset,0), Math.min(-offset+maxsize,input.length())), x, y);
+        }
         renderer.moveCursor(x+cursor+offset , y);
     }
     
     public void clearInput() {
-        renderer.putString("                                                                                ", x, y);
+        renderer.clearScreen();
     }
     
     @Override
@@ -74,9 +78,15 @@ public class InputManager implements IControlManager {
                 input = null;
                 endInput();
             } else if (e.key!=KeyInput.UNDEFINED) {
-                input = input.substring(0, cursor+1) + e.key + input.substring(cursor+1);
+                if (input.isEmpty()) {
+                    input += e.key;
+                    cursor = 0;
+                } else {
+                    input = input.substring(0, cursor+1) + e.key + input.substring(cursor+1);
+                    advanceCursor();
+                }
                 //input+=e.getKeyChar();
-                advanceCursor();
+                
             }
         } else if (e.type==InputType.DOWN) {
             if (e.key==KeyInput.LEFT) {

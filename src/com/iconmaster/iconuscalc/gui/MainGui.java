@@ -117,8 +117,10 @@ public class MainGui extends javax.swing.JFrame {
 
         if (type==InputType.PRESS && e.isControlDown()) {
             System.out.println((int) lastKey);
+            e.consume();
             window.onKey(new KeyInput(type, (char) (lastKey+64),InputModifier.CTRL));
         } else {
+            e.consume();
             window.onKey(new KeyInput(type,c, InputModifier.NONE));
         }
         

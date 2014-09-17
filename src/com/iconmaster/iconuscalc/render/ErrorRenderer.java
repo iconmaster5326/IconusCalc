@@ -1,9 +1,6 @@
 
 package com.iconmaster.iconuscalc.render;
 
-import com.iconmaster.iconuscalc.gui.MainGui;
-import com.iconmaster.iconuscalc.gui.Window;
-import com.iconmaster.iconuscalc.util.RenderUtils;
 import java.awt.Color;
 import java.awt.Graphics;
 
