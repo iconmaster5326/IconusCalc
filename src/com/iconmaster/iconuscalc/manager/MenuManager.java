@@ -149,7 +149,7 @@ public class MenuManager implements IControlManager {
             } else if (id > 0 && id < 2+customs.length-1) {
                 result.getResult(null, id-1, object);
             } else if (id==1+customs.length) {
-                            DialogManager dlg = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"System Settings"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.INTEGER,"Screen X:",GridRenderer.ROWS),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.INTEGER,"Screen Y:",GridRenderer.COLS)),(ret)->{
+                            DialogManager dlg = new DialogManager(new Dialog(new DialogEntry(EntryType.TEXT,"System Settings"),new DialogEntry(EntryType.TEXT,""),new DialogEntry(EntryType.TEXT,"Screen Resolution:"),new DialogEntry(EntryType.INTEGER,"X:",GridRenderer.ROWS),new DialogEntry(EntryType.INTEGER,"Y:",GridRenderer.COLS)),(ret)->{
                                     if (ret!=null) {
                                     Integer sx = (Integer)ret.get(0);
                                     Integer sy = (Integer)ret.get(1);
