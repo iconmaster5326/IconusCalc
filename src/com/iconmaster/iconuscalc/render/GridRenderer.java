@@ -66,18 +66,30 @@ public abstract class GridRenderer implements IScreenRenderer {
         return winH/cols;
     }
     
+    public int boxOffset() {
+        return (winH/600+winW/1200)/2;
+    }
+    
+    public int stringOffsetX() {
+        return (winH/600+winW/300)/2;
+    }
+    
+    public int stringOffsetY() {
+        return (winH/200+winW/400)/2;
+    }
+    
     public void drawRect(Graphics g,int x,int y,int w,int h) {
-        g.drawRect(x*cellW()+1, y*cellH()+1, w*cellW()-1, h*cellH()-1);
+        g.drawRect(x*cellW()+boxOffset(), y*cellH()+boxOffset(), w*cellW()-boxOffset(), h*cellH()-boxOffset());
     }
     
     public void drawFillRect(Graphics g,int x,int y,int w,int h) {
-        g.fillRect(x*cellW()+1, y*cellH()+1, w*cellW()-1, h*cellH()-1);
+        g.fillRect(x*cellW()+boxOffset(), y*cellH()+boxOffset(), w*cellW()-boxOffset(), h*cellH()-boxOffset());
     }
     
     public void highlight(Graphics g,int x,int y,int w,int h) {
         Color oldc = g.getColor();
         g.setColor(new Color(0,0,0,128));
-        g.fillRect(x*cellW()+1, y*cellH()+1, w*cellW()-1, h*cellH()-1);
+        g.fillRect(x*cellW()+boxOffset(), y*cellH()+boxOffset(), w*cellW()-boxOffset(), h*cellH()-boxOffset());
         g.setColor(oldc);
     }
     
@@ -93,7 +105,7 @@ public abstract class GridRenderer implements IScreenRenderer {
     public void drawString(Graphics g, String str, int x, int y) {
         Font oldf = g.getFont();
         g.setFont(RenderUtils.getFont(cellW(), cellH()));
-        g.drawString(str, x*cellW()+2, (y+1)*cellH()-3);
+        g.drawString(str, x*cellW()+stringOffsetX(), (y+1)*cellH()-stringOffsetY());
         g.setFont(oldf);
     }
     
