@@ -1,8 +1,28 @@
 
 package com.iconmaster.iconuscalc.file;
 
-import com.iconmaster.iconuscalc.function.*;
-
+import com.iconmaster.iconuscalc.function.Function;
+import com.iconmaster.iconuscalc.function.FunctionAdd;
+import com.iconmaster.iconuscalc.function.FunctionChangeDir;
+import com.iconmaster.iconuscalc.function.FunctionClearStack;
+import com.iconmaster.iconuscalc.function.FunctionCos;
+import com.iconmaster.iconuscalc.function.FunctionDivide;
+import com.iconmaster.iconuscalc.function.FunctionEquate;
+import com.iconmaster.iconuscalc.function.FunctionEulersNumber;
+import com.iconmaster.iconuscalc.function.FunctionEval;
+import com.iconmaster.iconuscalc.function.FunctionLn;
+import com.iconmaster.iconuscalc.function.FunctionLog;
+import com.iconmaster.iconuscalc.function.FunctionMakeDir;
+import com.iconmaster.iconuscalc.function.FunctionMultiply;
+import com.iconmaster.iconuscalc.function.FunctionNegate;
+import com.iconmaster.iconuscalc.function.FunctionPi;
+import com.iconmaster.iconuscalc.function.FunctionPower;
+import com.iconmaster.iconuscalc.function.FunctionSimplify;
+import com.iconmaster.iconuscalc.function.FunctionSin;
+import com.iconmaster.iconuscalc.function.FunctionSqrt;
+import com.iconmaster.iconuscalc.function.FunctionSubtract;
+import com.iconmaster.iconuscalc.function.FunctionTan;
+import com.iconmaster.iconuscalc.function.FunctionUpDir;
 import java.util.HashMap;
 
 /**
@@ -41,6 +61,7 @@ public class GlobalNamespace extends Namespace {
 		ns.addFunction(new FunctionTan());
 		ns.addFunction(new FunctionLn());
 		ns.addFunction(new FunctionLog());
+		ns.addFunction(new FunctionSqrt());
 		
 		ns.addFunction(new FunctionPi());
 		ns.addFunction(new FunctionEulersNumber());
