@@ -1,10 +1,10 @@
 
 package com.iconmaster.iconuscalc.parse;
 
-import com.iconmaster.iconuscalc.tokenize.IToken;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.SyntaxException;
+import com.iconmaster.iconuscalc.tokenize.IToken;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +20,17 @@ public class Parser {
 	
 	public Parser(ArrayList<IToken> tokens) {
 		this.tokens = tokens;
+	}
+
+	public static Element parseToken(IToken token) throws IconusCalcException {
+		ArrayList<IToken> a = new ArrayList<>();
+		a.add(token);
+		Parser p = new Parser(a);
+		ArrayList<Element> ret = p.parse();
+		if (ret.size()!=1) {
+			throw new SyntaxException();
+		}
+		return ret.get(0);
 	}
 	
 	private static ArrayList<ParseHandler> handlers = new ArrayList<>();
@@ -81,7 +92,7 @@ public class Parser {
 			} else if (item instanceof ArrayList) {
 				out.addAll(flatten((ArrayList) item));
 			} else {
-				System.out.println(item);
+				System.out.println(input);
 				throw new SyntaxException();
 			}
 		}

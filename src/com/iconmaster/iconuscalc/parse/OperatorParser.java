@@ -6,6 +6,7 @@ import com.iconmaster.iconuscalc.element.FunctionElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.function.IOperator;
+import com.iconmaster.iconuscalc.tokenize.IToken;
 import com.iconmaster.iconuscalc.tokenize.TokenWord;
 import java.util.ArrayList;
 
@@ -34,8 +35,16 @@ public class OperatorParser implements ParseHandler {
 		Object o1 = p.getItem();
 		Object o2 = p.getItem(2);
 
-		a.add(o1);
-		a.add(o2);
+		if (o1 instanceof IToken) {
+			a.add(Parser.parseToken((IToken) o1));
+		} else {
+			a.add(o1);
+		}
+		if (o2 instanceof IToken) {
+			a.add(Parser.parseToken((IToken) o2));
+		} else {
+			a.add(o2);
+		}
 		a.add(new FunctionElement(t.content));
 						
 		return a;
