@@ -6,14 +6,14 @@ package com.iconmaster.iconuscalc.function;
  */
 public class FunctionEulersNumber extends FunctionConstant {
 
-    @Override
-    public double value() {
-        return Math.E;
-    }
+	@Override
+	public double value() {
+		return Math.E;
+	}
 
-    @Override
-    public String getName() {
-        return "e";
-    }
-    
+	@Override
+	public String getName() {
+		return "e";
+	}
+	
 }

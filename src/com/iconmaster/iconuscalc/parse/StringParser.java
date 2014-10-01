@@ -12,24 +12,24 @@ import java.util.ArrayList;
  */
 public class StringParser implements ParseHandler {
 
-    @Override
-    public boolean matchToken(Parser p) {
-        return p.getItem() instanceof TokenString;
-    }
+	@Override
+	public boolean matchToken(Parser p) {
+		return p.getItem() instanceof TokenString;
+	}
 
-    @Override
-    public ArrayList parse(Parser p) throws IconusCalcException {
-        ArrayList a = new ArrayList();
-        TokenString t = ((TokenString)p.getItem());
-        
-        a.add(new StringElement(t.content));
-                        
-        return a;
-    }
+	@Override
+	public ArrayList parse(Parser p) throws IconusCalcException {
+		ArrayList a = new ArrayList();
+		TokenString t = ((TokenString)p.getItem());
+		
+		a.add(new StringElement(t.content));
+						
+		return a;
+	}
 
-    @Override
-    public int getDelLength(Parser p) {
-        return 1;
-    }
-    
+	@Override
+	public int getDelLength(Parser p) {
+		return 1;
+	}
+	
 }

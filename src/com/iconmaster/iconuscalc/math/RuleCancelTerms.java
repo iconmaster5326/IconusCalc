@@ -13,20 +13,20 @@ import com.iconmaster.iconuscalc.function.FunctionSubtract;
  */
 public class RuleCancelTerms implements IRule {
 
-    @Override
-    public Element simplify(FunctionCallElement e) {
-        Element e1 = e.content[0];
-        Element e2 = e.content[1];
-        
-        if (e.fn instanceof FunctionSubtract && e1.equals(e2)) {
-            return new NumberElement(0);
-        }
-        
-        if (e.fn instanceof FunctionDivide && e1.equals(e2)) {
-            return new NumberElement(1);
-        }
+	@Override
+	public Element simplify(FunctionCallElement e) {
+		Element e1 = e.content[0];
+		Element e2 = e.content[1];
+		
+		if (e.fn instanceof FunctionSubtract && e1.equals(e2)) {
+			return new NumberElement(0);
+		}
+		
+		if (e.fn instanceof FunctionDivide && e1.equals(e2)) {
+			return new NumberElement(1);
+		}
 
-        return null;
-    }
-    
+		return null;
+	}
+	
 }

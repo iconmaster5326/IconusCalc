@@ -9,13 +9,13 @@ import java.util.logging.Logger;
  * @author iconmaster
  */
 public class IllegalArgumentTypeException extends IconusCalcException {
-    
-    public IllegalArgumentTypeException(String message) {
-        super(message);
+	
+	public IllegalArgumentTypeException(String message) {
+		super(message);
 
-    }
-    
-    public IllegalArgumentTypeException() {
-        super("Illegal argument type");
-    }
+	}
+	
+	public IllegalArgumentTypeException() {
+		super("Illegal argument type");
+	}
 }

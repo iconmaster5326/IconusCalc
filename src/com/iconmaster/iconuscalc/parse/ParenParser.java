@@ -12,26 +12,26 @@ import java.util.ArrayList;
  */
 public class ParenParser implements ParseHandler {
 
-    @Override
-    public boolean matchToken(Parser p) {
-        return p.getItem() instanceof TokenChunk;
-    }
+	@Override
+	public boolean matchToken(Parser p) {
+		return p.getItem() instanceof TokenChunk;
+	}
 
-    @Override
-    public ArrayList parse(Parser p) throws IconusCalcException {
-        ArrayList a = new ArrayList();
-        TokenChunk t = ((TokenChunk)p.getItem());
-        
-        Parser p2 = new Parser(t.content);
-        
-        a.add(p2.parse());
-                        
-        return a;
-    }
+	@Override
+	public ArrayList parse(Parser p) throws IconusCalcException {
+		ArrayList a = new ArrayList();
+		TokenChunk t = ((TokenChunk)p.getItem());
+		
+		Parser p2 = new Parser(t.content);
+		
+		a.add(p2.parse());
+						
+		return a;
+	}
 
-    @Override
-    public int getDelLength(Parser p) {
-        return 1;
-    }
-    
+	@Override
+	public int getDelLength(Parser p) {
+		return 1;
+	}
+	
 }

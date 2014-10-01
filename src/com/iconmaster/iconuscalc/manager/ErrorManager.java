@@ -12,32 +12,32 @@ import com.iconmaster.iconuscalc.render.IScreenRenderer;
  * @author iconmaster
  */
 public class ErrorManager implements IControlManager {
-    public ErrorRenderer renderer = new ErrorRenderer();
-    private Window gui;
+	public ErrorRenderer renderer = new ErrorRenderer();
+	private Window gui;
 
-    @Override
-    public IScreenRenderer getRenderer() {
-        return renderer;
-    }
+	@Override
+	public IScreenRenderer getRenderer() {
+		return renderer;
+	}
 
-    @Override
-    public void onKey(KeyInput e) {
-        if (e.type != InputType.UP)
-            gui.closeManager();
-    }
+	@Override
+	public void onKey(KeyInput e) {
+		if (e.type != InputType.UP)
+			gui.closeManager();
+	}
 
-    @Override
-    public boolean showStatusBar() {
-        return false;
-    }
-    
-    @Override
-    public void setParent(Window gui) {
-        this.gui = gui;
-    }
+	@Override
+	public boolean showStatusBar() {
+		return false;
+	}
+	
+	@Override
+	public void setParent(Window gui) {
+		this.gui = gui;
+	}
 
-    @Override
-    public Window getParent() {
-        return gui;
-    }
+	@Override
+	public Window getParent() {
+		return gui;
+	}
 }

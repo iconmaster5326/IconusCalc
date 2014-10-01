@@ -17,23 +17,23 @@ import com.iconmaster.iconuscalc.util.EntryStack;
  */
 public class FunctionSimplify extends Function {
 
-    @Override
-    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
+	@Override
+	public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
 
-        if (args[0] instanceof ExpressionElement) {
-            return new Element[] {Simplifier.simplify((ExpressionElement) args[0])};
-        } else {
-            throw new IllegalArgumentTypeException();
-        }
-    }
-    
-    @Override
-    public int getDefaultArgs() {
-        return 1;
-    }
+		if (args[0] instanceof ExpressionElement) {
+			return new Element[] {Simplifier.simplify((ExpressionElement) args[0])};
+		} else {
+			throw new IllegalArgumentTypeException();
+		}
+	}
+	
+	@Override
+	public int getDefaultArgs() {
+		return 1;
+	}
 
-    @Override
-    public String getName() {
-        return "SIMP";
-    }
+	@Override
+	public String getName() {
+		return "SIMP";
+	}
 }

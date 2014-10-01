@@ -14,28 +14,28 @@ import java.util.ArrayList;
  */
 public class NumberParser implements ParseHandler {
 
-    @Override
-    public boolean matchToken(Parser p) {
-        return p.getItem() instanceof TokenNumber;
-    }
+	@Override
+	public boolean matchToken(Parser p) {
+		return p.getItem() instanceof TokenNumber;
+	}
 
-    @Override
-    public ArrayList parse(Parser p) throws IconusCalcException {
-        ArrayList a = new ArrayList();
-        TokenNumber t = ((TokenNumber)p.getItem());
-        
-        try {
-            a.add(new NumberElement(Double.parseDouble(t.content)));
-        } catch (NumberFormatException ex) {
-            throw new IllegalNumberException();
-        }
-                        
-        return a;
-    }
+	@Override
+	public ArrayList parse(Parser p) throws IconusCalcException {
+		ArrayList a = new ArrayList();
+		TokenNumber t = ((TokenNumber)p.getItem());
+		
+		try {
+			a.add(new NumberElement(Double.parseDouble(t.content)));
+		} catch (NumberFormatException ex) {
+			throw new IllegalNumberException();
+		}
+						
+		return a;
+	}
 
-    @Override
-    public int getDelLength(Parser p) {
-        return 1;
-    }
-    
+	@Override
+	public int getDelLength(Parser p) {
+		return 1;
+	}
+	
 }

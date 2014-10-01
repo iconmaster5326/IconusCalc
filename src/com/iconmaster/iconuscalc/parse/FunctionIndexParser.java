@@ -16,32 +16,32 @@ import java.util.ArrayList;
  */
 public class FunctionIndexParser implements ParseHandler {
 
-    @Override
-    public boolean matchToken(Parser p) {
-        return !p.isEOF(1) && p.getItem() instanceof TokenWord && p.getItem(1) instanceof TokenIndex;
-    }
+	@Override
+	public boolean matchToken(Parser p) {
+		return !p.isEOF(1) && p.getItem() instanceof TokenWord && p.getItem(1) instanceof TokenIndex;
+	}
 
-    @Override
-    public ArrayList parse(Parser p) throws IconusCalcException {
-        ArrayList a = new ArrayList();
-        TokenWord t = ((TokenWord)p.getItem());
-        TokenIndex c = ((TokenIndex)p.getItem(1));
-        
-        ArrayList<Element> inc = (new Parser(c.content)).parse();
-        if (inc.isEmpty()) {
-            a.add(new FunctionElement(t.content));
-        } else if (inc.size()==1 && inc.get(0) instanceof NumberElement) {
-            a.add(new FunctionElement(t.content,((NumberElement)inc.get(0)).getContent().intValue()));
-        } else {
-            throw new IllegalFunctionIndexException();
-        }
-            
-        return a;
-    }
+	@Override
+	public ArrayList parse(Parser p) throws IconusCalcException {
+		ArrayList a = new ArrayList();
+		TokenWord t = ((TokenWord)p.getItem());
+		TokenIndex c = ((TokenIndex)p.getItem(1));
+		
+		ArrayList<Element> inc = (new Parser(c.content)).parse();
+		if (inc.isEmpty()) {
+			a.add(new FunctionElement(t.content));
+		} else if (inc.size()==1 && inc.get(0) instanceof NumberElement) {
+			a.add(new FunctionElement(t.content,((NumberElement)inc.get(0)).getContent().intValue()));
+		} else {
+			throw new IllegalFunctionIndexException();
+		}
+			
+		return a;
+	}
 
-    @Override
-    public int getDelLength(Parser p) {
-        return 2;
-    }
-    
+	@Override
+	public int getDelLength(Parser p) {
+		return 2;
+	}
+	
 }

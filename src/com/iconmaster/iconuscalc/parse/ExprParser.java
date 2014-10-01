@@ -12,26 +12,26 @@ import java.util.ArrayList;
  */
 public class ExprParser implements ParseHandler {
 
-    @Override
-    public boolean matchToken(Parser p) {
-        return p.getItem() instanceof TokenQuote;
-    }
+	@Override
+	public boolean matchToken(Parser p) {
+		return p.getItem() instanceof TokenQuote;
+	}
 
-    @Override
-    public ArrayList parse(Parser p) throws IconusCalcException {
-        ArrayList a = new ArrayList();
-        TokenQuote t = ((TokenQuote)p.getItem());
-        
-        Parser p2 = new Parser(t.content);
-        
-        a.add(new ExpressionElement(p2.parse()));
+	@Override
+	public ArrayList parse(Parser p) throws IconusCalcException {
+		ArrayList a = new ArrayList();
+		TokenQuote t = ((TokenQuote)p.getItem());
+		
+		Parser p2 = new Parser(t.content);
+		
+		a.add(new ExpressionElement(p2.parse()));
 
-        return a;
-    }
+		return a;
+	}
 
-    @Override
-    public int getDelLength(Parser p) {
-        return 1;
-    }
-    
+	@Override
+	public int getDelLength(Parser p) {
+		return 1;
+	}
+	
 }

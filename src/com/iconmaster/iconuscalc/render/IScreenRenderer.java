@@ -9,8 +9,8 @@ import java.awt.Graphics;
  * @author iconmaster
  */
 public interface IScreenRenderer {
-    public void paint(Graphics g, int w, int h);
-    
-    public void setParent(Window gui);
-    public Window getParent();
+	public void paint(Graphics g, int w, int h);
+	
+	public void setParent(Window gui);
+	public Window getParent();
 }

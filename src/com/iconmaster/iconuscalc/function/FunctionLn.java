@@ -6,14 +6,14 @@ package com.iconmaster.iconuscalc.function;
  */
 public class FunctionLn extends FunctionBasicMath {
 
-    @Override
-    public double doMath(double number) {
-        return Math.log(number);
-    }
+	@Override
+	public double doMath(double number) {
+		return Math.log(number);
+	}
 
-    @Override
-    public String getName() {
-        return "LN";
-    }
-    
+	@Override
+	public String getName() {
+		return "LN";
+	}
+	
 }

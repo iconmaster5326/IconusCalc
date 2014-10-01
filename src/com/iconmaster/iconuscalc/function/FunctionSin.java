@@ -6,14 +6,14 @@ package com.iconmaster.iconuscalc.function;
  */
 public class FunctionSin extends FunctionBasicMath {
 
-    @Override
-    public double doMath(double number) {
-        return Math.sin(number);
-    }
+	@Override
+	public double doMath(double number) {
+		return Math.sin(number);
+	}
 
-    @Override
-    public String getName() {
-        return "SIN";
-    }
-    
+	@Override
+	public String getName() {
+		return "SIN";
+	}
+	
 }

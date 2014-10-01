@@ -6,14 +6,14 @@ package com.iconmaster.iconuscalc.function;
  */
 public class FunctionCos extends FunctionBasicMath {
 
-    @Override
-    public double doMath(double number) {
-        return Math.cos(number);
-    }
+	@Override
+	public double doMath(double number) {
+		return Math.cos(number);
+	}
 
-    @Override
-    public String getName() {
-        return "COS";
-    }
-    
+	@Override
+	public String getName() {
+		return "COS";
+	}
+	
 }

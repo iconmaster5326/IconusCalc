@@ -13,24 +13,24 @@ import java.util.ArrayList;
  */
 public class VarParser implements ParseHandler {
 
-    @Override
-    public boolean matchToken(Parser p) {
-        return p.getItem() instanceof TokenWord && IconusCalc.getGlobalNamespace().getFunction(((TokenWord)p.getItem()).content)==null;
-    }
+	@Override
+	public boolean matchToken(Parser p) {
+		return p.getItem() instanceof TokenWord && IconusCalc.getGlobalNamespace().getFunction(((TokenWord)p.getItem()).content)==null;
+	}
 
-    @Override
-    public ArrayList parse(Parser p) throws IconusCalcException {
-        ArrayList a = new ArrayList();
-        TokenWord t = ((TokenWord)p.getItem());
-        
-        a.add(new VarElement(t.content));
-                        
-        return a;
-    }
+	@Override
+	public ArrayList parse(Parser p) throws IconusCalcException {
+		ArrayList a = new ArrayList();
+		TokenWord t = ((TokenWord)p.getItem());
+		
+		a.add(new VarElement(t.content));
+						
+		return a;
+	}
 
-    @Override
-    public int getDelLength(Parser p) {
-        return 1;
-    }
-    
+	@Override
+	public int getDelLength(Parser p) {
+		return 1;
+	}
+	
 }

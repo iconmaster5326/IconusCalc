@@ -6,14 +6,14 @@ package com.iconmaster.iconuscalc.function;
  */
 public class FunctionPi extends FunctionConstant {
 
-    @Override
-    public double value() {
-        return Math.PI;
-    }
+	@Override
+	public double value() {
+		return Math.PI;
+	}
 
-    @Override
-    public String getName() {
-        return "PI";
-    }
-    
+	@Override
+	public String getName() {
+		return "PI";
+	}
+	
 }

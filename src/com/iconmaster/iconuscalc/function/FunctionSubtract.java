@@ -9,24 +9,24 @@ import java.awt.event.KeyEvent;
  * @author iconmaster
  */
 public class FunctionSubtract extends FunctionOperator {
-    @Override
-    public OperationType getOp() {
-        return OperationType.SUB;
-    }
+	@Override
+	public OperationType getOp() {
+		return OperationType.SUB;
+	}
 
-    @Override
-    public String getName() {
-        return "-";
-    }
+	@Override
+	public String getName() {
+		return "-";
+	}
 
-    @Override
-    public boolean isCommandKey(KeyInput e) {
-        return e.key=='-';
-    }
+	@Override
+	public boolean isCommandKey(KeyInput e) {
+		return e.key=='-';
+	}
 
-    @Override
-    public int getOrder() {
-        return 3;
-    }
-    
+	@Override
+	public int getOrder() {
+		return 3;
+	}
+	
 }

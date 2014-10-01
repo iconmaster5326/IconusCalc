@@ -9,5 +9,5 @@ import com.iconmaster.iconuscalc.element.FunctionCallElement;
  * @author iconmaster
  */
 public interface IRule {
-    public Element simplify(FunctionCallElement e);
+	public Element simplify(FunctionCallElement e);
 }

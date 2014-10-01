@@ -16,19 +16,19 @@ import com.iconmaster.iconuscalc.util.EntryStack;
  */
 public abstract class FunctionBasicMath extends Function {
 
-    @Override
-    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
-        if (args[0] instanceof NumberElement) {
-            return new Element[] {new NumberElement(doMath(((NumberElement)args[0]).content))};
-        } else {
-            return new Element[] {new ExpressionElement(new FunctionCallElement(this,new Element[] {args[0]}))};
-        }
-    }
-    
-    @Override
-    public int getDefaultArgs() {
-        return 1;
-    }
-    
-    public abstract double doMath(double number);
+	@Override
+	public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
+		if (args[0] instanceof NumberElement) {
+			return new Element[] {new NumberElement(doMath(((NumberElement)args[0]).content))};
+		} else {
+			return new Element[] {new ExpressionElement(new FunctionCallElement(this,new Element[] {args[0]}))};
+		}
+	}
+	
+	@Override
+	public int getDefaultArgs() {
+		return 1;
+	}
+	
+	public abstract double doMath(double number);
 }

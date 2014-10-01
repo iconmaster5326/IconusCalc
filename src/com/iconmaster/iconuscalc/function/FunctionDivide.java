@@ -9,24 +9,24 @@ import java.awt.event.KeyEvent;
  * @author iconmaster
  */
 public class FunctionDivide extends FunctionOperator {
-    @Override
-    public OperationType getOp() {
-        return OperationType.DIV;
-    }
+	@Override
+	public OperationType getOp() {
+		return OperationType.DIV;
+	}
 
-    @Override
-    public String getName() {
-        return "/";
-    }
+	@Override
+	public String getName() {
+		return "/";
+	}
 
-    @Override
-    public boolean isCommandKey(KeyInput e) {
-        return e.key=='/';
-    }
+	@Override
+	public boolean isCommandKey(KeyInput e) {
+		return e.key=='/';
+	}
 
-    @Override
-    public int getOrder() {
-        return 2;
-    }
-    
+	@Override
+	public int getOrder() {
+		return 2;
+	}
+	
 }

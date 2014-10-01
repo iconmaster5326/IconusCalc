@@ -16,15 +16,15 @@ import com.iconmaster.iconuscalc.util.EntryStack;
  */
 public abstract class FunctionConstant extends Function {
 
-    @Override
-    public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
-        return new Element[] {new NumberElement(value())};
-    }
-    
-    @Override
-    public int getDefaultArgs() {
-        return 0;
-    }
-    
-    public abstract double value();
+	@Override
+	public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
+		return new Element[] {new NumberElement(value())};
+	}
+	
+	@Override
+	public int getDefaultArgs() {
+		return 0;
+	}
+	
+	public abstract double value();
 }

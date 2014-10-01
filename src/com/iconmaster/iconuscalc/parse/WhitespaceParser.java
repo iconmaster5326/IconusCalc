@@ -12,19 +12,19 @@ import java.util.ArrayList;
  */
 public class WhitespaceParser implements ParseHandler {
 
-    @Override
-    public boolean matchToken(Parser p) {
-        return p.getItem() instanceof TokenWhitespace;
-    }
+	@Override
+	public boolean matchToken(Parser p) {
+		return p.getItem() instanceof TokenWhitespace;
+	}
 
-    @Override
-    public ArrayList parse(Parser p) throws IconusCalcException {
-        return new ArrayList();
-    }
+	@Override
+	public ArrayList parse(Parser p) throws IconusCalcException {
+		return new ArrayList();
+	}
 
-    @Override
-    public int getDelLength(Parser p) {
-        return 1;
-    }
-    
+	@Override
+	public int getDelLength(Parser p) {
+		return 1;
+	}
+	
 }
