@@ -22,6 +22,7 @@ import com.iconmaster.iconuscalc.function.FunctionSin;
 import com.iconmaster.iconuscalc.function.FunctionSqrt;
 import com.iconmaster.iconuscalc.function.FunctionSubtract;
 import com.iconmaster.iconuscalc.function.FunctionTan;
+import com.iconmaster.iconuscalc.function.FunctionToFrac;
 import com.iconmaster.iconuscalc.function.FunctionUpDir;
 import java.util.HashMap;
 
@@ -69,6 +70,7 @@ public class GlobalNamespace extends Namespace {
 		ns.addFunction(new FunctionEval());
 		ns.addFunction(new FunctionClearStack());
 		ns.addFunction(new FunctionSimplify());
+		ns.addFunction(new FunctionToFrac());
 		
 		ns.addFunction(new FunctionMakeDir());
 		ns.addFunction(new FunctionChangeDir());

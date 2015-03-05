@@ -55,10 +55,10 @@ public class IconusCalc {
 		Tokenizer.addDefaultHandlers();
 		Parser.addDefaultHandlers();
 		Simplifier.registerRules();
-
+		
 		registerApp(new HomeScreenManager());
 		registerApp(new FileManager());
-				
+		
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(() -> {
 			new Window(new HomeScreenManager());

@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @author iconmaster
  */
 public class ExpressionElement extends Element implements IOperable {
-	public final Element[] content;
+	public Element[] content;
 	
 	public ExpressionElement(ArrayList<Element> n) {
 		content = CodeExecutor.executeQuoting(n);
