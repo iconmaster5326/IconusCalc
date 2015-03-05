@@ -176,9 +176,9 @@ public class FileManager implements IControlManager,IApplication,IFileListener {
 				if (e instanceof Variable) {
 					str = StringUtils.padLeft(((Variable)e).value.getDataTypeName(),4)+" "+((Variable)e).name;
 				} else if (e instanceof Namespace) {
-					str = "	 "+((Namespace)e).getName();
+					str = "     "+((Namespace)e).getName();
 				} else {
-					str = "	 "+e.toString();
+					str = "     "+e.toString();
 				}
 				renderer.putString(str, 0, i+offset);
 				i++;

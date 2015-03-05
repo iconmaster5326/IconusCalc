@@ -22,7 +22,7 @@ public class ColorPickRenderer extends GridRenderer {
 		
 		this.drawString(g,"Red:",rows/2-6, 5);
 		if (!(manager.pos==0 && manager.editing)) {
-			this.drawString(g,"Red:	"+manager.color.getRed(),rows/2-6, 5);
+			this.drawString(g,"Red:    "+manager.color.getRed(),rows/2-6, 5);
 			if (manager.pos==0)
 				this.highlight(g, rows/2+1, 5, 3, 1);
 		}
