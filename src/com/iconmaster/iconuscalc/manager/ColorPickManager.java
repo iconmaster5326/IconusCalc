@@ -67,7 +67,7 @@ public class ColorPickManager implements IControlManager {
 					if (e.key==KeyInput.BACK_SPACE) {
 						str = "";
 					}
-					InputManager man = new InputManager(renderer.cols/2+10,pos+5,str,3,(output)->{
+					InputManager man = new InputManager(renderer.rows/2+1,pos+5,str,3,(output)->{
 						if (output!=null) {
 							try {
 								int num = Integer.parseUnsignedInt(output);
