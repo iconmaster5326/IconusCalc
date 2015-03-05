@@ -64,4 +64,9 @@ public abstract class Element {
 	}
 
 	public abstract String getDataTypeName();
+	
+	@Override
+	public String toString() {
+		return getDisplayString();
+	}
 }

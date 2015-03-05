@@ -1,6 +1,7 @@
 
 package com.iconmaster.iconuscalc.parse;
 
+import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.FunctionElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
@@ -16,7 +17,7 @@ public class FunctionCallParser implements ParseHandler {
 
 	@Override
 	public boolean matchToken(Parser p) {
-		return !p.isEOF(1) && p.getItem() instanceof TokenWord && p.getItem(1) instanceof TokenChunk;
+		return !p.isEOF(1) && p.getItem() instanceof TokenWord && p.getItem(1) instanceof TokenChunk && IconusCalc.getGlobalNamespace().getFunction(((TokenWord)p.getItem()).content)!=null;
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class FunctionCallParser implements ParseHandler {
 		ArrayList<Element> args = p2.parse();
 		a.add(args);
 		a.add(new FunctionElement(t.content));
-						
+		
 		return a;
 	}
 

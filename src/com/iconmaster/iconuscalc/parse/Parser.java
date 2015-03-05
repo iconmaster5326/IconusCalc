@@ -54,6 +54,7 @@ public class Parser {
 		addHandler(new OperatorParser(3));
 		addHandler(new EquateParser());
 		addHandler(new FunctionParser());
+		addHandler(new UserFunctionParser());
 	}
 	
 	public ArrayList<Element> parse() throws IconusCalcException {
@@ -84,7 +85,7 @@ public class Parser {
 		return flatten(list);
 	}
 	
-	public ArrayList<Element> flatten(ArrayList input) throws IconusCalcException {
+	public static ArrayList<Element> flatten(ArrayList input) throws IconusCalcException {
 		ArrayList<Element> out = new ArrayList<>();
 		for (Object item : input) {
 			if (item instanceof Element) {
