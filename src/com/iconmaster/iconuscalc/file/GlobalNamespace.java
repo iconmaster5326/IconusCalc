@@ -2,28 +2,29 @@
 package com.iconmaster.iconuscalc.file;
 
 import com.iconmaster.iconuscalc.function.Function;
-import com.iconmaster.iconuscalc.function.operator.FunctionAdd;
-import com.iconmaster.iconuscalc.function.files.FunctionChangeDir;
-import com.iconmaster.iconuscalc.function.stack.FunctionClearStack;
-import com.iconmaster.iconuscalc.function.math.FunctionCos;
-import com.iconmaster.iconuscalc.function.operator.FunctionDivide;
-import com.iconmaster.iconuscalc.function.files.FunctionEquate;
-import com.iconmaster.iconuscalc.function.math.FunctionEulersNumber;
 import com.iconmaster.iconuscalc.function.cas.FunctionEval;
+import com.iconmaster.iconuscalc.function.cas.FunctionSimplify;
+import com.iconmaster.iconuscalc.function.cas.FunctionToFrac;
+import com.iconmaster.iconuscalc.function.files.FunctionChangeDir;
+import com.iconmaster.iconuscalc.function.files.FunctionEquate;
+import com.iconmaster.iconuscalc.function.files.FunctionMakeDir;
+import com.iconmaster.iconuscalc.function.files.FunctionUpDir;
+import com.iconmaster.iconuscalc.function.math.FunctionCos;
+import com.iconmaster.iconuscalc.function.math.FunctionEulersNumber;
 import com.iconmaster.iconuscalc.function.math.FunctionLn;
 import com.iconmaster.iconuscalc.function.math.FunctionLog;
-import com.iconmaster.iconuscalc.function.files.FunctionMakeDir;
-import com.iconmaster.iconuscalc.function.operator.FunctionMultiply;
 import com.iconmaster.iconuscalc.function.math.FunctionNegate;
 import com.iconmaster.iconuscalc.function.math.FunctionPi;
-import com.iconmaster.iconuscalc.function.operator.FunctionPower;
-import com.iconmaster.iconuscalc.function.cas.FunctionSimplify;
 import com.iconmaster.iconuscalc.function.math.FunctionSin;
 import com.iconmaster.iconuscalc.function.math.FunctionSqrt;
-import com.iconmaster.iconuscalc.function.operator.FunctionSubtract;
 import com.iconmaster.iconuscalc.function.math.FunctionTan;
-import com.iconmaster.iconuscalc.function.cas.FunctionToFrac;
-import com.iconmaster.iconuscalc.function.files.FunctionUpDir;
+import com.iconmaster.iconuscalc.function.operator.FunctionAdd;
+import com.iconmaster.iconuscalc.function.operator.FunctionDivide;
+import com.iconmaster.iconuscalc.function.operator.FunctionMultiply;
+import com.iconmaster.iconuscalc.function.operator.FunctionPower;
+import com.iconmaster.iconuscalc.function.operator.FunctionSubtract;
+import com.iconmaster.iconuscalc.function.stack.FunctionClearStack;
+import com.iconmaster.iconuscalc.function.stack.FunctionSwap;
 import java.util.HashMap;
 
 /**
@@ -68,9 +69,11 @@ public class GlobalNamespace extends Namespace {
 		ns.addFunction(new FunctionEulersNumber());
 		
 		ns.addFunction(new FunctionEval());
-		ns.addFunction(new FunctionClearStack());
 		ns.addFunction(new FunctionSimplify());
 		ns.addFunction(new FunctionToFrac());
+		
+		ns.addFunction(new FunctionClearStack());
+		ns.addFunction(new FunctionSwap());
 		
 		ns.addFunction(new FunctionMakeDir());
 		ns.addFunction(new FunctionChangeDir());

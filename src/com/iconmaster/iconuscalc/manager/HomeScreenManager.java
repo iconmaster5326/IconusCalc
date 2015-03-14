@@ -1,18 +1,18 @@
 
 package com.iconmaster.iconuscalc.manager;
 
-import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.element.Entry;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.function.IQuickCommand;
+import com.iconmaster.iconuscalc.gui.InputType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import com.iconmaster.iconuscalc.gui.Window;
-import com.iconmaster.iconuscalc.render.IScreenRenderer;
-import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.parse.CodeExecutor;
 import com.iconmaster.iconuscalc.render.GridRenderer;
+import com.iconmaster.iconuscalc.render.IScreenRenderer;
+import com.iconmaster.iconuscalc.render.TextGridRenderer;
 import com.iconmaster.iconuscalc.util.EntryStack;
 import com.iconmaster.iconuscalc.util.StringUtils;
 import java.util.List;
@@ -85,6 +85,8 @@ public class HomeScreenManager implements IControlManager,IApplication {
 				});
 				gui.addManager(input);
 			}
+		} else if (e.type==InputType.DOWN && (e.key == KeyInput.RIGHT || e.key==KeyInput.LEFT || e.key==KeyInput.UP || e.key==KeyInput.DOWN)) {
+			checkCommandKeys(e);
 		}
 		
 		renderScreen();
