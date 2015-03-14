@@ -1,6 +1,12 @@
 
 package com.iconmaster.iconuscalc.math;
 
+import com.iconmaster.iconuscalc.function.math.FunctionNegate;
+import com.iconmaster.iconuscalc.function.operator.FunctionSubtract;
+import com.iconmaster.iconuscalc.function.operator.FunctionAdd;
+import com.iconmaster.iconuscalc.function.operator.FunctionMultiply;
+import com.iconmaster.iconuscalc.function.operator.FunctionDivide;
+import com.iconmaster.iconuscalc.function.operator.FunctionPower;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.ExpressionElement;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;

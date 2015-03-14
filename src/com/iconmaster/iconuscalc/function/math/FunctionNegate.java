@@ -1,11 +1,16 @@
 
-package com.iconmaster.iconuscalc.function;
+package com.iconmaster.iconuscalc.function.math;
 
+import com.iconmaster.iconuscalc.function.operator.IOperator;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.Entry;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
+import com.iconmaster.iconuscalc.function.Function;
+import com.iconmaster.iconuscalc.function.IOperable;
+import com.iconmaster.iconuscalc.function.IQuickCommand;
+import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 
 /**

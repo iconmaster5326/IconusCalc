@@ -4,11 +4,11 @@ package com.iconmaster.iconuscalc.math;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.element.NumberElement;
-import com.iconmaster.iconuscalc.function.FunctionAdd;
-import com.iconmaster.iconuscalc.function.FunctionDivide;
-import com.iconmaster.iconuscalc.function.FunctionMultiply;
-import com.iconmaster.iconuscalc.function.FunctionPower;
-import com.iconmaster.iconuscalc.function.FunctionSubtract;
+import com.iconmaster.iconuscalc.function.operator.FunctionAdd;
+import com.iconmaster.iconuscalc.function.operator.FunctionDivide;
+import com.iconmaster.iconuscalc.function.operator.FunctionMultiply;
+import com.iconmaster.iconuscalc.function.operator.FunctionPower;
+import com.iconmaster.iconuscalc.function.operator.FunctionSubtract;
 
 /**
  *

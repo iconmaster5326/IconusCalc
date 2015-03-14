@@ -6,9 +6,9 @@ import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.element.NumberElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.function.Function;
-import com.iconmaster.iconuscalc.function.FunctionAdd;
-import com.iconmaster.iconuscalc.function.FunctionNegate;
-import com.iconmaster.iconuscalc.function.FunctionSubtract;
+import com.iconmaster.iconuscalc.function.operator.FunctionAdd;
+import com.iconmaster.iconuscalc.function.math.FunctionNegate;
+import com.iconmaster.iconuscalc.function.operator.FunctionSubtract;
 import java.util.ArrayList;
 
 /**

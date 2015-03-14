@@ -1,27 +1,31 @@
 
-package com.iconmaster.iconuscalc.function;
+package com.iconmaster.iconuscalc.function.cas;
 
 import com.iconmaster.iconuscalc.element.Element;
-import com.iconmaster.iconuscalc.element.StringElement;
+import com.iconmaster.iconuscalc.element.ExpressionElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
 import com.iconmaster.iconuscalc.file.Namespace;
+import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.gui.Window;
+import com.iconmaster.iconuscalc.math.Simplifier;
+import com.iconmaster.iconuscalc.parse.CodeExecutor;
 import com.iconmaster.iconuscalc.util.EntryStack;
 
 /**
  *
  * @author iconmaster
  */
-public class FunctionMakeDir extends Function {
+public class FunctionSimplify extends Function {
 
 	@Override
 	public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
-		if (!(args[0] instanceof StringElement)) {
+
+		if (args[0] instanceof ExpressionElement) {
+			return new Element[] {Simplifier.simplify((ExpressionElement) args[0])};
+		} else {
 			throw new IllegalArgumentTypeException();
 		}
-		ns.addFolder(new Namespace(((StringElement)args[0]).content,ns));
-		return new Element[] {};
 	}
 	
 	@Override
@@ -31,11 +35,6 @@ public class FunctionMakeDir extends Function {
 
 	@Override
 	public String getName() {
-		return "MKDIR";
-	}
-
-	@Override
-	public Element[] execute(Element[] args) throws IconusCalcException {
-		return new Element[] {};
+		return "SIMP";
 	}
 }

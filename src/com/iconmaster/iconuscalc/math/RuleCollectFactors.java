@@ -4,7 +4,7 @@ package com.iconmaster.iconuscalc.math;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.element.NumberElement;
-import com.iconmaster.iconuscalc.function.FunctionMultiply;
+import com.iconmaster.iconuscalc.function.operator.FunctionMultiply;
 
 /**
  *

@@ -1,6 +1,7 @@
 
-package com.iconmaster.iconuscalc.function;
+package com.iconmaster.iconuscalc.function.operator;
 
+import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 import java.awt.event.KeyEvent;
 
@@ -8,25 +9,25 @@ import java.awt.event.KeyEvent;
  *
  * @author iconmaster
  */
-public class FunctionDivide extends FunctionOperator {
+public class FunctionSubtract extends FunctionOperator {
 	@Override
 	public OperationType getOp() {
-		return OperationType.DIV;
+		return OperationType.SUB;
 	}
 
 	@Override
 	public String getName() {
-		return "/";
+		return "-";
 	}
 
 	@Override
 	public boolean isCommandKey(KeyInput e) {
-		return e.key=='/';
+		return e.key=='-';
 	}
 
 	@Override
 	public int getOrder() {
-		return 2;
+		return 3;
 	}
 	
 }

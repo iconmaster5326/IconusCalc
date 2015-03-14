@@ -1,5 +1,5 @@
 
-package com.iconmaster.iconuscalc.function;
+package com.iconmaster.iconuscalc.function.math;
 
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.ExpressionElement;
@@ -7,6 +7,7 @@ import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.element.NumberElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.file.Namespace;
+import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.EntryStack;
 

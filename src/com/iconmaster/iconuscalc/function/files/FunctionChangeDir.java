@@ -1,5 +1,5 @@
 
-package com.iconmaster.iconuscalc.function;
+package com.iconmaster.iconuscalc.function.files;
 
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.StringElement;
@@ -7,6 +7,7 @@ import com.iconmaster.iconuscalc.exception.DiretoryNotFoundException;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.exception.IllegalArgumentTypeException;
 import com.iconmaster.iconuscalc.file.Namespace;
+import com.iconmaster.iconuscalc.function.Function;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.EntryStack;
 
@@ -14,24 +15,31 @@ import com.iconmaster.iconuscalc.util.EntryStack;
  *
  * @author iconmaster
  */
-public class FunctionUpDir extends Function {
+public class FunctionChangeDir extends Function {
 
 	@Override
 	public Element[] execute(Element[] args, EntryStack stack, Namespace ns, Window window, int need) throws IconusCalcException {
-		if (ns.getParent() != null)
-			window.setNamespace(ns.getParent());
+		if (!(args[0] instanceof StringElement)) {
+			throw new IllegalArgumentTypeException();
+		}
 		
-		return new Element[0];
+		String str = ((StringElement)args[0]).content;
+		if (ns.getFolder(str)==null) {
+			throw new DiretoryNotFoundException();
+		} else {
+			window.setNamespace(ns.getFolder(str));
+			return new Element[] {};
+		}
 	}
 	
 	@Override
 	public int getDefaultArgs() {
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public String getName() {
-		return "UPDIR";
+		return "CHDIR";
 	}
 
 	@Override

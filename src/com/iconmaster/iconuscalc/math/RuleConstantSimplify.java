@@ -5,7 +5,7 @@ import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.element.NumberElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
-import com.iconmaster.iconuscalc.function.FunctionNegate;
+import com.iconmaster.iconuscalc.function.math.FunctionNegate;
 
 /**
  *

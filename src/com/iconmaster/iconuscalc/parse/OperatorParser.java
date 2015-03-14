@@ -5,7 +5,7 @@ import com.iconmaster.iconuscalc.IconusCalc;
 import com.iconmaster.iconuscalc.element.FunctionElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.function.Function;
-import com.iconmaster.iconuscalc.function.IOperator;
+import com.iconmaster.iconuscalc.function.operator.IOperator;
 import com.iconmaster.iconuscalc.tokenize.IToken;
 import com.iconmaster.iconuscalc.tokenize.TokenWord;
 import java.util.ArrayList;

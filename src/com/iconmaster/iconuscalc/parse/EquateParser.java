@@ -8,7 +8,7 @@ import com.iconmaster.iconuscalc.element.FunctionElement;
 import com.iconmaster.iconuscalc.element.VarElement;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.function.Function;
-import com.iconmaster.iconuscalc.function.FunctionEquate;
+import com.iconmaster.iconuscalc.function.files.FunctionEquate;
 import com.iconmaster.iconuscalc.tokenize.TokenWord;
 import java.util.ArrayList;
 

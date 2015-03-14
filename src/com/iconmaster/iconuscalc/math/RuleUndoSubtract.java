@@ -4,8 +4,8 @@ package com.iconmaster.iconuscalc.math;
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;
 import com.iconmaster.iconuscalc.element.NumberElement;
-import com.iconmaster.iconuscalc.function.FunctionNegate;
-import com.iconmaster.iconuscalc.function.FunctionSubtract;
+import com.iconmaster.iconuscalc.function.math.FunctionNegate;
+import com.iconmaster.iconuscalc.function.operator.FunctionSubtract;
 
 /**
  *

@@ -1,6 +1,7 @@
 
-package com.iconmaster.iconuscalc.function;
+package com.iconmaster.iconuscalc.function.operator;
 
+import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 
 /**

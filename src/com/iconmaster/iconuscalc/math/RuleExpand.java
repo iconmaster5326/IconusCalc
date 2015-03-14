@@ -3,8 +3,8 @@ package com.iconmaster.iconuscalc.math;
 
 import com.iconmaster.iconuscalc.element.Element;
 import com.iconmaster.iconuscalc.element.FunctionCallElement;
-import com.iconmaster.iconuscalc.function.FunctionAdd;
-import com.iconmaster.iconuscalc.function.FunctionMultiply;
+import com.iconmaster.iconuscalc.function.operator.FunctionAdd;
+import com.iconmaster.iconuscalc.function.operator.FunctionMultiply;
 import java.util.ArrayList;
 
 /**

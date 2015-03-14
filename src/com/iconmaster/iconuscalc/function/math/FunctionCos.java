@@ -1,4 +1,6 @@
-package com.iconmaster.iconuscalc.function;
+package com.iconmaster.iconuscalc.function.math;
+
+import com.iconmaster.iconuscalc.function.math.FunctionBasicMath;
 
 /**
  *

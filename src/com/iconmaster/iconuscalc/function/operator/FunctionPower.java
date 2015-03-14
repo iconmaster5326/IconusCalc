@@ -1,35 +1,32 @@
 
-package com.iconmaster.iconuscalc.function;
+package com.iconmaster.iconuscalc.function.operator;
 
+import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.gui.KeyInput;
 
 /**
  *
  * @author iconmaster
  */
-public class FunctionAdd extends FunctionOperator {
+public class FunctionPower extends FunctionOperator {
 	@Override
 	public OperationType getOp() {
-		return OperationType.ADD;
+		return OperationType.POW;
 	}
 
 	@Override
 	public String getName() {
-		return "+";
+		return "^";
 	}
 
 	@Override
 	public boolean isCommandKey(KeyInput e) {
-		return e.key=='+';
+		return e.key=='^';
 	}
 
 	@Override
 	public int getOrder() {
-		return 3;
+		return 1;
 	}
 	
-	@Override
-	public boolean argPosMatters() {
-		return false;
-	}
 }

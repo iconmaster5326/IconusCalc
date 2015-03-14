@@ -4,7 +4,7 @@ package com.iconmaster.iconuscalc.element;
 import com.iconmaster.iconuscalc.exception.IconusCalcException;
 import com.iconmaster.iconuscalc.file.Namespace;
 import com.iconmaster.iconuscalc.function.Function;
-import com.iconmaster.iconuscalc.function.FunctionNegate;
+import com.iconmaster.iconuscalc.function.math.FunctionNegate;
 import com.iconmaster.iconuscalc.function.OperationType;
 import com.iconmaster.iconuscalc.gui.Window;
 import com.iconmaster.iconuscalc.util.EntryStack;
