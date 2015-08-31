@@ -14,7 +14,13 @@ public class StringUtils {
 	
 	public static String renderNumber(Double number) {
 		if (number.isNaN()) {return "NaN";}
-		DecimalFormat df = new DecimalFormat("###,###.############");
+		DecimalFormat df;
+		if (number > Math.pow(10.0,9.0) || (number < Math.pow(10.0,-9.0) && number > -Math.pow(10.0,-8.0) && number != 0) || number< -Math.pow(10.0,8.0)) {
+			df = new DecimalFormat("0.######E0##");
+		} else {
+			df = new DecimalFormat("###,###.############");
+		}
+		
 		return df.format(number);
 	}
 

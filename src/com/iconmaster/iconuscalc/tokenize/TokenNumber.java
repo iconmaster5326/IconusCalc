@@ -26,12 +26,25 @@ public class TokenNumber implements IToken {
 	@Override
 	public IToken match(Tokenizer tc) throws IconusCalcException {
 		StringBuilder word = new StringBuilder();
+		boolean exp = false;
 		while (true) {
 			if (!tc.isEOF()) {
 				char c = tc.getChar();
 				if (doesMatch(tc,c)) {
 					word.append(c);
 					tc.advance();
+				} else if (c=='e' || c=='E') {
+					word.append(c);
+					tc.advance();
+					exp = true;
+				} else if (c=='-' && exp) {
+					word.append(c);
+					tc.advance();
+					exp = false;
+				} else if (c=='+' && exp) {
+					word.append(c);
+					tc.advance();
+					exp = false;
 				} else {
 					break;
 				}
